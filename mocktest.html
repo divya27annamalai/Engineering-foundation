@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" href="css/style.css">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mock Test | Engineering Foundation Learning Institute</title>
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet" />
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: #f8f9fa; }
+        /* Navbar */
+        .navbar { background: #1a1a2e !important; padding: 0.8rem 0; }
+        .navbar-brand { font-size: 1.4rem; font-weight: 700; }
+        .navbar-brand i { color: #ffc107; }
+        .nav-link { font-weight: 600; color: rgba(255,255,255,0.7) !important; padding: 0.5rem 1rem; border-radius: 8px; }
+        .nav-link:hover { color: #fff !important; background: rgba(255,255,255,0.08); }
+        .nav-link.active { color: #fff !important; background: rgba(255,255,255,0.12); }
+
+        /* Hero */
+        .mocktest-hero { background: linear-gradient(135deg, #0d6efd, #0a58ca); padding: 2.5rem 0; }
+        .mocktest-hero .breadcrumb { --bs-breadcrumb-divider: '>'; }
+        .mocktest-hero .breadcrumb-item a { color: rgba(255,255,255,0.7); text-decoration: none; }
+        .mocktest-hero .breadcrumb-item a:hover { color: #fff; }
+        .mocktest-hero .breadcrumb-item.active { color: #fff; }
+
+        /* Timer & Counter pills */
+        .pill { background: rgba(255,255,255,0.12); border-radius: 50px; padding: 0.4rem 1.2rem; color: #fff; }
+        .pill i { margin-right: 0.4rem; }
+
+        /* Timer bar */
+        .timer-bar { background: #e9ecef; border-radius: 50px; height: 8px; overflow: hidden; margin: 0.5rem 0 1.5rem 0; }
+        .timer-bar .timer-progress { height: 100%; background: #198754; border-radius: 50px; transition: width 1s linear; }
+        .timer-bar .timer-progress.warning { background: #ffc107; }
+        .timer-bar .timer-progress.danger { background: #dc3545; }
+
+        /* Instruction card */
+        .instruction-card { border: none; border-radius: 1.25rem; background: #fff; box-shadow: 0 0.125rem 0.5rem rgba(0,0,0,0.06); }
+        .instruction-card ul li { padding: 0.3rem 0; }
+        .instruction-card ul li i { color: #198754; width: 1.5rem; }
+
+        /* Question card */
+        .question-card { border: none; border-radius: 1rem; background: #fff; box-shadow: 0 0.125rem 0.5rem rgba(0,0,0,0.06); margin-bottom: 1.25rem; padding: 1.25rem; }
+        .question-number { font-weight: 700; color: #0d6efd; }
+        .question-text { font-weight: 600; font-size: 1.05rem; margin-bottom: 0.75rem; }
+
+        .option-label { display: block; padding: 0.5rem 1rem; border-radius: 0.5rem; border: 1px solid #e9ecef; margin-bottom: 0.5rem; cursor: pointer; transition: background 0.15s ease; }
+        .option-label:hover { background: #f8f9fa; }
+        .option-label input[type="radio"] { margin-right: 0.75rem; accent-color: #0d6efd; }
+        .option-label.correct { background: #d1e7dd; border-color: #198754; }
+        .option-label.wrong { background: #f8d7da; border-color: #dc3545; }
+        .option-label.disabled { cursor: not-allowed; opacity: 0.7; }
+
+        /* Result */
+        .result-card { background: #fff; border-radius: 1.5rem; padding: 2.5rem; text-align: center; box-shadow: 0 0.5rem 1.5rem rgba(0,0,0,0.06); }
+        .score-circle { width: 150px; height: 150px; border-radius: 50%; background: #0d6efd; color: #fff; display: flex; align-items: center; justify-content: center; font-size: 2.5rem; font-weight: 800; margin: 0 auto 1.5rem auto; }
+        .score-circle.pass { background: #198754; }
+        .score-circle.fail { background: #dc3545; }
+
+        /* Footer */
+        footer { background: #1a1a2e !important; }
+        footer a { text-decoration: none; transition: opacity 0.3s ease; }
+        footer a:hover { opacity: 1 !important; }
+        footer .social-icons a { display: inline-block; transition: transform 0.3s ease; }
+        footer .social-icons a:hover { transform: translateY(-3px); color: #ffc107 !important; }
+
+        @media (max-width: 576px) {
+            .mocktest-hero h1 { font-size: 1.6rem; }
+            .score-circle { width: 120px; height: 120px; font-size: 2rem; }
+            .pill { font-size: 0.85rem; padding: 0.3rem 0.8rem; }
+        }
+    </style>
+</head>
+<script src="js/script.js"></script>
+<body>
+
+    <!-- ===== NAVBAR ===== -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top shadow">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="index.html">
+                <i class="fas fa-graduation-cap me-2"></i> EFLI
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="mainNavbar">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="courses.html">Courses</a></li>
+                    <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
+                    <li class="nav-item"><a class="nav-link" href="faq.html">FAQ</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ===== HERO ===== -->
+    <section class="mocktest-hero text-white">
+        <div class="container py-3">
+            <div class="row align-items-center">
+                <div class="col-lg-7">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb text-white-50 mb-1">
+                            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                            <li class="breadcrumb-item"><a href="courses.html">Courses</a></li>
+                            <li class="breadcrumb-item active text-white" id="breadcrumbCourse">Mock Test</li>
+                        </ol>
+                    </nav>
+                    <h1 class="display-5 fw-bold mb-1" id="mockTestTitle">Mock Test</h1>
+                    <p class="lead opacity-90 mb-0" id="mockTestSubtitle">Test your knowledge and prepare for the final assessment.</p>
+                </div>
+                <div class="col-lg-5 text-lg-end mt-3 mt-lg-0">
+                    <div class="d-flex flex-wrap gap-2 justify-content-lg-end">
+                        <span class="pill"><i class="fas fa-clock"></i> <span id="timeDisplay">45:00</span></span>
+                        <span class="pill"><i class="fas fa-question-circle"></i> <span id="questionCounter">0 / 30</span></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== MAIN ===== -->
+    <section class="py-4">
+        <div class="container">
+
+            <!-- Timer bar -->
+            <div class="timer-bar">
+                <div class="timer-progress" id="timerProgress" style="width:100%;"></div>
+            </div>
+
+            <!-- ===== INSTRUCTIONS ===== -->
+            <div id="instructionsSection" class="instruction-card p-4 mb-4">
+                <h4 class="fw-bold mb-3"><i class="fas fa-info-circle text-primary me-2"></i>Instructions</h4>
+                <ul class="list-unstyled">
+                    <li><i class="fas fa-check-circle"></i> This test contains <strong id="totalQty">30</strong> multiple choice questions.</li>
+                    <li><i class="fas fa-check-circle"></i> You have <strong id="totalTime">45</strong> minutes to complete it.</li>
+                    <li><i class="fas fa-check-circle"></i> Passing score: <strong id="passingScore">70%</strong></li>
+                    <li><i class="fas fa-check-circle"></i> Each question has exactly one correct answer.</li>
+                    <li><i class="fas fa-check-circle"></i> You can change your answer before submitting.</li>
+                    <li><i class="fas fa-check-circle"></i> Once submitted, you cannot change your answers.</li>
+                </ul>
+                <button class="btn btn-primary btn-lg rounded-pill px-5 mt-2" id="startTestBtn">
+                    <i class="fas fa-play me-2"></i> Start Test
+                </button>
+            </div>
+
+            <!-- ===== QUIZ ===== -->
+            <div id="quizSection" style="display:none;">
+                <div id="questionsContainer"></div>
+                <div class="text-center mt-4">
+                    <button class="btn btn-success btn-lg rounded-pill px-5" id="submitTestBtn">
+                        <i class="fas fa-check-circle me-2"></i> Submit Test
+                    </button>
+                </div>
+            </div>
+
+            <!-- ===== RESULT ===== -->
+            <div id="resultSection" style="display:none;">
+                <div class="result-card">
+                    <h3 class="fw-bold mb-3">Your Result</h3>
+                    <div class="score-circle" id="scoreCircle">
+                        <span id="scorePercentage">0%</span>
+                    </div>
+                    <h4 class="fw-bold" id="resultTitle">Pass</h4>
+                    <p class="text-muted" id="resultDetails">You answered 0 out of 0 correctly.</p>
+                    <div class="d-flex flex-wrap gap-3 justify-content-center mt-3">
+                        <a href="#" id="backToCourseBtn" class="btn btn-outline-primary rounded-pill px-4">
+                            <i class="fas fa-arrow-left me-2"></i> Back to Course
+                        </a>
+                        <button class="btn btn-warning rounded-pill px-4" id="retryBtn">
+                            <i class="fas fa-redo me-2"></i> Retry Test
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="text-white pt-5 pb-3">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <h5 class="fw-bold mb-3"><i class="fas fa-graduation-cap text-warning me-2"></i>EFLI</h5>
+                    <p class="text-light opacity-75 small">Engineering Foundation Learning Institute — building the engineers of tomorrow with strong foundations today.</p>
+                    <div class="social-icons mt-3">
+                        <a href="#" class="text-white me-3 opacity-75"><i class="fab fa-facebook-f fa-lg"></i></a>
+                        <a href="#" class="text-white me-3 opacity-75"><i class="fab fa-twitter fa-lg"></i></a>
+                        <a href="#" class="text-white me-3 opacity-75"><i class="fab fa-linkedin-in fa-lg"></i></a>
+                        <a href="#" class="text-white me-3 opacity-75"><i class="fab fa-youtube fa-lg"></i></a>
+                        <a href="#" class="text-white opacity-75"><i class="fab fa-instagram fa-lg"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <h6 class="fw-bold text-uppercase mb-3">Quick Links</h6>
+                    <ul class="list-unstyled small">
+                        <li class="mb-2"><a href="index.html" class="text-light opacity-75">Home</a></li>
+                        <li class="mb-2"><a href="about.html" class="text-light opacity-75">About</a></li>
+                        <li class="mb-2"><a href="courses.html" class="text-light opacity-75">Courses</a></li>
+                        <li class="mb-2"><a href="gallery.html" class="text-light opacity-75">Gallery</a></li>
+                        <li class="mb-2"><a href="faq.html" class="text-light opacity-75">FAQ</a></li>
+                        <li><a href="contact.html" class="text-light opacity-75">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-2">
+                    <h6 class="fw-bold text-uppercase mb-3">Resources</h6>
+                    <ul class="list-unstyled small">
+                        <li class="mb-2"><a href="#" class="text-light opacity-75">Alumni</a></li>
+                        <li class="mb-2"><a href="#" class="text-light opacity-75">Careers</a></li>
+                        <li class="mb-2"><a href="#" class="text-light opacity-75">Blog</a></li>
+                        <li><a href="#" class="text-light opacity-75">Events</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h6 class="fw-bold text-uppercase mb-3">Get in Touch</h6>
+                    <ul class="list-unstyled small">
+                        <li class="mb-2 d-flex"><i class="fas fa-map-marker-alt text-warning me-2 mt-1"></i>123 Engineering Avenue, Innovation Park, City 10001</li>
+                        <li class="mb-2 d-flex"><i class="fas fa-phone-alt text-warning me-2 mt-1"></i><a href="tel:+1234567890" class="text-light">+1 (234) 567-890</a></li>
+                        <li class="d-flex"><i class="fas fa-envelope text-warning me-2 mt-1"></i><a href="mailto:info@efli.edu" class="text-light">info@efli.edu</a></li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="border-secondary opacity-25 my-4" />
+            <div class="row align-items-center">
+                <div class="col-md-6 text-center text-md-start"><p class="small text-light opacity-50 mb-0">&copy; 2026 Engineering Foundation Learning Institute. All rights reserved.</p></div>
+                <div class="col-md-6 text-center text-md-end"><p class="small text-light opacity-50 mb-0"><i class="fas fa-code me-1"></i> Built with <i class="fas fa-heart text-danger"></i> for education.</p></div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ===== SCRIPTS ===== -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // ================================================================
+        // 1. QUIZ DATA – All 10 courses × 30 questions each
+        // ================================================================
+
+        const quizData = {
+            'computer-fundamentals': {
+                name: 'Computer Fundamentals',
+                totalQuestions: 30,
+                timeLimit: 45,
+                passingScore: 70,
+                page: 'course-computer-fundamentals.html',
+                questions: [
+                    { q: 'What is the brain of the computer?', opts: ['CPU', 'RAM', 'Hard Disk', 'Monitor'], ans: 0 },
+                    { q: 'Which of the following is a storage device?', opts: ['Keyboard', 'Mouse', 'Hard Disk', 'Monitor'], ans: 2 },
+                    { q: 'What does RAM stand for?', opts: ['Random Access Memory', 'Read Access Memory', 'Real Access Memory', 'Run Access Memory'], ans: 0 },
+                    { q: 'Which is an input device?', opts: ['Monitor', 'Printer', 'Keyboard', 'Speaker'], ans: 2 },
+                    { q: 'Full form of CPU?', opts: ['Central Processing Unit', 'Computer Personal Unit', 'Central Program Unit', 'Core Processing Unit'], ans: 0 },
+                    { q: 'Which OS is open-source?', opts: ['Windows', 'macOS', 'Linux', 'All of these'], ans: 2 },
+                    { q: 'Smallest unit of data?', opts: ['Bit', 'Byte', 'Kilobyte', 'Megabyte'], ans: 0 },
+                    { q: 'Device used to display output?', opts: ['Keyboard', 'Mouse', 'Monitor', 'Scanner'], ans: 2 },
+                    { q: 'Purpose of a firewall?', opts: ['Protect from viruses', 'Manage network traffic', 'Encrypt data', 'All of these'], ans: 1 },
+                    { q: 'Which is a programming language?', opts: ['HTML', 'CSS', 'Python', 'XML'], ans: 2 },
+                    { q: 'What does GUI stand for?', opts: ['Graphical User Interface', 'General User Interface', 'Graphical Unit Interface', 'General Unit Interface'], ans: 0 },
+                    { q: 'Which is a type of software?', opts: ['System software', 'Application software', 'Utility software', 'All of these'], ans: 3 },
+                    { q: 'Function of a compiler?', opts: ['Translate high-level code to machine code', 'Execute code', 'Debug code', 'None of these'], ans: 0 },
+                    { q: 'Example of an operating system?', opts: ['Windows', 'Linux', 'macOS', 'All of these'], ans: 3 },
+                    { q: 'Difference between RAM and ROM?', opts: ['RAM is volatile, ROM is not', 'ROM is volatile, RAM is not', 'Both are volatile', 'Both are non-volatile'], ans: 0 },
+                    { q: 'Protocol used to send emails?', opts: ['HTTP', 'FTP', 'SMTP', 'TCP'], ans: 2 },
+                    { q: 'What is a computer virus?', opts: ['A hardware device', 'A type of malware', 'A network protocol', 'A programming language'], ans: 1 },
+                    { q: 'Which is a type of printer?', opts: ['Inkjet', 'Laser', 'Dot matrix', 'All of these'], ans: 3 },
+                    { q: 'What does HTTP stand for?', opts: ['HyperText Transfer Protocol', 'High Transfer Text Protocol', 'Hyper Transfer Text Protocol', 'None of these'], ans: 0 },
+                    { q: 'Which is NOT a programming language?', opts: ['Java', 'C++', 'HTML', 'Python'], ans: 2 },
+                    { q: 'What is a database?', opts: ['A collection of data', 'A type of software', 'A network device', 'None of these'], ans: 0 },
+                    { q: 'Which is an output device?', opts: ['Scanner', 'Mouse', 'Keyboard', 'Monitor'], ans: 3 },
+                    { q: 'Function of a router?', opts: ['Connects different networks', 'Manages local devices', 'Stores data', 'None of these'], ans: 0 },
+                    { q: 'Valid IP address?', opts: ['192.168.1.1', '256.1.2.3', '192.168.1.256', 'All of these'], ans: 0 },
+                    { q: 'Role of an operating system?', opts: ['Manage hardware', 'Manage software', 'Provide user interface', 'All of these'], ans: 3 },
+                    { q: 'Which is a type of malware?', opts: ['Virus', 'Worm', 'Trojan', 'All of these'], ans: 3 },
+                    { q: 'What is a server?', opts: ['A computer that provides services', 'A type of network', 'A programming language', 'None of these'], ans: 0 },
+                    { q: 'Which is a binary number?', opts: ['1010', '1234', 'ABCD', 'None of these'], ans: 0 },
+                    { q: 'Purpose of cache memory?', opts: ['Store frequently used data', 'Store backup data', 'Increase storage', 'None of these'], ans: 0 },
+                    { q: 'Which is NOT a search engine?', opts: ['Google', 'Bing', 'Yahoo', 'Amazon'], ans: 3 }
+                ]
+            },
+            'c-programming': {
+                name: 'C Programming',
+                totalQuestions: 30,
+                timeLimit: 45,
+                passingScore: 70,
+                page: 'course-c-programming.html',
+                questions: [
+                    { q: 'Which header is required for printf()?', opts: ['stdio.h', 'stdlib.h', 'string.h', 'math.h'], ans: 0 },
+                    { q: 'Size of int in C (32-bit)?', opts: ['2 bytes', '4 bytes', '8 bytes', '1 byte'], ans: 1 },
+                    { q: 'Valid variable name in C?', opts: ['int', '1variable', 'variable_1', 'var-1'], ans: 2 },
+                    { q: 'Output of: printf("%d", 5/2);', opts: ['2', '2.5', '3', 'Error'], ans: 0 },
+                    { q: 'Loop that executes at least once?', opts: ['for', 'while', 'do-while', 'None'], ans: 2 },
+                    { q: 'What does sizeof() return?', opts: ['Size of a variable', 'Size of a data type', 'Both', 'None'], ans: 2 },
+                    { q: 'Valid pointer declaration?', opts: ['int *p;', 'int p*;', '*int p;', 'None of these'], ans: 0 },
+                    { q: 'Output of: printf("%d", 3+4*2);', opts: ['14', '11', '10', '14'], ans: 1 },
+                    { q: 'Function to allocate memory?', opts: ['malloc()', 'calloc()', 'realloc()', 'All of these'], ans: 3 },
+                    { q: 'Syntax to declare a pointer to a function?', opts: ['int (*ptr)(int);', 'int *ptr(int);', 'int ptr*(int);', 'None'], ans: 0 },
+                    { q: 'Valid array declaration?', opts: ['int arr[5];', 'int arr(5);', 'int arr = {1,2,3};', 'All of these'], ans: 0 },
+                    { q: 'Output of: printf("%c", 65);', opts: ['A', '65', 'Error', 'None'], ans: 0 },
+                    { q: 'Statement to exit a loop early?', opts: ['break', 'continue', 'exit', 'return'], ans: 0 },
+                    { q: 'Purpose of the return statement?', opts: ['Exit a function', 'Return a value', 'Both', 'None'], ans: 2 },
+                    { q: 'String function in C?', opts: ['strlen()', 'strcpy()', 'strcat()', 'All of these'], ans: 3 },
+                    { q: 'Output of: printf("%d", 10%3);', opts: ['3', '1', '0', 'Error'], ans: 1 },
+                    { q: 'Valid way to declare a constant?', opts: ['const int x = 5;', '#define x 5', 'Both', 'None'], ans: 2 },
+                    { q: 'Output of: printf("%d", sizeof(char));', opts: ['1', '2', '4', '8'], ans: 0 },
+                    { q: 'Function to take input in C?', opts: ['scanf()', 'gets()', 'fgets()', 'All of these'], ans: 3 },
+                    { q: 'Output of: int a=5; printf("%d", a++);', opts: ['5', '6', 'Error', 'None'], ans: 0 },
+                    { q: 'Valid file opening mode?', opts: ['r', 'w', 'a', 'All of these'], ans: 3 },
+                    { q: 'Purpose of free() function?', opts: ['Allocate memory', 'Free memory', 'Reallocate memory', 'None'], ans: 1 },
+                    { q: 'Output of: printf("%d", 5>3);', opts: ['1', '0', '5', 'Error'], ans: 0 },
+                    { q: 'Which is NOT a valid data type in C?', opts: ['int', 'float', 'string', 'char'], ans: 2 },
+                    { q: 'What is a pointer?', opts: ['Variable that stores address', 'Variable that stores value', 'A function', 'None'], ans: 0 },
+                    { q: 'Output of: printf("%d", 10>>2);', opts: ['2', '5', '40', 'Error'], ans: 0 },
+                    { q: 'Function to compare two strings?', opts: ['strcmp()', 'strcpy()', 'strlen()', 'strcat()'], ans: 0 },
+                    { q: 'What is a structure in C?', opts: ['User-defined data type', 'Built-in data type', 'A function', 'None'], ans: 0 },
+                    { q: 'Output of: printf("%d", sizeof(int*));', opts: ['4', '8', '2', 'Depends on system'], ans: 3 },
+                    { q: 'Which is a valid comment in C?', opts: ['/* comment */', '// comment', 'Both', 'None'], ans: 2 }
+                ]
+            },
+            'cpp-programming': {
+                name: 'C++ Programming',
+                totalQuestions: 30,
+                timeLimit: 45,
+                passingScore: 70,
+                page: 'course-cpp-programming.html',
+                questions: [
+                    { q: 'Which header is used for cout?', opts: ['iostream', 'stdio.h', 'stdlib.h', 'string'], ans: 0 },
+                    { q: 'What is the difference between C and C++?', opts: ['C++ supports OOP', 'C supports OOP', 'Both are same', 'None'], ans: 0 },
+                    { q: 'What is a class in C++?', opts: ['User-defined data type', 'Built-in data type', 'A function', 'None'], ans: 0 },
+                    { q: 'Which keyword is used to create a class?', opts: ['class', 'struct', 'union', 'All of these'], ans: 0 },
+                    { q: 'What is inheritance?', opts: ['Deriving a new class from existing class', 'Creating a new class from scratch', 'Both', 'None'], ans: 0 },
+                    { q: 'Which access specifier is most restrictive?', opts: ['public', 'protected', 'private', 'All are same'], ans: 2 },
+                    { q: 'What is polymorphism?', opts: ['Ability to take many forms', 'Ability to inherit', 'Ability to encapsulate', 'None'], ans: 0 },
+                    { q: 'Which operator is used for dynamic memory allocation?', opts: ['new', 'malloc', 'calloc', 'All of these'], ans: 0 },
+                    { q: 'What is a constructor?', opts: ['Function called when object is created', 'Function called when object is destroyed', 'Both', 'None'], ans: 0 },
+                    { q: 'What is a destructor?', opts: ['Function called when object is destroyed', 'Function called when object is created', 'Both', 'None'], ans: 0 },
+                    { q: 'Which is the correct syntax to inherit a class?', opts: ['class B : public A', 'class B extends A', 'class B inherits A', 'None'], ans: 0 },
+                    { q: 'What is function overloading?', opts: ['Multiple functions with same name but different parameters', 'Multiple functions with different names', 'Both', 'None'], ans: 0 },
+                    { q: 'What is operator overloading?', opts: ['Giving custom meaning to operators', 'Using operators without meaning', 'Both', 'None'], ans: 0 },
+                    { q: 'Which library is used for file handling?', opts: ['fstream', 'iostream', 'stdio', 'None'], ans: 0 },
+                    { q: 'What is a template?', opts: ['Generic programming feature', 'A type of class', 'A function', 'None'], ans: 0 },
+                    { q: 'What is the output of: cout << 5/2;', opts: ['2', '2.5', '3', 'Error'], ans: 0 },
+                    { q: 'Which keyword is used to handle exceptions?', opts: ['try', 'catch', 'throw', 'All of these'], ans: 3 },
+                    { q: 'What is the size of int in C++?', opts: ['4 bytes', '2 bytes', '8 bytes', 'Depends on system'], ans: 3 },
+                    { q: 'Which is a valid STL container?', opts: ['vector', 'list', 'map', 'All of these'], ans: 3 },
+                    { q: 'What is the output of: cout << 3+4*2;', opts: ['11', '14', '10', '14'], ans: 0 },
+                    { q: 'Which keyword is used to create a constant?', opts: ['const', 'final', 'static', 'All of these'], ans: 0 },
+                    { q: 'What is the purpose of the virtual keyword?', opts: ['To achieve polymorphism', 'To achieve inheritance', 'To achieve encapsulation', 'None'], ans: 0 },
+                    { q: 'What is a friend function?', opts: ['A function that can access private members', 'A function that cannot access private members', 'Both', 'None'], ans: 0 },
+                    { q: 'What is the output of: cout << 10%3;', opts: ['1', '3', '0', 'Error'], ans: 0 },
+                    { q: 'Which is a valid way to create an object?', opts: ['MyClass obj;', 'MyClass obj = new MyClass();', 'Both', 'None'], ans: 0 },
+                    { q: 'What is the purpose of the this pointer?', opts: ['Refers to the current object', 'Refers to the parent object', 'Refers to the child object', 'None'], ans: 0 },
+                    { q: 'What is the output of: cout << (5>3);', opts: ['1', '0', '5', 'Error'], ans: 0 },
+                    { q: 'Which is a valid data type in C++?', opts: ['int', 'float', 'char', 'All of these'], ans: 3 },
+                    { q: 'What is the purpose of the namespace?', opts: ['To avoid naming conflicts', 'To create classes', 'To create functions', 'None'], ans: 0 },
+                    { q: 'What is the output of: cout << sizeof(char);', opts: ['1', '2', '4', '8'], ans: 0 }
+                ]
+            },
+            'python-programming': {
+                name: 'Python Programming',
+                totalQuestions: 30,
+                timeLimit: 45,
+                passingScore: 70,
+                page: 'course-python-programming.html',
+                questions: [
+                    { q: 'Which is the correct way to print in Python?', opts: ['print("Hello")', 'printf("Hello")', 'echo "Hello"', 'console.log("Hello")'], ans: 0 },
+                    { q: 'What is the output of: print(5/2)?', opts: ['2.5', '2', '2.0', 'Error'], ans: 0 },
+                    { q: 'Which is a valid variable name in Python?', opts: ['my_var', '1var', 'var-1', 'var 1'], ans: 0 },
+                    { q: 'What is a list in Python?', opts: ['Mutable sequence', 'Immutable sequence', 'Key-value pair', 'None'], ans: 0 },
+                    { q: 'What is a tuple in Python?', opts: ['Immutable sequence', 'Mutable sequence', 'Key-value pair', 'None'], ans: 0 },
+                    { q: 'Which function is used to find the length of a list?', opts: ['len()', 'size()', 'length()', 'count()'], ans: 0 },
+                    { q: 'What is the output of: print(3+4*2)?', opts: ['11', '14', '10', '14'], ans: 0 },
+                    { q: 'Which keyword is used to define a function?', opts: ['def', 'function', 'define', 'func'], ans: 0 },
+                    { q: 'What is the output of: print(10//3)?', opts: ['3', '3.33', '3.0', 'Error'], ans: 0 },
+                    { q: 'Which is a valid data type in Python?', opts: ['int', 'float', 'str', 'All of these'], ans: 3 },
+                    { q: 'What is the output of: print(10%3)?', opts: ['1', '3', '0', 'Error'], ans: 0 },
+                    { q: 'Which keyword is used to create a class?', opts: ['class', 'def', 'object', 'struct'], ans: 0 },
+                    { q: 'What is inheritance in Python?', opts: ['Deriving a new class from existing class', 'Creating a new class from scratch', 'Both', 'None'], ans: 0 },
+                    { q: 'Which is a valid way to handle exceptions?', opts: ['try/except', 'try/catch', 'try/finally', 'All of these'], ans: 0 },
+                    { q: 'What is the output of: print("Hello"+"World")?', opts: ['HelloWorld', 'Hello World', 'Hello+World', 'Error'], ans: 0 },
+                    { q: 'Which function is used to get user input?', opts: ['input()', 'raw_input()', 'get_input()', 'scan()'], ans: 0 },
+                    { q: 'What is a dictionary in Python?', opts: ['Key-value pair', 'Sequence', 'Set', 'None'], ans: 0 },
+                    { q: 'Which is a valid way to create a dictionary?', opts: ['my_dict = {}', 'my_dict = dict()', 'Both', 'None'], ans: 2 },
+                    { q: 'What is the output of: print(5>3)?', opts: ['True', 'False', '1', '0'], ans: 0 },
+                    { q: 'Which keyword is used to import a module?', opts: ['import', 'from', 'include', 'require'], ans: 0 },
+                    { q: 'What is a lambda function?', opts: ['Anonymous function', 'Named function', 'Built-in function', 'None'], ans: 0 },
+                    { q: 'Which is a valid loop in Python?', opts: ['for', 'while', 'Both', 'None'], ans: 2 },
+                    { q: 'What is the output of: print(3**2)?', opts: ['9', '6', '8', 'Error'], ans: 0 },
+                    { q: 'Which is a valid conditional statement?', opts: ['if', 'elif', 'else', 'All of these'], ans: 3 },
+                    { q: 'What is the purpose of the break statement?', opts: ['Exit a loop', 'Continue to next iteration', 'Exit a function', 'None'], ans: 0 },
+                    { q: 'Which is a valid way to open a file?', opts: ['open()', 'file()', 'Both', 'None'], ans: 0 },
+                    { q: 'What is the output of: print(len([1,2,3]))?', opts: ['3', '2', '4', 'Error'], ans: 0 },
+                    { q: 'Which is a valid set in Python?', opts: ['{1,2,3}', '[1,2,3]', '(1,2,3)', '{"a":1}'], ans: 0 },
+                    { q: 'What is the purpose of the continue statement?', opts: ['Skip current iteration', 'Exit a loop', 'Exit a function', 'None'], ans: 0 },
+                    { q: 'Which is a valid way to handle files?', opts: ['with open() as f', 'f = open()', 'Both', 'None'], ans: 2 }
+                ]
+            },
+            'web-development': {
+                name: 'Web Development Basics',
+                totalQuestions: 30,
+                timeLimit: 45,
+                passingScore: 70,
+                page: 'course-web-development.html',
+                questions: [
+                    { q: 'What does HTML stand for?', opts: ['HyperText Markup Language', 'High Tech Markup Language', 'HyperText Machine Language', 'High Tech Machine Language'], ans: 0 },
+                    { q: 'Which tag is used for the largest heading?', opts: ['<h1>', '<h6>', '<head>', '<header>'], ans: 0 },
+                    { q: 'What does CSS stand for?', opts: ['Cascading Style Sheets', 'Creative Style Sheets', 'Computer Style Sheets', 'Colorful Style Sheets'], ans: 0 },
+                    { q: 'Which is the correct CSS syntax?', opts: ['h1 {color:red;}', 'h1: {color:red;}', 'h1 {color:red}', 'h1: {color:red}'], ans: 0 },
+                    { q: 'Which is a valid HTML tag?', opts: ['<div>', '<span>', '<p>', 'All of these'], ans: 3 },
+                    { q: 'What is the difference between id and class?', opts: ['id is unique, class is not', 'class is unique, id is not', 'Both are same', 'None'], ans: 0 },
+                    { q: 'Which is used to link a CSS file?', opts: ['<link>', '<style>', '<script>', '<meta>'], ans: 0 },
+                    { q: 'What is Bootstrap?', opts: ['CSS framework', 'JavaScript framework', 'HTML framework', 'None'], ans: 0 },
+                    { q: 'Which is a valid Bootstrap class?', opts: ['container', 'row', 'col', 'All of these'], ans: 3 },
+                    { q: 'What is responsive design?', opts: ['Design that adapts to screen size', 'Design that works on all devices', 'Both', 'None'], ans: 2 },
+                    { q: 'Which is a valid JavaScript data type?', opts: ['number', 'string', 'boolean', 'All of these'], ans: 3 },
+                    { q: 'Which is the correct way to declare a variable?', opts: ['var x = 5;', 'let x = 5;', 'const x = 5;', 'All of these'], ans: 3 },
+                    { q: 'What is a function in JavaScript?', opts: ['Block of reusable code', 'A variable', 'A loop', 'None'], ans: 0 },
+                    { q: 'Which is a valid event listener?', opts: ['onclick', 'onmouseover', 'onkeydown', 'All of these'], ans: 3 },
+                    { q: 'What is the DOM?', opts: ['Document Object Model', 'Data Object Model', 'Document Oriented Model', 'None'], ans: 0 },
+                    { q: 'Which is used to select an element by id?', opts: ['getElementById()', 'querySelector()', 'Both', 'None'], ans: 2 },
+                    { q: 'What is the output of: 5+5?', opts: ['10', '55', 'Error', 'None'], ans: 0 },
+                    { q: 'Which is a valid way to create an array?', opts: ['[1,2,3]', 'new Array(1,2,3)', 'Both', 'None'], ans: 2 },
+                    { q: 'What is a loop?', opts: ['Repeats a block of code', 'A conditional statement', 'A variable', 'None'], ans: 0 },
+                    { q: 'Which is a valid conditional statement?', opts: ['if', 'else', 'switch', 'All of these'], ans: 3 },
+                    { q: 'What is the output of: typeof 5?', opts: ['number', 'string', 'boolean', 'undefined'], ans: 0 },
+                    { q: 'Which is a valid way to include JavaScript?', opts: ['<script>', '<js>', '<javascript>', 'None'], ans: 0 },
+                    { q: 'What is the purpose of the console.log()?', opts: ['Print to console', 'Print to screen', 'Both', 'None'], ans: 0 },
+                    { q: 'Which is a valid CSS unit?', opts: ['px', 'em', 'rem', 'All of these'], ans: 3 },
+                    { q: 'What is the box model?', opts: ['Margin, border, padding, content', 'Width, height, color, background', 'Both', 'None'], ans: 0 },
+                    { q: 'Which is a valid CSS position?', opts: ['static', 'relative', 'absolute', 'All of these'], ans: 3 },
+                    { q: 'What is the output of: 5+5?', opts: ['10', '55', 'Error', 'None'], ans: 0 },
+                    { q: 'Which is a valid way to add a class?', opts: ['classList.add()', 'className', 'Both', 'None'], ans: 2 },
+                    { q: 'What is the purpose of the preventDefault()?', opts: ['Prevent default behavior', 'Prevent errors', 'Prevent code execution', 'None'], ans: 0 },
+                    { q: 'Which is a valid JavaScript framework?', opts: ['React', 'Vue', 'Angular', 'All of these'], ans: 3 }
+                ]
+            },
+            'dbms': {
+                name: 'Database Management Systems',
+                totalQuestions: 30,
+                timeLimit: 45,
+                passingScore: 70,
+                page: 'course-dbms.html',
+                questions: [
+                    { q: 'What does DBMS stand for?', opts: ['Database Management System', 'Data Base Management System', 'Both', 'None'], ans: 0 },
+                    { q: 'Which is a valid SQL query?', opts: ['SELECT * FROM table', 'SELECT * table', 'SELECT FROM table', 'None'], ans: 0 },
+                    { q: 'What is a primary key?', opts: ['Unique identifier for a record', 'A foreign key', 'A composite key', 'None'], ans: 0 },
+                    { q: 'What is normalization?', opts: ['Reducing data redundancy', 'Increasing data redundancy', 'Both', 'None'], ans: 0 },
+                    { q: 'Which is a valid DDL command?', opts: ['CREATE', 'ALTER', 'DROP', 'All of these'], ans: 3 },
+                    { q: 'What is a foreign key?', opts: ['References a primary key in another table', 'A unique key', 'A primary key', 'None'], ans: 0 },
+                    { q: 'Which is a valid DML command?', opts: ['INSERT', 'UPDATE', 'DELETE', 'All of these'], ans: 3 },
+                    { q: 'What is the output of: SELECT COUNT(*) FROM table?', opts: ['Number of rows', 'Number of columns', 'Both', 'None'], ans: 0 },
+                    { q: 'What is a join?', opts: ['Combines rows from two or more tables', 'Combines columns from two tables', 'Both', 'None'], ans: 0 },
+                    { q: 'Which is a valid join type?', opts: ['INNER JOIN', 'LEFT JOIN', 'RIGHT JOIN', 'All of these'], ans: 3 },
+                    { q: 'What is ACID?', opts: ['Atomicity, Consistency, Isolation, Durability', 'Atomicity, Consistency, Integrity, Durability', 'Both', 'None'], ans: 0 },
+                    { q: 'What is a transaction?', opts: ['A unit of work', 'A query', 'A table', 'None'], ans: 0 },
+                    { q: 'Which is a valid index type?', opts: ['B-tree', 'Hash', 'Both', 'None'], ans: 2 },
+                    { q: 'What is the output of: SELECT 5+5?', opts: ['10', '55', 'Error', 'None'], ans: 0 },
+                    { q: 'Which is a valid aggregate function?', opts: ['SUM', 'AVG', 'COUNT', 'All of these'], ans: 3 },
+                    { q: 'What is the purpose of the GROUP BY clause?', opts: ['Group rows with same values', 'Sort rows', 'Filter rows', 'None'], ans: 0 },
+                    { q: 'Which is a valid comparison operator?', opts: ['=', '>', '<', 'All of these'], ans: 3 },
+                    { q: 'What is the purpose of the HAVING clause?', opts: ['Filter groups', 'Filter rows', 'Sort groups', 'None'], ans: 0 },
+                    { q: 'Which is a valid data type?', opts: ['INT', 'VARCHAR', 'DATE', 'All of these'], ans: 3 },
+                    { q: 'What is the output of: SELECT 10%3?', opts: ['1', '3', '0', 'Error'], ans: 0 },
+                    { q: 'Which is a valid constraint?', opts: ['NOT NULL', 'UNIQUE', 'PRIMARY KEY', 'All of these'], ans: 3 },
+                    { q: 'What is the purpose of the ORDER BY clause?', opts: ['Sort rows', 'Group rows', 'Filter rows', 'None'], ans: 0 },
+                    { q: 'Which is a valid way to join tables?', opts: ['INNER JOIN', 'LEFT JOIN', 'RIGHT JOIN', 'All of these'], ans: 3 },
+                    { q: 'What is the output of: SELECT 5>3?', opts: ['True', 'False', '1', '0'], ans: 0 },
+                    { q: 'Which is a valid logical operator?', opts: ['AND', 'OR', 'NOT', 'All of these'], ans: 3 },
+                    { q: 'What is the purpose of the DISTINCT keyword?', opts: ['Remove duplicates', 'Remove nulls', 'Sort rows', 'None'], ans: 0 },
+                    { q: 'Which is a valid way to create a table?', opts: ['CREATE TABLE table_name', 'CREATE table_name', 'Both', 'None'], ans: 0 },
+                    { q: 'What is the output of: SELECT LENGTH("Hello")?', opts: ['5', '6', '4', 'Error'], ans: 0 },
+                    { q: 'Which is a valid date function?', opts: ['NOW()', 'CURDATE()', 'CURTIME()', 'All of these'], ans: 3 },
+                    { q: 'What is the purpose of the UNION operator?', opts: ['Combine results from two queries', 'Combine rows from two tables', 'Both', 'None'], ans: 0 }
+                ]
+            },
+            'dsa': {
+                name: 'Data Structures & Algorithms',
+                totalQuestions: 30,
+                timeLimit: 45,
+                passingScore: 70,
+                page: 'course-dsa.html',
+                questions: [
+                    { q: 'What is a data structure?', opts: ['Way to organize data', 'A programming language', 'A type of algorithm', 'None'], ans: 0 },
+                    { q: 'Which is a linear data structure?', opts: ['Array', 'Linked List', 'Stack', 'All of these'], ans: 3 },
+                    { q: 'What is the time complexity of binary search?', opts: ['O(log n)', 'O(n)', 'O(n^2)', 'O(1)'], ans: 0 },
+                    { q: 'Which is a non-linear data structure?', opts: ['Tree', 'Graph', 'Both', 'None'], ans: 2 },
+                    { q: 'What is a stack?', opts: ['LIFO data structure', 'FIFO data structure', 'Both', 'None'], ans: 0 },
+                    { q: 'What is a queue?', opts: ['FIFO data structure', 'LIFO data structure', 'Both', 'None'], ans: 0 },
+                    { q: 'What is the time complexity of linear search?', opts: ['O(n)', 'O(log n)', 'O(n^2)', 'O(1)'], ans: 0 },
+                    { q: 'Which is a sorting algorithm?', opts: ['Bubble sort', 'Quick sort', 'Merge sort', 'All of these'], ans: 3 },
+                    { q: 'What is recursion?', opts: ['Function calling itself', 'Function calling other function', 'Both', 'None'], ans: 0 },
+                    { q: 'What is the time complexity of bubble sort?', opts: ['O(n^2)', 'O(n log n)', 'O(n)', 'O(1)'], ans: 0 },
+                    { q: 'Which is a graph traversal algorithm?', opts: ['BFS', 'DFS', 'Both', 'None'], ans: 2 },
+                    { q: 'What is the space complexity of merge sort?', opts: ['O(n)', 'O(log n)', 'O(n^2)', 'O(1)'], ans: 0 },
+                    { q: 'Which is a divide and conquer algorithm?', opts: ['Merge sort', 'Quick sort', 'Both', 'None'], ans: 2 },
+                    { q: 'What is the time complexity of quick sort?', opts: ['O(n log n)', 'O(n^2)', 'O(n)', 'O(1)'], ans: 0 },
+                    { q: 'Which is a dynamic programming approach?', opts: ['Memoization', 'Tabulation', 'Both', 'None'], ans: 2 },
+                    { q: 'What is the output of: 5+5?', opts: ['10', '55', 'Error', 'None'], ans: 0 },
+                    { q: 'Which is a valid searching algorithm?', opts: ['Linear search', 'Binary search', 'Both', 'None'], ans: 2 },
+                    { q: 'What is the time complexity of insertion sort?', opts: ['O(n^2)', 'O(n log n)', 'O(n)', 'O(1)'], ans: 0 },
+                    { q: 'Which is a greedy algorithm?', opts: ['Dijkstra\'s algorithm', 'Prim\'s algorithm', 'Kruskal\'s algorithm', 'All of these'], ans: 3 },
+                    { q: 'What is the purpose of a heap?', opts: ['Priority queue', 'Sorting', 'Searching', 'None'], ans: 0 },
+                    { q: 'Which is a balanced tree?', opts: ['AVL tree', 'Red-black tree', 'Both', 'None'], ans: 2 },
+                    { q: 'What is the time complexity of searching in a BST?', opts: ['O(log n)', 'O(n)', 'O(n^2)', 'O(1)'], ans: 0 },
+                    { q: 'Which is a hashing technique?', opts: ['Open addressing', 'Chaining', 'Both', 'None'], ans: 2 },
+                    { q: 'What is the output of: 10%3?', opts: ['1', '3', '0', 'Error'], ans: 0 },
+                    { q: 'Which is a valid graph representation?', opts: ['Adjacency matrix', 'Adjacency list', 'Both', 'None'], ans: 2 },
+                    { q: 'What is the time complexity of Dijkstra\'s algorithm?', opts: ['O(V^2)', 'O(E log V)', 'Both', 'None'], ans: 2 },
+                    { q: 'Which is a string matching algorithm?', opts: ['KMP', 'Boyer-Moore', 'Both', 'None'], ans: 2 },
+                    { q: 'What is the output of: 5>3?', opts: ['True', 'False', '1', '0'], ans: 0 },
+                    { q: 'Which is a valid data structure?', opts: ['Array', 'Stack', 'Queue', 'All of these'], ans: 3 },
+                    { q: 'What is the purpose of a hash table?', opts: ['Fast key-value lookups', 'Sorting data', 'Searching data', 'None'], ans: 0 }
+                ]
+            },
+            'networks': {
+                name: 'Computer Networks',
+                totalQuestions: 30,
+                timeLimit: 45,
+                passingScore: 70,
+                page: 'course-networks.html',
+                questions: [
+                    { q: 'What is a network?', opts: ['Connected devices', 'A single device', 'A program', 'None'], ans: 0 },
+                    { q: 'Which is a network topology?', opts: ['Star', 'Ring', 'Bus', 'All of these'], ans: 3 },
+                    { q: 'What is the OSI model?', opts: ['Reference model for networking', 'A type of network', 'A protocol', 'None'], ans: 0 },
+                    { q: 'How many layers are in the OSI model?', opts: ['7', '5', '4', '6'], ans: 0 },
+                    { q: 'Which is a network protocol?', opts: ['TCP', 'IP', 'HTTP', 'All of these'], ans: 3 },
+                    { q: 'What is an IP address?', opts: ['Unique identifier for a device', 'A type of network', 'A protocol', 'None'], ans: 0 },
+                    { q: 'What is a subnet mask?', opts: ['Determines network portion of IP', 'A type of IP address', 'Both', 'None'], ans: 0 },
+                    { q: 'Which is a routing protocol?', opts: ['RIP', 'OSPF', 'BGP', 'All of these'], ans: 3 },
+                    { q: 'What is the purpose of a firewall?', opts: ['Protect from unauthorized access', 'Manage network traffic', 'Both', 'None'], ans: 2 },
+                    { q: 'Which is a wireless technology?', opts: ['Wi-Fi', 'Bluetooth', 'Both', 'None'], ans: 2 },
+                    { q: 'What is a socket?', opts: ['Endpoint for communication', 'A type of cable', 'A protocol', 'None'], ans: 0 },
+                    { q: 'Which is a network topology?', opts: ['Mesh', 'Tree', 'Hybrid', 'All of these'], ans: 3 },
+                    { q: 'What is the output of: 5+5?', opts: ['10', '55', 'Error', 'None'], ans: 0 },
+                    { q: 'Which is a valid IP address?', opts: ['192.168.1.1', '256.1.2.3', '192.168.1.256', 'All of these'], ans: 0 },
+                    { q: 'What is a protocol?', opts: ['Set of rules for communication', 'A type of network', 'A device', 'None'], ans: 0 },
+                    { q: 'Which is a transport layer protocol?', opts: ['TCP', 'UDP', 'Both', 'None'], ans: 2 },
+                    { q: 'What is the purpose of DNS?', opts: ['Convert domain names to IP addresses', 'Convert IP to domain names', 'Both', 'None'], ans: 2 },
+                    { q: 'Which is a network device?', opts: ['Router', 'Switch', 'Hub', 'All of these'], ans: 3 },
+                    { q: 'What is the output of: 10%3?', opts: ['1', '3', '0', 'Error'], ans: 0 },
+                    { q: 'Which is a network architecture?', opts: ['Client-server', 'Peer-to-peer', 'Both', 'None'], ans: 2 },
+                    { q: 'What is the purpose of ARP?', opts: ['Convert IP to MAC address', 'Convert MAC to IP address', 'Both', 'None'], ans: 0 },
+                    { q: 'Which is a routing protocol?', opts: ['RIP', 'OSPF', 'BGP', 'All of these'], ans: 3 },
+                    { q: 'What is the output of: 5>3?', opts: ['True', 'False', '1', '0'], ans: 0 },
+                    { q: 'Which is a network security protocol?', opts: ['SSL', 'TLS', 'IPSec', 'All of these'], ans: 3 },
+                    { q: 'What is the purpose of ICMP?', opts: ['Error reporting', 'Routing', 'Both', 'None'], ans: 0 },
+                    { q: 'Which is a network technology?', opts: ['Ethernet', 'Token Ring', 'FDDI', 'All of these'], ans: 3 },
+                    { q: 'What is the output of: 3+4*2?', opts: ['11', '14', '10', '14'], ans: 0 },
+                    { q: 'Which is a valid network topolgy?', opts: ['Star', 'Ring', 'Bus', 'All of these'], ans: 3 },
+                    { q: 'What is the purpose of a gateway?', opts: ['Connect different networks', 'Connect devices', 'Both', 'None'], ans: 0 },
+                    { q: 'Which is a network management protocol?', opts: ['SNMP', 'SMTP', 'HTTP', 'All of these'], ans: 0 }
+                ]
+            },
+            'cyber-security': {
+                name: 'Cyber Security Fundamentals',
+                totalQuestions: 30,
+                timeLimit: 45,
+                passingScore: 70,
+                page: 'course-cyber-security.html',
+                questions: [
+                    { q: 'What is cyber security?', opts: ['Protecting data and systems', 'A type of network', 'A programming language', 'None'], ans: 0 },
+                    { q: 'Which is a common cyber threat?', opts: ['Malware', 'Phishing', 'Ransomware', 'All of these'], ans: 3 },
+                    { q: 'What is a virus?', opts: ['Malicious software', 'A type of network', 'A protocol', 'None'], ans: 0 },
+                    { q: 'What is phishing?', opts: ['Fraudulent attempt to obtain sensitive information', 'A type of virus', 'Both', 'None'], ans: 0 },
+                    { q: 'Which is a method of encryption?', opts: ['Symmetric encryption', 'Asymmetric encryption', 'Both', 'None'], ans: 2 },
+                    { q: 'What is a firewall?', opts: ['Network security system', 'A type of virus', 'A protocol', 'None'], ans: 0 },
+                    { q: 'What is the output of: 5+5?', opts: ['10', '55', 'Error', 'None'], ans: 0 },
+                    { q: 'Which is a common attack vector?', opts: ['Email', 'Website', 'USB drive', 'All of these'], ans: 3 },
+                    { q: 'What is social engineering?', opts: ['Psychological manipulation of people', 'A type of software', 'Both', 'None'], ans: 0 },
+                    { q: 'Which is a security best practice?', opts: ['Strong passwords', '2FA', 'Regular updates', 'All of these'], ans: 3 },
+                    { q: 'What is a zero-day vulnerability?', opts: ['Unknown vulnerability', 'Known vulnerability', 'Both', 'None'], ans: 0 },
+                    { q: 'What is the purpose of encryption?', opts: ['Protect data confidentiality', 'Protect data integrity', 'Both', 'None'], ans: 2 },
+                    { q: 'Which is a type of malware?', opts: ['Trojan', 'Worm', 'Spyware', 'All of these'], ans: 3 },
+                    { q: 'What is the output of: 10%3?', opts: ['1', '3', '0', 'Error'], ans: 0 },
+                    { q: 'Which is a network security device?', opts: ['Firewall', 'IDS', 'IPS', 'All of these'], ans: 3 },
+                    { q: 'What is a DDoS attack?', opts: ['Distributed Denial of Service', 'Direct Denial of Service', 'Both', 'None'], ans: 0 },
+                    { q: 'Which is a security framework?', opts: ['NIST', 'ISO 27001', 'Both', 'None'], ans: 2 },
+                    { q: 'What is the purpose of a VPN?', opts: ['Encrypt internet traffic', 'Hide IP address', 'Both', 'None'], ans: 2 },
+                    { q: 'Which is a biometric security measure?', opts: ['Fingerprint', 'Face recognition', 'Both', 'None'], ans: 2 },
+                    { q: 'What is the output of: 5>3?', opts: ['True', 'False', '1', '0'], ans: 0 },
+                    { q: 'Which is a common cyber attack?', opts: ['MITM attack', 'SQL injection', 'Cross-site scripting', 'All of these'], ans: 3 },
+                    { q: 'What is the purpose of a security policy?', opts: ['Define security rules', 'Define security procedures', 'Both', 'None'], ans: 2 },
+                    { q: 'Which is a type of cryptographic algorithm?', opts: ['AES', 'RSA', 'SHA', 'All of these'], ans: 3 },
+                    { q: 'What is the output of: 3+4*2?', opts: ['11', '14', '10', '14'], ans: 0 },
+                    { q: 'Which is a security threat?', opts: ['Insider threat', 'External threat', 'Both', 'None'], ans: 2 },
+                    { q: 'What is the purpose of a security audit?', opts: ['Assess security posture', 'Identify vulnerabilities', 'Both', 'None'], ans: 2 },
+                    { q: 'Which is a security control?', opts: ['Administrative', 'Technical', 'Physical', 'All of these'], ans: 3 },
+                    { q: 'What is the output of: 5+5?', opts: ['10', '55', 'Error', 'None'], ans: 0 },
+                    { q: 'Which is a security certification?', opts: ['CompTIA Security+', 'CEH', 'CISSP', 'All of these'], ans: 3 },
+                    { q: 'What is the purpose of a disaster recovery plan?', opts: ['Recover from disasters', 'Prevent disasters', 'Both', 'None'], ans: 0 }
+                ]
+            },
+            'ai': {
+                name: 'Artificial Intelligence Fundamentals',
+                totalQuestions: 30,
+                timeLimit: 45,
+                passingScore: 70,
+                page: 'course-ai.html',
+                questions: [
+                    { q: 'What is AI?', opts: ['Artificial Intelligence', 'Automated Intelligence', 'Advanced Intelligence', 'None'], ans: 0 },
+                    { q: 'Which is a subfield of AI?', opts: ['Machine Learning', 'Deep Learning', 'NLP', 'All of these'], ans: 3 },
+                    { q: 'What is machine learning?', opts: ['Algorithms that learn from data', 'A type of AI', 'Both', 'None'], ans: 2 },
+                    { q: 'Which is a type of machine learning?', opts: ['Supervised learning', 'Unsupervised learning', 'Reinforcement learning', 'All of these'], ans: 3 },
+                    { q: 'What is deep learning?', opts: ['Neural networks with many layers', 'A type of machine learning', 'Both', 'None'], ans: 2 },
+                    { q: 'Which is a neural network architecture?', opts: ['CNN', 'RNN', 'LSTM', 'All of these'], ans: 3 },
+                    { q: 'What is the output of: 5+5?', opts: ['10', '55', 'Error', 'None'], ans: 0 },
+                    { q: 'Which is an AI application?', opts: ['Self-driving cars', 'Chatbots', 'Image recognition', 'All of these'], ans: 3 },
+                    { q: 'What is NLP?', opts: ['Natural Language Processing', 'Neural Language Processing', 'Both', 'None'], ans: 0 },
+                    { q: 'Which is a search algorithm?', opts: ['BFS', 'DFS', 'A*', 'All of these'], ans: 3 },
+                    { q: 'What is knowledge representation?', opts: ['Storing knowledge in a form that can be used', 'A type of AI', 'Both', 'None'], ans: 0 },
+                    { q: 'Which is a programming language for AI?', opts: ['Python', 'Java', 'C++', 'All of these'], ans: 3 },
+                    { q: 'What is the output of: 10%3?', opts: ['1', '3', '0', 'Error'], ans: 0 },
+                    { q: 'What is an expert system?', opts: ['AI system that mimics human expertise', 'A type of machine learning', 'Both', 'None'], ans: 0 },
+                    { q: 'Which is a type of reasoning?', opts: ['Deductive reasoning', 'Inductive reasoning', 'Both', 'None'], ans: 2 },
+                    { q: 'What is a decision tree?', opts: ['A machine learning model', 'A data structure', 'Both', 'None'], ans: 0 },
+                    { q: 'Which is a machine learning algorithm?', opts: ['Linear regression', 'SVM', 'K-means', 'All of these'], ans: 3 },
+                    { q: 'What is the output of: 5>3?', opts: ['True', 'False', '1', '0'], ans: 0 },
+                    { q: 'What is overfitting?', opts: ['Model performs well on training data but not on test data', 'Model performs well on test data', 'Both', 'None'], ans: 0 },
+                    { q: 'Which is a type of neural network?', opts: ['Feedforward', 'Recurrent', 'Convolutional', 'All of these'], ans: 3 },
+                    { q: 'What is the purpose of backpropagation?', opts: ['Update weights in neural network', 'Initialize weights', 'Both', 'None'], ans: 0 },
+                    { q: 'Which is a regularization technique?', opts: ['L1 regularization', 'L2 regularization', 'Dropout', 'All of these'], ans: 3 },
+                    { q: 'What is the output of: 3+4*2?', opts: ['11', '14', '10', '14'], ans: 0 },
+                    { q: 'Which is a clustering algorithm?', opts: ['K-means', 'DBSCAN', 'Hierarchical', 'All of these'], ans: 3 },
+                    { q: 'What is reinforcement learning?', opts: ['Learning by interacting with environment', 'Learning from labeled data', 'Learning from unlabeled data', 'None'], ans: 0 },
+                    { q: 'Which is a deep learning framework?', opts: ['TensorFlow', 'PyTorch', 'Keras', 'All of these'], ans: 3 },
+                    { q: 'What is the output of: 5+5?', opts: ['10', '55', 'Error', 'None'], ans: 0 },
+                    { q: 'Which is a type of AI?', opts: ['Narrow AI', 'General AI', 'Super AI', 'All of these'], ans: 3 },
+                    { q: 'What is the purpose of activation function?', opts: ['Introduce non-linearity', 'Activate neurons', 'Both', 'None'], ans: 0 },
+                    { q: 'Which is an AI library?', opts: ['NumPy', 'scikit-learn', 'pandas', 'All of these'], ans: 3 }
+                ]
+            }
+        };
+
+
+        // ================================================================
+        // 2. QUIZ ENGINE
+        // ================================================================
+
+        // Get course from URL
+        function getCourseFromUrl() {
+            const params = new URLSearchParams(window.location.search);
+            return params.get('course') || 'python-programming';
+        }
+
+        let currentCourse = null;
+        let questions = [];
+        let userAnswers = [];
+        let isTestStarted = false;
+        let isTestSubmitted = false;
+        let timerInterval = null;
+        let timeRemaining = 0;
+
+        const $ = id => document.getElementById(id);
+        const instructionsSection = $('instructionsSection');
+        const quizSection = $('quizSection');
+        const resultSection = $('resultSection');
+        const questionsContainer = $('questionsContainer');
+        const startTestBtn = $('startTestBtn');
+        const submitTestBtn = $('submitTestBtn');
+        const timeDisplay = $('timeDisplay');
+        const questionCounter = $('questionCounter');
+        const timerProgress = $('timerProgress');
+
+        // Initialize
+        function initQuiz() {
+            const courseId = getCourseFromUrl();
+            const data = quizData[courseId];
+            if (!data) {
+                alert('Course not found. Redirecting to courses page.');
+                window.location.href = 'courses.html';
+                return;
+            }
+
+            currentCourse = data;
+            questions = data.questions;
+            userAnswers = new Array(questions.length).fill(null);
+
+            // Set info
+            $('breadcrumbCourse').textContent = data.name + ' Mock Test';
+            $('mockTestTitle').textContent = data.name + ' Mock Test';
+            $('mockTestSubtitle').textContent = 'Test your knowledge in ' + data.name;
+            $('totalQty').textContent = data.totalQuestions;
+            $('totalTime').textContent = data.timeLimit;
+            $('passingScore').textContent = data.passingScore + '%';
+
+            timeRemaining = data.timeLimit * 60;
+            updateTimerDisplay();
+
+            // Back to course link
+            const backBtn = $('backToCourseBtn');
+            backBtn.href = data.page || 'courses.html';
+        }
+
+        // Start test
+        startTestBtn.addEventListener('click', function() {
+            instructionsSection.style.display = 'none';
+            quizSection.style.display = 'block';
+            isTestStarted = true;
+            renderQuestions();
+            startTimer();
+            updateQuestionCounter();
+        });
+
+        // Render questions
+        function renderQuestions() {
+            let html = '';
+            questions.forEach((q, idx) => {
+                html += `
+                    <div class="question-card" data-q="${idx}">
+                        <div class="question-text"><span class="question-number">Q${idx+1}:</span> ${q.q}</div>
+                        <div>
+                            ${q.opts.map((opt, optIdx) => `
+                                <label class="option-label" data-opt="${optIdx}">
+                                    <input type="radio" name="q${idx}" value="${optIdx}" 
+                                        ${userAnswers[idx] === optIdx ? 'checked' : ''}>
+                                    ${opt}
+                                </label>
+                            `).join('')}
+                        </div>
+                    </div>
+                `;
+            });
+            questionsContainer.innerHTML = html;
+
+            // Radio change events
+            document.querySelectorAll('input[type="radio"]').forEach(radio => {
+                radio.addEventListener('change', function() {
+                    const idx = parseInt(this.name.replace('q', ''));
+                    userAnswers[idx] = parseInt(this.value);
+                    updateQuestionCounter();
+                });
+            });
+        }
+
+        // Update counter
+        function updateQuestionCounter() {
+            const answered = userAnswers.filter(a => a !== null).length;
+            questionCounter.textContent = `${answered} / ${questions.length}`;
+        }
+
+        // Timer
+        function startTimer() {
+            timerInterval = setInterval(() => {
+                timeRemaining--;
+                updateTimerDisplay();
+                if (timeRemaining <= 0) {
+                    clearInterval(timerInterval);
+                    alert('⏰ Time is up! Auto-submitting your test.');
+                    submitTest();
+                }
+            }, 1000);
+        }
+
+        function updateTimerDisplay() {
+            const mins = Math.floor(timeRemaining / 60);
+            const secs = timeRemaining % 60;
+            timeDisplay.textContent = `${String(mins).padStart(2,'0')}:${String(secs).padStart(2,'0')}`;
+
+            const total = currentCourse.timeLimit * 60;
+            const pct = (timeRemaining / total) * 100;
+            timerProgress.style.width = pct + '%';
+            timerProgress.className = 'timer-progress';
+            if (pct < 20) timerProgress.classList.add('danger');
+            else if (pct < 50) timerProgress.classList.add('warning');
+        }
+
+        // Submit
+        submitTestBtn.addEventListener('click', submitTest);
+
+        function submitTest() {
+            if (isTestSubmitted) return;
+            if (!isTestStarted) {
+                alert('Please start the test first.');
+                return;
+            }
+
+            const unanswered = userAnswers.filter(a => a === null).length;
+            if (unanswered > 0) {
+                if (!confirm(`You have ${unanswered} unanswered question(s). Submit anyway?`)) return;
+            }
+
+            // Disable all inputs
+            document.querySelectorAll('input[type="radio"]').forEach(r => r.disabled = true);
+            clearInterval(timerInterval);
+            isTestSubmitted = true;
+
+            // Calculate score
+            let correct = 0;
+            questions.forEach((q, idx) => {
+                if (userAnswers[idx] === q.ans) correct++;
+            });
+            const pct = Math.round((correct / questions.length) * 100);
+            const passed = pct >= currentCourse.passingScore;
+
+            // Show result
+            quizSection.style.display = 'none';
+            resultSection.style.display = 'block';
+            $('scorePercentage').textContent = pct + '%';
+            $('resultTitle').textContent = passed ? '🎉 Passed!' : '😞 Failed';
+            $('resultDetails').textContent = `You answered ${correct} out of ${questions.length} correctly.`;
+
+            const circle = $('scoreCircle');
+            circle.className = 'score-circle ' + (passed ? 'pass' : 'fail');
+
+            // Highlight correct/wrong
+            document.querySelectorAll('.question-card').forEach((card, idx) => {
+                const selected = userAnswers[idx];
+                const correctAns = questions[idx].ans;
+                const labels = card.querySelectorAll('.option-label');
+                labels.forEach((label, optIdx) => {
+                    if (optIdx === correctAns) label.classList.add('correct');
+                    else if (optIdx === selected && selected !== correctAns) label.classList.add('wrong');
+                    label.classList.add('disabled');
+                });
+            });
+        }
+
+        // Retry
+        document.getElementById('retryBtn').addEventListener('click', function() {
+            window.location.reload();
+        });
+
+        // Go
+        document.addEventListener('DOMContentLoaded', initQuiz);
+    </script>
+
+</body>
+</html>

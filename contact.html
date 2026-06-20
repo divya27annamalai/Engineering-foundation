@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact Us | Engineering Foundation Learning Institute</title>
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Font Awesome 6 (free) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+
+    <!-- Google Fonts (Inter) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet" />
+
+    <style>
+        /* ===== Global ===== */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: #f8f9fa; }
+        a { text-decoration: none; }
+        
+        /* ===== Navbar ===== */
+        .navbar { background: #1a1a2e !important; padding: 0.8rem 0; }
+        .navbar-brand { font-size: 1.4rem; font-weight: 700; }
+        .navbar-brand i { color: #ffc107; }
+        .nav-link { font-weight: 600; color: rgba(255,255,255,0.7) !important; padding: 0.5rem 1rem; border-radius: 8px; }
+        .nav-link:hover { color: #fff !important; background: rgba(255,255,255,0.08); }
+        .nav-link.active { color: #fff !important; background: rgba(255,255,255,0.12); }
+
+        /* ===== Contact Hero ===== */
+        .contact-hero {
+            background: linear-gradient(135deg, #0d6efd 0%, #0a58ca 100%);
+            padding: 3rem 0;
+        }
+
+        /* ===== Contact Card ===== */
+        .contact-card {
+            border: none;
+            border-radius: 1rem;
+            box-shadow: 0 0.25rem 1.5rem rgba(0, 0, 0, 0.06);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .contact-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 0.5rem 2.5rem rgba(0, 0, 0, 0.1);
+        }
+
+        /* ===== Contact Info Items ===== */
+        .contact-info-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            padding: 1rem 0;
+            border-bottom: 1px solid #f1f3f5;
+        }
+        .contact-info-item:last-child { border-bottom: none; }
+        .contact-info-item .icon-circle {
+            width: 48px;
+            height: 48px;
+            min-width: 48px;
+            background: #e7f1ff;
+            color: #0d6efd;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+        .contact-info-item .info-content h6 { font-weight: 700; margin-bottom: 0.25rem; }
+        .contact-info-item .info-content p { color: #6c757d; margin-bottom: 0; font-size: 0.95rem; }
+        .contact-info-item .info-content a { color: #6c757d; }
+        .contact-info-item .info-content a:hover { color: #0d6efd; }
+
+        /* ===== Form ===== */
+        .form-control {
+            border: 1px solid #dee2e6;
+            padding: 0.75rem 1rem;
+            font-size: 1rem;
+            border-radius: 0.75rem;
+            transition: border-color 0.15s ease, box-shadow 0.15s ease;
+        }
+        .form-control:focus {
+            border-color: #0d6efd;
+            box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.15);
+        }
+        .form-control.is-valid {
+            border-color: #198754;
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%23198754' d='M2.3 6.73L.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1z'/%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right calc(0.375em + 0.1875rem) center;
+            background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem);
+        }
+        .form-control.is-invalid {
+            border-color: #dc3545;
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23dc3545'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23dc3545' stroke='none'/%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right calc(0.375em + 0.1875rem) center;
+            background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem);
+        }
+        .form-label { font-weight: 600; color: #212529; }
+
+        .error-message {
+            color: #dc3545;
+            font-size: 0.85rem;
+            margin-top: 0.25rem;
+            display: none;
+        }
+        .error-message.show { display: block; }
+
+        /* ===== Success Message ===== */
+        .success-message {
+            display: none;
+            padding: 1.5rem;
+            border-radius: 1rem;
+            background: #d1e7dd;
+            border: 1px solid #badbcc;
+            color: #0f5132;
+            text-align: center;
+        }
+        .success-message.show {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ===== Submit Button ===== */
+        .btn-submit {
+            border-radius: 50px;
+            padding: 0.75rem 2.5rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        .btn-submit:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0.5rem 1.5rem rgba(13, 110, 253, 0.3);
+        }
+
+        /* ===== Map Placeholder ===== */
+        .map-placeholder {
+            background: #e9ecef;
+            border-radius: 1rem;
+            padding: 3rem 2rem;
+            text-align: center;
+            min-height: 250px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .map-placeholder i { font-size: 3rem; color: #6c757d; margin-bottom: 1rem; }
+
+        /* ===== Footer ===== */
+        footer { background: #1a1a2e !important; }
+        footer a { text-decoration: none; transition: opacity 0.3s ease; }
+        footer a:hover { opacity: 1 !important; }
+        footer .social-icons a { display: inline-block; transition: transform 0.3s ease; }
+        footer .social-icons a:hover { transform: translateY(-3px); color: #ffc107 !important; }
+
+        /* ===== Responsive ===== */
+        @media (max-width: 768px) {
+            .contact-info-item { padding: 0.75rem 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ============================== -->
+    <!-- SHARED NAVBAR                 -->
+    <!-- ============================== -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top shadow">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="index.html">
+                <i class="fas fa-graduation-cap me-2"></i> EFLI
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="mainNavbar">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="courses.html">Courses</a></li>
+                    <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
+                    <li class="nav-item"><a class="nav-link" href="faq.html">FAQ</a></li>
+                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ============================== -->
+    <!-- HERO SECTION                  -->
+    <!-- ============================== -->
+    <section class="contact-hero text-white">
+        <div class="container py-4">
+            <div class="row align-items-center">
+                <div class="col-lg-8 mx-auto text-center">
+                    <h1 class="display-4 fw-bold mb-3">Get In <span class="text-warning">Touch</span></h1>
+                    <p class="lead mb-0">Have questions? We'd love to hear from you. Reach out and we'll get back to you as soon as possible.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================== -->
+    <!-- CONTACT FORM & INFO           -->
+    <!-- ============================== -->
+    <section class="contact-section py-5">
+        <div class="container">
+            <div class="row g-4">
+
+                <!-- ===== CONTACT INFO (LEFT) ===== -->
+                <div class="col-lg-4 order-lg-1 order-2">
+                    <div class="card contact-card h-100 p-4">
+                        <h4 class="fw-bold mb-4"><i class="fas fa-info-circle text-primary me-2"></i>Contact Information</h4>
+
+                        <div class="contact-info-item">
+                            <div class="icon-circle"><i class="fas fa-map-marker-alt"></i></div>
+                            <div class="info-content">
+                                <h6>Our Location</h6>
+                                <p>123 Engineering Avenue,<br />Innovation Park, City 10001</p>
+                            </div>
+                        </div>
+
+                        <div class="contact-info-item">
+                            <div class="icon-circle"><i class="fas fa-phone-alt"></i></div>
+                            <div class="info-content">
+                                <h6>Phone Number</h6>
+                                <p><a href="tel:+1234567890">+1 (234) 567-890</a></p>
+                            </div>
+                        </div>
+
+                        <div class="contact-info-item">
+                            <div class="icon-circle"><i class="fas fa-envelope"></i></div>
+                            <div class="info-content">
+                                <h6>Email Address</h6>
+                                <p><a href="mailto:info@efli.edu">info@efli.edu</a></p>
+                            </div>
+                        </div>
+
+                        <div class="contact-info-item">
+                            <div class="icon-circle"><i class="fas fa-clock"></i></div>
+                            <div class="info-content">
+                                <h6>Working Hours</h6>
+                                <p>Mon–Fri: 8:00 AM – 6:00 PM<br />Sat: 9:00 AM – 1:00 PM</p>
+                            </div>
+                        </div>
+
+                        <!-- Social Links -->
+                        <div class="mt-4 pt-2">
+                            <h6 class="fw-bold mb-3">Connect With Us</h6>
+                            <div class="d-flex gap-3">
+                                <a href="#" class="btn btn-outline-primary btn-sm rounded-circle" style="width:40px;height:40px;display:flex;align-items:center;justify-content:center;"><i class="fab fa-facebook-f"></i></a>
+                                <a href="#" class="btn btn-outline-primary btn-sm rounded-circle" style="width:40px;height:40px;display:flex;align-items:center;justify-content:center;"><i class="fab fa-twitter"></i></a>
+                                <a href="#" class="btn btn-outline-primary btn-sm rounded-circle" style="width:40px;height:40px;display:flex;align-items:center;justify-content:center;"><i class="fab fa-linkedin-in"></i></a>
+                                <a href="#" class="btn btn-outline-primary btn-sm rounded-circle" style="width:40px;height:40px;display:flex;align-items:center;justify-content:center;"><i class="fab fa-youtube"></i></a>
+                                <a href="#" class="btn btn-outline-primary btn-sm rounded-circle" style="width:40px;height:40px;display:flex;align-items:center;justify-content:center;"><i class="fab fa-instagram"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ===== CONTACT FORM (RIGHT) ===== -->
+                <div class="col-lg-8 order-lg-2 order-1">
+                    <div class="card contact-card p-4 p-md-5">
+
+                        <h4 class="fw-bold mb-3"><i class="fas fa-paper-plane text-primary me-2"></i>Send Us a Message</h4>
+                        <p class="text-muted mb-4">Fill in the form below and we'll get back to you within 24 hours.</p>
+
+                        <!-- Success Message -->
+                        <div id="successMessage" class="success-message mb-4">
+                            <i class="fas fa-check-circle fa-2x mb-2 d-block"></i>
+                            <h5 class="fw-bold">Thank You!</h5>
+                            <p class="mb-0">Your message has been sent successfully. We'll get back to you soon.</p>
+                        </div>
+
+                        <!-- Contact Form -->
+                        <form id="contactForm" novalidate>
+                            <div class="row g-4">
+
+                                <!-- Name -->
+                                <div class="col-md-6">
+                                    <label for="name" class="form-label">Full Name <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" id="name" placeholder="Enter your full name" required />
+                                    <div class="error-message" id="nameError">Please enter your full name.</div>
+                                </div>
+
+                                <!-- Email -->
+                                <div class="col-md-6">
+                                    <label for="email" class="form-label">Email Address <span class="text-danger">*</span></label>
+                                    <input type="email" class="form-control" id="email" placeholder="Enter your email address" required />
+                                    <div class="error-message" id="emailError">Please enter a valid email address.</div>
+                                </div>
+
+                                <!-- Subject -->
+                                <div class="col-12">
+                                    <label for="subject" class="form-label">Subject <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" id="subject" placeholder="Enter the subject of your message" required />
+                                    <div class="error-message" id="subjectError">Please enter a subject.</div>
+                                </div>
+
+                                <!-- Message -->
+                                <div class="col-12">
+                                    <label for="message" class="form-label">Message <span class="text-danger">*</span></label>
+                                    <textarea class="form-control" id="message" rows="5" placeholder="Write your message here..." required></textarea>
+                                    <div class="error-message" id="messageError">Please enter your message (at least 10 characters).</div>
+                                </div>
+
+                                <!-- Submit Button -->
+                                <div class="col-12">
+                                    <button type="submit" class="btn btn-primary btn-submit" id="submitBtn">
+                                        <i class="fas fa-paper-plane me-2"></i> Send Message
+                                    </button>
+                                    <button type="reset" class="btn btn-secondary btn-submit ms-2" id="resetBtn">
+                                        <i class="fas fa-undo me-2"></i> Reset
+                                    </button>
+                                </div>
+
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- ===== MAP SECTION ===== -->
+            <div class="row mt-5">
+                <div class="col-12">
+                    <div class="map-placeholder">
+                        <i class="fas fa-map-marked-alt"></i>
+                        <h5 class="fw-bold">Find Us Here</h5>
+                        <p class="text-muted mb-0">123 Engineering Avenue, Innovation Park, City 10001</p>
+                        <button class="btn btn-outline-primary btn-sm rounded-pill mt-3" id="openMapBtn">
+                            <i class="fas fa-external-link-alt me-1"></i> Open in Google Maps
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ============================== -->
+    <!-- SHARED FOOTER                 -->
+    <!-- ============================== -->
+    <footer class="text-white pt-5 pb-3">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <h5 class="fw-bold mb-3"><i class="fas fa-graduation-cap text-warning me-2"></i>EFLI</h5>
+                    <p class="text-light opacity-75 small">Engineering Foundation Learning Institute — building the engineers of tomorrow with strong foundations today.</p>
+                    <div class="social-icons mt-3">
+                        <a href="#" class="text-white me-3 opacity-75"><i class="fab fa-facebook-f fa-lg"></i></a>
+                        <a href="#" class="text-white me-3 opacity-75"><i class="fab fa-twitter fa-lg"></i></a>
+                        <a href="#" class="text-white me-3 opacity-75"><i class="fab fa-linkedin-in fa-lg"></i></a>
+                        <a href="#" class="text-white me-3 opacity-75"><i class="fab fa-youtube fa-lg"></i></a>
+                        <a href="#" class="text-white opacity-75"><i class="fab fa-instagram fa-lg"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <h6 class="fw-bold text-uppercase mb-3">Quick Links</h6>
+                    <ul class="list-unstyled small">
+                        <li class="mb-2"><a href="index.html" class="text-light opacity-75">Home</a></li>
+                        <li class="mb-2"><a href="about.html" class="text-light opacity-75">About</a></li>
+                        <li class="mb-2"><a href="courses.html" class="text-light opacity-75">Courses</a></li>
+                        <li class="mb-2"><a href="gallery.html" class="text-light opacity-75">Gallery</a></li>
+                        <li class="mb-2"><a href="faq.html" class="text-light opacity-75">FAQ</a></li>
+                        <li><a href="contact.html" class="text-light opacity-75">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-2">
+                    <h6 class="fw-bold text-uppercase mb-3">Resources</h6>
+                    <ul class="list-unstyled small">
+                        <li class="mb-2"><a href="#" class="text-light opacity-75">Alumni</a></li>
+                        <li class="mb-2"><a href="#" class="text-light opacity-75">Careers</a></li>
+                        <li class="mb-2"><a href="#" class="text-light opacity-75">Blog</a></li>
+                        <li><a href="#" class="text-light opacity-75">Events</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h6 class="fw-bold text-uppercase mb-3">Get in Touch</h6>
+                    <ul class="list-unstyled small">
+                        <li class="mb-2 d-flex"><i class="fas fa-map-marker-alt text-warning me-2 mt-1"></i>123 Engineering Avenue, Innovation Park, City 10001</li>
+                        <li class="mb-2 d-flex"><i class="fas fa-phone-alt text-warning me-2 mt-1"></i><a href="tel:+1234567890" class="text-light">+1 (234) 567-890</a></li>
+                        <li class="d-flex"><i class="fas fa-envelope text-warning me-2 mt-1"></i><a href="mailto:info@efli.edu" class="text-light">info@efli.edu</a></li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="border-secondary opacity-25 my-4" />
+            <div class="row align-items-center">
+                <div class="col-md-6 text-center text-md-start"><p class="small text-light opacity-50 mb-0">&copy; 2026 Engineering Foundation Learning Institute. All rights reserved.</p></div>
+                <div class="col-md-6 text-center text-md-end"><p class="small text-light opacity-50 mb-0"><i class="fas fa-code me-1"></i> Built with <i class="fas fa-heart text-danger"></i> for education.</p></div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ============================== -->
+    <!-- SCRIPTS                       -->
+    <!-- ============================== -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- ============================== -->
+    <!-- CONTACT FORM VALIDATION (Pure JS) -->
+    <!-- ============================== -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+
+            // Get form elements
+            const form = document.getElementById('contactForm');
+            const name = document.getElementById('name');
+            const email = document.getElementById('email');
+            const subject = document.getElementById('subject');
+            const message = document.getElementById('message');
+            const successMsg = document.getElementById('successMessage');
+            const resetBtn = document.getElementById('resetBtn');
+
+            // Get error message elements
+            const nameError = document.getElementById('nameError');
+            const emailError = document.getElementById('emailError');
+            const subjectError = document.getElementById('subjectError');
+            const messageError = document.getElementById('messageError');
+
+            // ===== Helper function to validate a single field =====
+            function validateField(input, errorElement, condition, errorMsg) {
+                if (condition) {
+                    input.classList.remove('is-invalid');
+                    input.classList.add('is-valid');
+                    errorElement.classList.remove('show');
+                    errorElement.textContent = errorMsg;
+                    return true;
+                } else {
+                    input.classList.remove('is-valid');
+                    input.classList.add('is-invalid');
+                    errorElement.textContent = errorMsg;
+                    errorElement.classList.add('show');
+                    return false;
+                }
+            }
+
+            // ===== Real-time validation on input =====
+            name.addEventListener('input', function() {
+                validateField(name, nameError, this.value.trim().length > 0, 'Please enter your full name.');
+            });
+
+            email.addEventListener('input', function() {
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                validateField(email, emailError, emailRegex.test(this.value.trim()), 'Please enter a valid email address.');
+            });
+
+            subject.addEventListener('input', function() {
+                validateField(subject, subjectError, this.value.trim().length > 0, 'Please enter a subject.');
+            });
+
+            message.addEventListener('input', function() {
+                validateField(message, messageError, this.value.trim().length >= 10, 'Please enter your message (at least 10 characters).');
+            });
+
+            // ===== Reset button =====
+            resetBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                form.reset();
+                successMsg.classList.remove('show');
+                // Remove all validation states
+                document.querySelectorAll('.form-control').forEach(function(el) {
+                    el.classList.remove('is-valid', 'is-invalid');
+                });
+                document.querySelectorAll('.error-message').forEach(function(el) {
+                    el.classList.remove('show');
+                });
+            });
+
+            // ===== Form submit =====
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+
+                // Get trimmed values
+                const nameVal = name.value.trim();
+                const emailVal = email.value.trim();
+                const subjectVal = subject.value.trim();
+                const messageVal = message.value.trim();
+
+                // Validate all fields
+                const isNameValid = validateField(name, nameError, nameVal.length > 0, 'Please enter your full name.');
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                const isEmailValid = validateField(email, emailError, emailRegex.test(emailVal), 'Please enter a valid email address.');
+                const isSubjectValid = validateField(subject, subjectError, subjectVal.length > 0, 'Please enter a subject.');
+                const isMessageValid = validateField(message, messageError, messageVal.length >= 10, 'Please enter your message (at least 10 characters).');
+
+                // Check if all fields are valid
+                if (isNameValid && isEmailValid && isSubjectValid && isMessageValid) {
+                    // Show success message
+                    successMsg.classList.add('show');
+
+                    // Reset form after 3 seconds
+                    setTimeout(function() {
+                        form.reset();
+                        document.querySelectorAll('.form-control').forEach(function(el) {
+                            el.classList.remove('is-valid', 'is-invalid');
+                        });
+                        document.querySelectorAll('.error-message').forEach(function(el) {
+                            el.classList.remove('show');
+                        });
+                    }, 3000);
+
+                    // Hide success message after 5 seconds
+                    setTimeout(function() {
+                        successMsg.classList.remove('show');
+                    }, 5000);
+                } else {
+                    // Scroll to first error field
+                    const firstError = document.querySelector('.form-control.is-invalid');
+                    if (firstError) {
+                        firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        firstError.focus();
+                    }
+                }
+            });
+
+            // ===== Open Map Button =====
+            document.getElementById('openMapBtn').addEventListener('click', function() {
+                window.open('https://www.google.com/maps?q=123+Engineering+Avenue+Innovation+Park+City+10001', '_blank');
+            });
+
+            console.log('✅ Contact form validation is working!');
+        });
+    </script>
+
+</body>
+</html>

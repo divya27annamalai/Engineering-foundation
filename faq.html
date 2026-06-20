@@ -1,0 +1,462 @@
+<<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FAQ | Engineering Foundation Learning Institute</title>
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+
+    <!-- Google Fonts (Inter) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet" />
+
+    <!-- External CSS -->
+    <link rel="stylesheet" href="css/style.css" />
+
+    <style>
+        /* FAQ specific styles */
+        .faq-hero {
+            background: linear-gradient(135deg, #0d6efd 0%, #0a58ca 100%);
+            padding: 3rem 0;
+        }
+
+        .faq-section {
+            padding: 4rem 0;
+        }
+
+        .accordion-item {
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            border-radius: 0.75rem !important;
+            margin-bottom: 1rem;
+            overflow: hidden;
+            box-shadow: 0 0.125rem 0.5rem rgba(0, 0, 0, 0.04);
+            transition: box-shadow 0.2s ease;
+        }
+
+        .accordion-item:hover {
+            box-shadow: 0 0.25rem 1rem rgba(0, 0, 0, 0.08);
+        }
+
+        .accordion-button {
+            font-weight: 600;
+            padding: 1.25rem 1.5rem;
+            background-color: #f8f9fa;
+            color: #212529;
+            border: none;
+            border-radius: 0.75rem !important;
+            font-size: 1.05rem;
+        }
+
+        .accordion-button:not(.collapsed) {
+            background-color: #e7f1ff;
+            color: #0d6efd;
+            box-shadow: none;
+        }
+
+        .accordion-button:focus {
+            box-shadow: none;
+            border-color: rgba(13, 110, 253, 0.25);
+        }
+
+        .accordion-button i {
+            margin-right: 0.75rem;
+            color: #0d6efd;
+            width: 1.5rem;
+            text-align: center;
+        }
+
+        .accordion-button:not(.collapsed) i {
+            color: #0d6efd;
+        }
+
+        .accordion-body {
+            padding: 1.5rem;
+            background: #fff;
+            color: #495057;
+            line-height: 1.7;
+        }
+
+        .accordion-body p:last-child {
+            margin-bottom: 0;
+        }
+
+        .faq-category-badge {
+            background: #0d6efd;
+            color: #fff;
+            font-size: 0.7rem;
+            font-weight: 600;
+            padding: 0.2rem 0.8rem;
+            border-radius: 50px;
+            margin-left: 0.5rem;
+            vertical-align: middle;
+        }
+
+        @media (max-width: 576px) {
+            .accordion-button {
+                font-size: 0.95rem;
+                padding: 1rem;
+            }
+            .accordion-body {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ============================== -->
+    <!-- SHARED NAVBAR                 -->
+    <!-- ============================== -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top shadow">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="index.html">
+                <i class="fas fa-graduation-cap me-2 text-warning"></i> EFLI
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar"
+            aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="mainNavbar">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                <li class="nav-item"><a class="nav-link" href="courses.html">Courses</a></li>
+                <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
+                <li class="nav-item"><a class="nav-link active" aria-current="page" href="faq.html">FAQ</a></li>
+                <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- ============================== -->
+<!-- HERO                          -->
+<!-- ============================== -->
+<section class="faq-hero text-white">
+    <div class="container py-4">
+        <div class="row align-items-center">
+            <div class="col-lg-8 mx-auto text-center">
+                <h1 class="display-4 fw-bold mb-3">Frequently Asked <span class="text-warning">Questions</span></h1>
+                <p class="lead mb-0">Find answers to the most common questions about our programs, admissions, and more.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================== -->
+<!-- FAQ ACCORDION                 -->
+<!-- ============================== -->
+<section class="faq-section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+
+                <!-- Open/Close All Buttons -->
+                <div class="text-end mb-4">
+                    <button id="openAllBtn" class="btn btn-outline-primary btn-sm rounded-pill">
+                        <i class="fas fa-plus-circle me-1"></i> Open All
+                    </button>
+                    <button id="closeAllBtn" class="btn btn-outline-secondary btn-sm rounded-pill ms-2">
+                        <i class="fas fa-minus-circle me-1"></i> Close All
+                    </button>
+                </div>
+
+                <!-- ===== ACCORDION START ===== -->
+                <div class="accordion" id="faqAccordion">
+
+                    <!-- FAQ 1 -->
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="faqHeading1">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse1" aria-expanded="true" aria-controls="faqCollapse1">
+                                <i class="fas fa-info-circle"></i> What is the Engineering Foundation Learning Institute?
+                            </button>
+                        </h2>
+                        <div id="faqCollapse1" class="accordion-collapse collapse show" aria-labelledby="faqHeading1" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                <p>The <strong>Engineering Foundation Learning Institute (EFLI)</strong> is a premier educational institution dedicated to providing high-quality foundation programs in engineering and technology. Our mission is to bridge the gap between academic theory and real-world practice, preparing students for successful careers in the engineering field.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FAQ 2 -->
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="faqHeading2">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse2" aria-expanded="false" aria-controls="faqCollapse2">
+                                <i class="fas fa-user-graduate"></i> Who can enroll in the programs?
+                            </button>
+                        </h2>
+                        <div id="faqCollapse2" class="accordion-collapse collapse" aria-labelledby="faqHeading2" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                <p>Our programs are open to:</p>
+                                <ul>
+                                    <li><strong>High school graduates</strong> who want to build a strong foundation before pursuing a bachelor's degree in engineering.</li>
+                                    <li><strong>College students</strong> looking to strengthen their core engineering concepts.</li>
+                                    <li><strong>Working professionals</strong> who wish to upskill or transition into the engineering domain.</li>
+                                    <li><strong>Self-learners</strong> with a passion for technology and a willingness to learn.</li>
+                                </ul>
+                                <p class="mb-0">There are no strict age or background requirements — just a curiosity and dedication to learn!</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FAQ 3 -->
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="faqHeading3">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse3" aria-expanded="false" aria-controls="faqCollapse3">
+                                <i class="fas fa-book-open"></i> What courses do you offer?
+                            </button>
+                        </h2>
+                        <div id="faqCollapse3" class="accordion-collapse collapse" aria-labelledby="faqHeading3" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                <p>We offer a wide range of foundation and advanced courses, including:</p>
+                                <ul>
+                                    <li>Computer Fundamentals</li>
+                                    <li>C Programming</li>
+                                    <li>C++ Programming</li>
+                                    <li>Python Programming</li>
+                                    <li>Web Development Basics</li>
+                                    <li>Database Management Systems (DBMS)</li>
+                                    <li>Data Structures and Algorithms</li>
+                                    <li>Computer Networks</li>
+                                    <li>Cyber Security Fundamentals</li>
+                                    <li>Artificial Intelligence Fundamentals</li>
+                                </ul>
+                                <p class="mb-0">Each course is designed to provide both theoretical knowledge and practical skills.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FAQ 4 -->
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="faqHeading4">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse4" aria-expanded="false" aria-controls="faqCollapse4">
+                                <i class="fas fa-clock"></i> What is the duration of the programs?
+                            </button>
+                        </h2>
+                        <div id="faqCollapse4" class="accordion-collapse collapse" aria-labelledby="faqHeading4" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                <p>Course durations vary depending on the topic and depth:</p>
+                                <ul>
+                                    <li><strong>Foundation courses</strong> (e.g., Computer Fundamentals, Web Development Basics): typically <strong>6–8 weeks</strong>.</li>
+                                    <li><strong>Intermediate courses</strong> (e.g., C Programming, DBMS): <strong>8–10 weeks</strong>.</li>
+                                    <li><strong>Advanced courses</strong> (e.g., Data Structures, AI): <strong>10–12 weeks</strong>.</li>
+                                </ul>
+                                <p class="mb-0">All courses are self-paced with optional live sessions, so you can learn at your own speed.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FAQ 5 -->
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="faqHeading5">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse5" aria-expanded="false" aria-controls="faqCollapse5">
+                                <i class="fas fa-question-circle"></i> Are there any prerequisites for the courses?
+                            </button>
+                        </h2>
+                        <div id="faqCollapse5" class="accordion-collapse collapse" aria-labelledby="faqHeading5" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                <p>Prerequisites depend on the course level:</p>
+                                <ul>
+                                    <li><strong>Beginner courses</strong> (Computer Fundamentals, Python, Web Development): No prior knowledge required — just basic computer literacy.</li>
+                                    <li><strong>Intermediate courses</strong> (C, C++, DBMS, Networks): Familiarity with basic programming or computer concepts is helpful.</li>
+                                    <li><strong>Advanced courses</strong> (DSA, AI): Prior programming experience and understanding of data structures is recommended.</li>
+                                </ul>
+                                <p class="mb-0">We provide self-assessment tools to help you choose the right starting point.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FAQ 6 -->
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="faqHeading6">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse6" aria-expanded="false" aria-controls="faqCollapse6">
+                                <i class="fas fa-certificate"></i> Do you provide certificates upon completion?
+                            </button>
+                        </h2>
+                        <div id="faqCollapse6" class="accordion-collapse collapse" aria-labelledby="faqHeading6" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                <p><strong>Yes!</strong> All our courses include a <strong>Certificate of Completion</strong> upon successfully finishing the course requirements (quizzes, assignments, and final project).</p>
+                                <p>Certificates are:</p>
+                                <ul>
+                                    <li>Digitally verifiable with a unique ID.</li>
+                                    <li>Can be shared on LinkedIn and other professional platforms.</li>
+                                    <li>Include course name, duration, and your grade/performance.</li>
+                                </ul>
+                                <p class="mb-0">We also provide recommendations for external certifications (like PCAP, CCNA, etc.) for those who want industry-recognized credentials.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FAQ 7 -->
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="faqHeading7">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse7" aria-expanded="false" aria-controls="faqCollapse7">
+                                <i class="fas fa-briefcase"></i> Is there any placement assistance?
+                            </button>
+                        </h2>
+                        <div id="faqCollapse7" class="accordion-collapse collapse" aria-labelledby="faqHeading7" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                <p>While we do not guarantee direct placement, we offer comprehensive <strong>career support</strong> including:</p>
+                                <ul>
+                                    <li>Resume and portfolio building workshops.</li>
+                                    <li>Mock interviews and soft skills training.</li>
+                                    <li>Access to our industry network and job boards.</li>
+                                    <li>Exclusive internship opportunities with our partner companies.</li>
+                                    <li>Alumni networking events and mentorship programs.</li>
+                                </ul>
+                                <p class="mb-0">Our placement rate for active job seekers is over <strong>92%</strong> within six months of course completion.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FAQ 8 -->
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="faqHeading8">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse8" aria-expanded="false" aria-controls="faqCollapse8">
+                                <i class="fas fa-money-bill-wave"></i> What is the fee structure?
+                            </button>
+                        </h2>
+                        <div id="faqCollapse8" class="accordion-collapse collapse" aria-labelledby="faqHeading8" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                <p>We believe in making quality education accessible. Our fee structure is as follows:</p>
+                                <ul>
+                                    <li><strong>All foundation courses</strong> are offered <strong>free of cost</strong> — no tuition fees!</li>
+                                    <li>Optional premium features (personal mentorship, additional practice sessions, etc.) are available at a nominal cost.</li>
+                                    <li>We also offer <strong>scholarships</strong> for meritorious and underprivileged students.</li>
+                                </ul>
+                                <p class="mb-0">There are no hidden charges. You can access course materials, videos, and assignments at zero cost.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FAQ 9 -->
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="faqHeading9">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse9" aria-expanded="false" aria-controls="faqCollapse9">
+                                <i class="fas fa-pen-fancy"></i> How can I apply for a course?
+                            </button>
+                        </h2>
+                        <div id="faqCollapse9" class="accordion-collapse collapse" aria-labelledby="faqHeading9" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                <p>Applying is simple and takes just a few minutes:</p>
+                                <ol>
+                                    <li>Visit our <a href="courses.html">Courses page</a> and browse the available programs.</li>
+                                    <li>Click on the <strong>"Enroll Now"</strong> button for your chosen course.</li>
+                                    <li>Fill in the registration form with your basic details (name, email, etc.).</li>
+                                    <li>You'll receive a confirmation email with login credentials and access to the course materials.</li>
+                                </ol>
+                                <p class="mb-0">You can start learning immediately upon registration. There's no application fee or entrance exam for foundation courses.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- FAQ 10 -->
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="faqHeading10">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapse10" aria-expanded="false" aria-controls="faqCollapse10">
+                                <i class="fas fa-laptop"></i> Do you offer online or offline classes?
+                            </button>
+                        </h2>
+                        <div id="faqCollapse10" class="accordion-collapse collapse" aria-labelledby="faqHeading10" data-bs-parent="#faqAccordion">
+                            <div class="accordion-body">
+                                <p>We offer a <strong>hybrid learning model</strong>:</p>
+                                <ul>
+                                    <li><strong>Online Mode:</strong> All courses are available online with self-paced video lectures, downloadable resources, and interactive quizzes. You can access them anytime, anywhere.</li>
+                                    <li><strong>Live Sessions:</strong> We conduct weekly live Q&A sessions and doubt-clearing classes via video conferencing.</li>
+                                    <li><strong>Offline Workshops:</strong> Periodic in-person workshops, hackathons, and networking events are organized at our campus for students in the region.</li>
+                                    <li><strong>Blended Learning:</strong> You can combine online study with on-campus activities to get the best of both worlds.</li>
+                                </ul>
+                                <p class="mb-0">All recorded sessions are available for later viewing, so you never miss out.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div><!-- /accordion -->
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================== -->
+<!-- SHARED FOOTER                 -->
+<!-- ============================== -->
+<footer class="bg-dark text-white pt-5 pb-3">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-md-4">
+                <h5 class="fw-bold mb-3"><i class="fas fa-graduation-cap text-warning me-2"></i>EFLI</h5>
+                <p class="text-light opacity-75 small">Engineering Foundation Learning Institute — building the engineers of tomorrow with strong foundations today.</p>
+                <div class="social-icons mt-3">
+                    <a href="#" class="text-white me-3 opacity-75 hover-opacity-100"><i class="fab fa-facebook-f fa-lg"></i></a>
+                    <a href="#" class="text-white me-3 opacity-75 hover-opacity-100"><i class="fab fa-twitter fa-lg"></i></a>
+                    <a href="#" class="text-white me-3 opacity-75 hover-opacity-100"><i class="fab fa-linkedin-in fa-lg"></i></a>
+                    <a href="#" class="text-white me-3 opacity-75 hover-opacity-100"><i class="fab fa-youtube fa-lg"></i></a>
+                    <a href="#" class="text-white opacity-75 hover-opacity-100"><i class="fab fa-instagram fa-lg"></i></a>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <h6 class="fw-bold text-uppercase mb-3">Quick Links</h6>
+                <ul class="list-unstyled small">
+                    <li class="mb-2"><a href="index.html" class="text-light text-decoration-none opacity-75 hover-opacity-100">Home</a></li>
+                    <li class="mb-2"><a href="about.html" class="text-light text-decoration-none opacity-75 hover-opacity-100">About</a></li>
+                    <li class="mb-2"><a href="courses.html" class="text-light text-decoration-none opacity-75 hover-opacity-100">Courses</a></li>
+                    <li class="mb-2"><a href="gallery.html" class="text-light text-decoration-none opacity-75 hover-opacity-100">Gallery</a></li>
+                    <li class="mb-2"><a href="faq.html" class="text-light text-decoration-none opacity-75 hover-opacity-100">FAQ</a></li>
+                    <li><a href="contact.html" class="text-light text-decoration-none opacity-75 hover-opacity-100">Contact</a></li>
+                </ul>
+            </div>
+            <div class="col-md-2">
+                <h6 class="fw-bold text-uppercase mb-3">Resources</h6>
+                <ul class="list-unstyled small">
+                    <li class="mb-2"><a href="#" class="text-light text-decoration-none opacity-75 hover-opacity-100">Alumni</a></li>
+                    <li class="mb-2"><a href="#" class="text-light text-decoration-none opacity-75 hover-opacity-100">Careers</a></li>
+                    <li class="mb-2"><a href="#" class="text-light text-decoration-none opacity-75 hover-opacity-100">Blog</a></li>
+                    <li><a href="#" class="text-light text-decoration-none opacity-75 hover-opacity-100">Events</a></li>
+                </ul>
+            </div>
+            <div class="col-md-4">
+                <h6 class="fw-bold text-uppercase mb-3">Get in Touch</h6>
+                <ul class="list-unstyled small">
+                    <li class="mb-2 d-flex"><i class="fas fa-map-marker-alt text-warning me-2 mt-1"></i>123 Engineering Avenue, Innovation Park, City 10001</li>
+                    <li class="mb-2 d-flex"><i class="fas fa-phone-alt text-warning me-2 mt-1"></i><a href="tel:+1234567890" class="text-light text-decoration-none">+1 (234) 567-890</a></li>
+                    <li class="d-flex"><i class="fas fa-envelope text-warning me-2 mt-1"></i><a href="mailto:info@efli.edu" class="text-light text-decoration-none">info@efli.edu</a></li>
+                </ul>
+            </div>
+        </div>
+        <hr class="border-secondary opacity-25 my-4" />
+        <div class="row align-items-center">
+            <div class="col-md-6 text-center text-md-start"><p class="small text-light opacity-50 mb-0">&copy; 2026 Engineering Foundation Learning Institute. All rights reserved.</p></div>
+            <div class="col-md-6 text-center text-md-end"><p class="small text-light opacity-50 mb-0"><i class="fas fa-code me-1"></i> Built with <i class="fas fa-heart text-danger"></i> for education.</p></div>
+        </div>
+    </div>
+</footer>
+
+<!-- ============================== -->
+<!-- SCRIPTS                       -->
+<!-- ============================== -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+    $(document).ready(function() {
+        // "Open All" button – expands all accordion items
+        $('#openAllBtn').on('click', function() {
+            $('.accordion-collapse').collapse('show');
+        });
+
+        // "Close All" button – collapses all accordion items
+        $('#closeAllBtn').on('click', function() {
+            $('.accordion-collapse').collapse('hide');
+        });
+    });
+</script>
+
+</body>
+</html>

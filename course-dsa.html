@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" href="css/style.css">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Data Structures and Algorithms | Engineering Foundation Learning Institute</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="css/style.css" />
+    <style>
+        .course-hero { background: linear-gradient(135deg, #212529 0%, #495057 100%); padding: 3rem 0; }
+        .badge-difficulty { font-size: 0.85rem; font-weight: 600; padding: 0.4rem 1.2rem; border-radius: 50px; }
+        .course-meta-item { display: flex; align-items: center; gap: 0.5rem; color: rgba(255,255,255,0.85); font-size: 0.95rem; }
+        .course-meta-item i { font-size: 1.1rem; width: 1.5rem; }
+        .section-card { border: none; border-radius: 1rem; box-shadow: 0 0.125rem 0.5rem rgba(0,0,0,0.06); overflow: hidden; }
+        .section-card .card-header-custom { background: #f8f9fa; padding: 1rem 1.5rem; border-bottom: 1px solid rgba(0,0,0,0.06); }
+        .section-card .card-header-custom h5 { margin: 0; font-weight: 700; display: flex; align-items: center; gap: 0.75rem; }
+        .section-card .card-header-custom h5 i { color: #212529; font-size: 1.25rem; width: 2rem; text-align: center; }
+        .section-card .card-body { padding: 1.5rem; }
+        .outcome-list { list-style: none; padding: 0; margin: 0; }
+        .outcome-list li { padding: 0.5rem 0; display: flex; align-items: flex-start; gap: 0.75rem; border-bottom: 1px solid #f1f3f5; }
+        .outcome-list li:last-child { border-bottom: none; }
+        .outcome-list li i { color: #198754; font-size: 1rem; margin-top: 0.2rem; min-width: 1.25rem; }
+        .book-item, .website-item, .cert-item, .project-item { padding: 0.6rem 0; border-bottom: 1px solid #f1f3f5; display: flex; align-items: flex-start; gap: 0.75rem; }
+        .book-item:last-child, .website-item:last-child, .cert-item:last-child, .project-item:last-child { border-bottom: none; }
+        .book-item i, .website-item i, .cert-item i, .project-item i { color: #212529; font-size: 1rem; min-width: 1.5rem; text-align: center; margin-top: 0.1rem; }
+        .website-item a { color: #212529; text-decoration: none; }
+        .website-item a:hover { text-decoration: underline; }
+        .accordion-button:not(.collapsed) { background-color: #e9ecef; color: #212529; box-shadow: none; }
+        .accordion-button:focus { box-shadow: none; border-color: rgba(33,37,41,0.25); }
+        .accordion-button i { margin-right: 0.75rem; font-size: 1.1rem; }
+        .mock-test-card { background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); border-radius: 1rem; padding: 2rem; text-align: center; }
+        .mock-test-card .icon-circle { width: 72px; height: 72px; background: #212529; color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; margin: 0 auto 1rem auto; }
+        .btn-mock-test { border-radius: 50px; padding: 0.6rem 2.5rem; font-weight: 600; font-size: 1rem; }
+        .hover-bg-light:hover { background-color: #f8f9fa; }
+        .youtube-item { padding: 0.6rem 0; border-bottom: 1px solid #f1f3f5; display: flex; align-items: flex-start; gap: 0.75rem; }
+        .youtube-item:last-child { border-bottom: none; }
+        .youtube-item i { color: #ff0000; font-size: 1rem; min-width: 1.5rem; text-align: center; margin-top: 0.1rem; }
+        .youtube-item a { color: #212529; text-decoration: none; }
+        .youtube-item a:hover { text-decoration: underline; }
+        .badge-language { font-size: 0.65rem; font-weight: 600; padding: 0.2rem 0.6rem; border-radius: 50px; }
+    </style>
+</head>
+<script src="js/script.js"></script>
+<body>
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top shadow">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="index.html"><i class="fas fa-graduation-cap me-2 text-warning"></i>EFLI</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="mainNavbar">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="courses.html">Courses</a></li>
+                    <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
+                    <li class="nav-item"><a class="nav-link" href="faq.html">FAQ</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="course-hero text-white">
+        <div class="container py-3">
+            <div class="row align-items-center">
+                <div class="col-lg-8">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb text-white-50">
+                            <li class="breadcrumb-item"><a href="index.html" class="text-white-50 text-decoration-none">Home</a></li>
+                            <li class="breadcrumb-item"><a href="courses.html" class="text-white-50 text-decoration-none">Courses</a></li>
+                            <li class="breadcrumb-item active text-white">Data Structures and Algorithms</li>
+                        </ol>
+                    </nav>
+                    <h1 class="display-5 fw-bold mb-2">Data Structures and Algorithms</h1>
+                    <p class="lead opacity-90 mb-3">Master arrays, linked lists, trees, graphs, sorting, searching, and algorithmic problem-solving techniques.</p>
+                    <div class="d-flex flex-wrap gap-3 mt-3">
+                        <span class="badge-difficulty bg-danger bg-opacity-25 text-white border border-white border-opacity-25"><i class="fas fa-signal me-1"></i> Advanced</span>
+                        <span class="badge-difficulty bg-info bg-opacity-25 text-white border border-white border-opacity-25"><i class="fas fa-clock me-1"></i> 12 Weeks</span>
+                        <span class="badge-difficulty bg-warning bg-opacity-25 text-white border border-white border-opacity-25"><i class="fas fa-star me-1"></i> 4.9 (180+ reviews)</span>
+                    </div>
+                </div>
+                <div class="col-lg-4 text-lg-end mt-4 mt-lg-0">
+                    <div class="d-flex flex-column align-items-lg-end gap-2">
+                        <div class="course-meta-item"><i class="fas fa-users"></i> <span>Enrolled: 950+</span></div>
+                        <div class="course-meta-item"><i class="fas fa-calendar-alt"></i> <span>Next batch: Apr 1, 2026</span></div>
+                        <div class="course-meta-item"><i class="fas fa-language"></i> <span>English</span></div>
+                        <div class="course-meta-item"><i class="fas fa-laptop"></i> <span>Self-paced + Live sessions</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MAIN CONTENT -->
+    <section class="course-details py-5">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-lg-8">
+                    <div class="card section-card mb-4">
+                        <div class="card-header-custom"><h5><i class="fas fa-info-circle"></i> Course Overview</h5></div>
+                        <div class="card-body">
+                            <p>Data Structures and Algorithms is the core of computer science. This course covers fundamental data structures (arrays, linked lists, stacks, queues, trees, graphs, hash tables) and algorithms for sorting, searching, and graph traversal. You'll also learn algorithmic analysis (Big-O) and problem-solving techniques like divide and conquer, dynamic programming, and greedy algorithms.</p>
+                        </div>
+                    </div>
+
+                    <div class="card section-card mb-4">
+                        <div class="card-header-custom"><h5><i class="fas fa-bullseye"></i> Learning Outcomes</h5></div>
+                        <div class="card-body">
+                            <p class="text-muted mb-3">By the end of this course, you will be able to:</p>
+                            <ul class="outcome-list">
+                                <li><i class="fas fa-check-circle"></i><span>Analyze time and space complexity of algorithms using Big-O notation.</span></li>
+                                <li><i class="fas fa-check-circle"></i><span>Implement basic and advanced data structures from scratch.</span></li>
+                                <li><i class="fas fa-check-circle"></i><span>Write efficient sorting algorithms (merge, quick, heap, etc.).</span></li>
+                                <li><i class="fas fa-check-circle"></i><span>Solve problems using recursion, backtracking, and dynamic programming.</span></li>
+                                <li><i class="fas fa-check-circle"></i><span>Implement graph algorithms (BFS, DFS, Dijkstra, etc.).</span></li>
+                                <li><i class="fas fa-check-circle"></i><span>Apply data structures in practical applications.</span></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="card section-card mb-4">
+                        <div class="card-header-custom"><h5><i class="fas fa-book"></i> Reference Books</h5></div>
+                        <div class="card-body">
+                            <div class="book-item"><i class="fas fa-book-open"></i><div><strong>Introduction to Algorithms</strong> — Cormen, Leiserson, Rivest, Stein <span class="badge bg-secondary bg-opacity-10 text-secondary ms-2">CLRS — classic</span></div></div>
+                            <div class="book-item"><i class="fas fa-book-open"></i><div><strong>Data Structures and Algorithm Analysis</strong> — Mark Allen Weiss</div></div>
+                            <div class="book-item"><i class="fas fa-book-open"></i><div><strong>Algorithms</strong> — Robert Sedgewick</div></div>
+                        </div>
+                    </div>
+
+                    <div class="card section-card mb-4">
+                        <div class="card-header-custom"><h5><i class="fas fa-globe"></i> Useful Websites</h5></div>
+                        <div class="card-body">
+                            <div class="website-item"><i class="fas fa-external-link-alt"></i><a href="#" target="_blank">GeeksforGeeks — DSA</a></div>
+                            <div class="website-item"><i class="fas fa-external-link-alt"></i><a href="#" target="_blank">LeetCode — Practice Problems</a></div>
+                            <div class="website-item"><i class="fas fa-external-link-alt"></i><a href="#" target="_blank">HackerRank — DSA Challenges</a></div>
+                        </div>
+                    </div>
+
+                    <!-- YouTube Resources -->
+                    <div class="card section-card mb-4">
+                        <div class="card-header-custom"><h5><i class="fab fa-youtube"></i> YouTube Resources</h5></div>
+                        <div class="card-body">
+                            <p class="text-muted small mb-3">Curated video resources to help you master Data Structures and Algorithms.</p>
+                            
+                            <div class="youtube-item"><i class="fab fa-youtube"></i><div><a href="https://youtu.be/-PPCDEOOYF0?si=4yBH47Sou7S6yvIo" target="_blank">DSA Full Course - Part 1</a></div></div>
+                            <div class="youtube-item"><i class="fab fa-youtube"></i><div><a href="https://youtu.be/iaB-gysl6Fc?si=S0Vou8WeKnjdUywG" target="_blank">DSA Full Course - Part 2</a></div></div>
+                            <div class="youtube-item"><i class="fab fa-youtube"></i><div><a href="https://youtu.be/RBSGKlAvoiM?si=u9zg4sfH3cgRvPCQ" target="_blank">DSA Full Course - Part 3</a></div></div>
+                        </div>
+                    </div>
+
+                    <div class="card section-card mb-4">
+                        <div class="card-header-custom"><h5><i class="fas fa-certificate"></i> Certification Suggestions</h5></div>
+                        <div class="card-body">
+                            <div class="cert-item"><i class="fas fa-certificate text-primary"></i><div><strong>Data Structures and Algorithms Certification</strong> <span class="badge bg-success bg-opacity-10 text-success ms-2">Coursera (UCSD)</span><p class="text-muted small mb-0">University certificate.</p></div></div>
+                            <div class="cert-item"><i class="fas fa-certificate text-primary"></i><div><strong>Algorithmic Toolbox</strong> <span class="badge bg-info bg-opacity-10 text-info ms-2">UC San Diego (Coursera)</span><p class="text-muted small mb-0">Specialization.</p></div></div>
+                        </div>
+                    </div>
+
+                    <div class="card section-card mb-4">
+                        <div class="card-header-custom"><h5><i class="fas fa-lightbulb"></i> Project Ideas</h5></div>
+                        <div class="card-body">
+                            <div class="project-item"><i class="fas fa-road"></i><div><strong>Pathfinding Visualizer</strong> <span class="badge bg-danger bg-opacity-10 text-danger ms-2">Advanced</span><p class="text-muted small mb-0">Visualize BFS, DFS, Dijkstra on a grid.</p></div></div>
+                            <div class="project-item"><i class="fas fa-search"></i><div><strong>Search Engine Indexer</strong> <span class="badge bg-danger bg-opacity-10 text-danger ms-2">Advanced</span><p class="text-muted small mb-0">Use hash tables and inverted indexing.</p></div></div>
+                        </div>
+                    </div>
+
+                    <div class="card section-card">
+                        <div class="card-header-custom"><h5><i class="fas fa-check-double"></i> Mock Test Section</h5></div>
+                        <div class="card-body">
+                            <div class="mock-test-card">
+                                <div class="icon-circle"><i class="fas fa-pencil-alt"></i></div>
+                                <h4 class="fw-bold">DSA Mock Test</h4>
+                                <p class="text-muted">35 questions covering data structures, algorithms, and complexity.</p>
+                                <div class="d-flex flex-wrap justify-content-center gap-3 mb-3">
+                                    <span class="badge bg-light text-dark border"><i class="far fa-clock me-1"></i> 60 minutes</span>
+                                    <span class="badge bg-light text-dark border"><i class="fas fa-question-circle me-1"></i> 35 questions</span>
+                                    <span class="badge bg-light text-dark border"><i class="fas fa-check-circle me-1"></i> Passing: 70%</span>
+                                </div>
+                                <a href="mocktest.html?course=dsa" class="btn btn-warning rounded-pill">
+    <i class="fas fa-play me-2"></i> Start Mock Test
+</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SIDEBAR -->
+                <div class="col-lg-4">
+                    <div class="card section-card mb-4">
+                        <div class="card-body">
+                            <h5 class="fw-bold mb-3"><i class="fas fa-info-circle text-primary me-2"></i>Quick Info</h5>
+                            <ul class="list-unstyled">
+                                <li class="py-2 d-flex justify-content-between border-bottom"><span class="text-muted">Course Level</span><span class="badge bg-danger">Advanced</span></li>
+                                <li class="py-2 d-flex justify-content-between border-bottom"><span class="text-muted">Duration</span><span class="fw-semibold">12 Weeks</span></li>
+                                <li class="py-2 d-flex justify-content-between border-bottom"><span class="text-muted">Effort</span><span class="fw-semibold">6-8 hrs/week</span></li>
+                                <li class="py-2 d-flex justify-content-between border-bottom"><span class="text-muted">Language</span><span class="fw-semibold">English</span></li>
+                                <li class="py-2 d-flex justify-content-between border-bottom"><span class="text-muted">Certificate</span><span class="badge bg-primary">Yes</span></li>
+                                <li class="py-2 d-flex justify-content-between"><span class="text-muted">Price</span><span class="fw-bold text-success">Free</span></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="card section-card mb-4">
+                        <div class="card-body text-center">
+                            <img src="https://ui-avatars.com/api/?name=Dr.+Michael+Wang&size=80&background=212529&color=fff&font-size=0.5" alt="Instructor" class="rounded-circle mb-3" width="80" height="80">
+                            <h5 class="fw-bold">Dr. Michael Wang</h5>
+                            <p class="text-muted small">Associate Professor, Computer Science</p>
+                            <p class="text-muted small">Ph.D. in Algorithms and Complexity • 12+ years of teaching</p>
+                        </div>
+                    </div>
+
+                    <div class="card section-card">
+                        <div class="card-body">
+                            <h5 class="fw-bold mb-3"><i class="fas fa-link text-primary me-2"></i>Related Courses</h5>
+                            <div class="d-flex flex-column gap-2">
+                                <a href="course-c-programming.html" class="text-decoration-none d-flex align-items-center p-2 rounded-3 hover-bg-light"><i class="fas fa-arrow-right text-primary me-2"></i><span>C Programming</span></a>
+                                <a href="course-cpp-programming.html" class="text-decoration-none d-flex align-items-center p-2 rounded-3 hover-bg-light"><i class="fas fa-arrow-right text-primary me-2"></i><span>C++ Programming</span></a>
+                                <a href="course-ai.html" class="text-decoration-none d-flex align-items-center p-2 rounded-3 hover-bg-light"><i class="fas fa-arrow-right text-primary me-2"></i><span>AI Fundamentals</span></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-dark text-white pt-5 pb-3">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <h5 class="fw-bold mb-3"><i class="fas fa-graduation-cap text-warning me-2"></i>EFLI</h5>
+                    <p class="text-light opacity-75 small">Engineering Foundation Learning Institute — building the engineers of tomorrow.</p>
+                </div>
+                <div class="col-md-2">
+                    <h6 class="fw-bold text-uppercase mb-3">Quick Links</h6>
+                    <ul class="list-unstyled small">
+                        <li class="mb-2"><a href="index.html" class="text-light text-decoration-none opacity-75 hover-opacity-100">Home</a></li>
+                        <li class="mb-2"><a href="about.html" class="text-light text-decoration-none opacity-75 hover-opacity-100">About</a></li>
+                        <li class="mb-2"><a href="courses.html" class="text-light text-decoration-none opacity-75 hover-opacity-100">Courses</a></li>
+                        <li class="mb-2"><a href="gallery.html" class="text-light text-decoration-none opacity-75 hover-opacity-100">Gallery</a></li>
+                        <li class="mb-2"><a href="faq.html" class="text-light text-decoration-none opacity-75 hover-opacity-100">FAQ</a></li>
+                        <li><a href="contact.html" class="text-light text-decoration-none opacity-75 hover-opacity-100">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-2">
+                    <h6 class="fw-bold text-uppercase mb-3">Resources</h6>
+                    <ul class="list-unstyled small">
+                        <li class="mb-2"><a href="#" class="text-light text-decoration-none opacity-75 hover-opacity-100">Alumni</a></li>
+                        <li class="mb-2"><a href="#" class="text-light text-decoration-none opacity-75 hover-opacity-100">Careers</a></li>
+                        <li class="mb-2"><a href="#" class="text-light text-decoration-none opacity-75 hover-opacity-100">Blog</a></li>
+                        <li><a href="#" class="text-light text-decoration-none opacity-75 hover-opacity-100">Events</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h6 class="fw-bold text-uppercase mb-3">Get in Touch</h6>
+                    <ul class="list-unstyled small">
+                        <li class="mb-2 d-flex"><i class="fas fa-map-marker-alt text-warning me-2 mt-1"></i>123 Engineering Avenue, Innovation Park, City 10001</li>
+                        <li class="mb-2 d-flex"><i class="fas fa-phone-alt text-warning me-2 mt-1"></i><a href="tel:+1234567890" class="text-light text-decoration-none">+1 (234) 567-890</a></li>
+                        <li class="d-flex"><i class="fas fa-envelope text-warning me-2 mt-1"></i><a href="mailto:info@efli.edu" class="text-light text-decoration-none">info@efli.edu</a></li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="border-secondary opacity-25 my-4" />
+            <div class="row align-items-center">
+                <div class="col-md-6 text-center text-md-start"><p class="small text-light opacity-50 mb-0">&copy; 2026 Engineering Foundation Learning Institute. All rights reserved.</p></div>
+                <div class="col-md-6 text-center text-md-end"><p class="small text-light opacity-50 mb-0"><i class="fas fa-code me-1"></i> Built with <i class="fas fa-heart text-danger"></i> for education.</p></div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>
