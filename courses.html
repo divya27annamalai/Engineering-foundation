@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-<link rel="stylesheet" href="css/style.css">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -17,16 +16,66 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet" />
 
-    <!-- External CSS -->
-    <link rel="stylesheet" href="css/style.css" />
-
     <style>
-        /* Additional styles specific to courses listing */
+        /* ===== Global ===== */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: #f8f9fa; }
+        a { text-decoration: none; }
+
+        /* ===== Navbar ===== */
+        .navbar { background: #1a1a2e !important; padding: 0.8rem 0; }
+        .navbar-brand { font-size: 1.4rem; font-weight: 700; }
+        .navbar-brand i { color: #ffc107; }
+        .nav-link { font-weight: 600; color: rgba(255,255,255,0.7) !important; padding: 0.5rem 1rem; border-radius: 8px; }
+        .nav-link:hover { color: #fff !important; background: rgba(255,255,255,0.08); }
+        .nav-link.active { color: #fff !important; background: rgba(255,255,255,0.12); }
+
+        /* ===== Hero ===== */
         .courses-hero {
             background: linear-gradient(135deg, #0d6efd 0%, #0a58ca 100%);
             padding: 3rem 0;
         }
 
+        /* ===== Search Section ===== */
+        .search-section {
+            background: #f8f9fa;
+            padding: 2rem 0;
+            border-bottom: 1px solid #e9ecef;
+        }
+        .search-container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .search-container .input-group {
+            border-radius: 50px;
+            overflow: hidden;
+            box-shadow: 0 0.125rem 0.5rem rgba(0,0,0,0.06);
+        }
+        .search-container .form-control {
+            border: 2px solid #dee2e6;
+            border-right: none;
+            padding: 0.75rem 1.25rem;
+            font-size: 1rem;
+            border-radius: 50px 0 0 50px;
+        }
+        .search-container .form-control:focus {
+            border-color: #0d6efd;
+            box-shadow: none;
+        }
+        .search-container .btn-search {
+            border-radius: 0 50px 50px 0;
+            padding: 0.75rem 1.5rem;
+            background: #0d6efd;
+            color: #fff;
+            border: 2px solid #0d6efd;
+            transition: all 0.3s ease;
+        }
+        .search-container .btn-search:hover {
+            background: #0a58ca;
+            border-color: #0a58ca;
+        }
+
+        /* ===== Course Card ===== */
         .course-card {
             border: none;
             border-radius: 1rem;
@@ -35,23 +84,19 @@
             background: #ffffff;
             height: 100%;
         }
-
         .course-card:hover {
             transform: translateY(-8px);
             box-shadow: 0 1rem 2.5rem rgba(0, 0, 0, 0.12) !important;
         }
-
         .course-card .card-body {
             padding: 1.5rem 1.25rem;
             display: flex;
             flex-direction: column;
         }
-
         .course-card .card-title {
             font-weight: 700;
             font-size: 1.15rem;
         }
-
         .course-card .difficulty-badge {
             font-size: 0.75rem;
             font-weight: 600;
@@ -59,13 +104,11 @@
             border-radius: 50px;
             letter-spacing: 0.3px;
         }
-
         .course-card .card-text {
             font-size: 0.95rem;
             color: #6c757d;
             flex-grow: 1;
         }
-
         .course-card .btn-explore {
             border-radius: 50px;
             padding: 0.4rem 1.5rem;
@@ -74,7 +117,6 @@
             transition: all 0.2s ease;
             align-self: flex-start;
         }
-
         .course-card .btn-explore:hover {
             transform: scale(1.03);
         }
@@ -89,7 +131,6 @@
             font-size: 1.4rem;
             margin-bottom: 0.75rem;
         }
-
         .bg-soft-primary { background: #e7f1ff; color: #0d6efd; }
         .bg-soft-success { background: #e6f9ed; color: #198754; }
         .bg-soft-warning { background: #fff8e1; color: #ffc107; }
@@ -98,323 +139,382 @@
         .bg-soft-purple { background: #f0e6ff; color: #6f42c1; }
         .bg-soft-dark { background: #e9ecef; color: #212529; }
 
-        .search-container {
-            max-width: 500px;
-            margin: 0 auto 2rem auto;
+        /* ===== No Results ===== */
+        #noResults {
+            display: none;
+            padding: 3rem 0;
+            text-align: center;
+        }
+        #noResults i {
+            font-size: 3rem;
+            color: #6c757d;
+            margin-bottom: 1rem;
+        }
+        #noResults h4 {
+            color: #212529;
+        }
+        #noResults p {
+            color: #6c757d;
         }
 
-        .search-container .input-group {
-            border-radius: 50px;
-            overflow: hidden;
-            box-shadow: 0 0.125rem 0.5rem rgba(0,0,0,0.06);
-        }
+        /* ===== Footer ===== */
+        footer { background: #1a1a2e !important; }
+        footer a { text-decoration: none; transition: opacity 0.3s ease; }
+        footer a:hover { opacity: 1 !important; }
+        footer .social-icons a { display: inline-block; transition: transform 0.3s ease; }
+        footer .social-icons a:hover { transform: translateY(-3px); color: #ffc107 !important; }
 
-        .search-container .form-control {
-            border: 1px solid #dee2e6;
-            border-right: none;
-            padding: 0.75rem 1.25rem;
-            font-size: 1rem;
-        }
-
-        .search-container .btn-search {
-            border-radius: 0 50px 50px 0;
-            padding: 0.75rem 1.5rem;
-            background: #0d6efd;
-            color: #fff;
-            border: 1px solid #0d6efd;
+        /* ===== Responsive ===== */
+        @media (max-width: 576px) {
+            .search-container .form-control { font-size: 0.9rem; padding: 0.6rem 1rem; }
+            .search-container .btn-search { padding: 0.6rem 1rem; }
         }
     </style>
 </head>
-<script src="js/script.js"></script>
 <body>
 
     <!-- ============================== -->
     <!-- SHARED NAVBAR                 -->
     <!-- ============================== -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top shadow">
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top shadow">
         <div class="container">
             <a class="navbar-brand fw-bold" href="index.html">
-                <i class="fas fa-graduation-cap me-2 text-warning"></i> EFLI
+                <i class="fas fa-graduation-cap me-2"></i> EFLI
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar"
-            aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="mainNavbar">
-            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-                <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
-                <li class="nav-item"><a class="nav-link active" aria-current="page" href="courses.html">Courses</a></li>
-                <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
-                <li class="nav-item"><a class="nav-link" href="faq.html">FAQ</a></li>
-                <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
-            </ul>
-        </div>
-    </div>
-</nav>
-
-<!-- ============================== -->
-<!-- HERO SECTION                  -->
-<!-- ============================== -->
-<section class="courses-hero text-white">
-    <div class="container py-4">
-        <div class="row align-items-center">
-            <div class="col-lg-8 mx-auto text-center">
-                <h1 class="display-4 fw-bold mb-3">Our <span class="text-warning">Courses</span></h1>
-                <p class="lead mb-0">
-                    Explore our comprehensive range of foundation and advanced engineering programs.
-                </p>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="mainNavbar">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                    <li class="nav-item"><a class="nav-link active" aria-current="page" href="courses.html">Courses</a></li>
+                    <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
+                    <li class="nav-item"><a class="nav-link" href="faq.html">FAQ</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                </ul>
             </div>
         </div>
-    </div>
-</section>
+    </nav>
 
-<!-- ============================== -->
-<!-- COURSE SEARCH (optional)      -->
-<!-- ============================== -->
-<section class="search-section py-3 bg-light">
-    <div class="container">
-        <div class="search-container">
-            <div class="input-group">
-                <input type="text" class="form-control" id="courseSearchInput" placeholder="Search courses by name or topic..." />
-                <button class="btn btn-search" id="searchBtn">
-                    <i class="fas fa-search"></i>
+    <!-- ============================== -->
+    <!-- HERO SECTION                  -->
+    <!-- ============================== -->
+    <section class="courses-hero text-white">
+        <div class="container py-4">
+            <div class="row align-items-center">
+                <div class="col-lg-8 mx-auto text-center">
+                    <h1 class="display-4 fw-bold mb-3">Our <span class="text-warning">Courses</span></h1>
+                    <p class="lead mb-0">Explore our comprehensive range of foundation and advanced engineering programs.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================== -->
+    <!-- SEARCH SECTION                -->
+    <!-- ============================== -->
+    <section class="search-section">
+        <div class="container">
+            <div class="search-container">
+                <div class="input-group">
+                    <input type="text" class="form-control" id="courseSearchInput" placeholder="Search courses by name or topic..." />
+                    <button class="btn btn-search" id="searchBtn">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+                <div class="mt-2 text-center">
+                    <small class="text-muted" id="resultCount">Showing all 10 courses</small>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================== -->
+    <!-- COURSE GRID                   -->
+    <!-- ============================== -->
+    <section class="courses-grid py-5">
+        <div class="container">
+            <div class="row g-4" id="courseGrid">
+
+                <!-- 1. Computer Fundamentals -->
+                <div class="col-md-6 col-lg-4 course-item" data-title="Computer Fundamentals" data-desc="Understand the core concepts of computers, hardware, software, and operating systems.">
+                    <div class="card course-card shadow-sm">
+                        <div class="card-body">
+                            <div class="course-icon bg-soft-primary"><i class="fas fa-desktop"></i></div>
+                            <h5 class="card-title">Computer Fundamentals</h5>
+                            <div class="mb-2"><span class="difficulty-badge bg-success bg-opacity-10 text-success">Beginner</span></div>
+                            <p class="card-text">Understand the core concepts of computers, hardware, software, and operating systems.</p>
+                            <a href="course-computer-fundamentals.html" class="btn btn-outline-primary btn-explore">Explore <i class="fas fa-arrow-right ms-1"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2. C Programming -->
+                <div class="col-md-6 col-lg-4 course-item" data-title="C Programming" data-desc="Master the fundamentals of C programming — variables, loops, functions, pointers, and memory management.">
+                    <div class="card course-card shadow-sm">
+                        <div class="card-body">
+                            <div class="course-icon bg-soft-success"><i class="fas fa-code"></i></div>
+                            <h5 class="card-title">C Programming</h5>
+                            <div class="mb-2"><span class="difficulty-badge bg-warning bg-opacity-10 text-warning">Intermediate</span></div>
+                            <p class="card-text">Master the fundamentals of C programming — variables, loops, functions, pointers, and memory management.</p>
+                            <a href="course-c-programming.html" class="btn btn-outline-success btn-explore">Explore <i class="fas fa-arrow-right ms-1"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3. C++ Programming -->
+                <div class="col-md-6 col-lg-4 course-item" data-title="C++ Programming" data-desc="Dive into object-oriented programming with C++ — classes, inheritance, polymorphism, and the STL library.">
+                    <div class="card course-card shadow-sm">
+                        <div class="card-body">
+                            <div class="course-icon bg-soft-purple"><i class="fas fa-cogs"></i></div>
+                            <h5 class="card-title">C++ Programming</h5>
+                            <div class="mb-2"><span class="difficulty-badge bg-warning bg-opacity-10 text-warning">Intermediate</span></div>
+                            <p class="card-text">Dive into object-oriented programming with C++ — classes, inheritance, polymorphism, and the STL library.</p>
+                            <a href="course-cpp-programming.html" class="btn btn-outline-purple btn-explore" style="color:#6f42c1; border-color:#6f42c1;">Explore <i class="fas fa-arrow-right ms-1"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4. Python Programming -->
+                <div class="col-md-6 col-lg-4 course-item" data-title="Python Programming" data-desc="Master Python from scratch — data types, functions, OOP, and real-world projects.">
+                    <div class="card course-card shadow-sm">
+                        <div class="card-body">
+                            <div class="course-icon bg-soft-info"><i class="fab fa-python"></i></div>
+                            <h5 class="card-title">Python Programming</h5>
+                            <div class="mb-2"><span class="difficulty-badge bg-success bg-opacity-10 text-success">Beginner</span></div>
+                            <p class="card-text">Master Python from scratch — data types, functions, OOP, and real-world projects.</p>
+                            <a href="course-python-programming.html" class="btn btn-outline-info btn-explore">Explore <i class="fas fa-arrow-right ms-1"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 5. Web Development Basics -->
+                <div class="col-md-6 col-lg-4 course-item" data-title="Web Development Basics" data-desc="Build responsive websites with HTML5, CSS3, Bootstrap, and JavaScript.">
+                    <div class="card course-card shadow-sm">
+                        <div class="card-body">
+                            <div class="course-icon bg-soft-warning"><i class="fas fa-globe"></i></div>
+                            <h5 class="card-title">Web Development Basics</h5>
+                            <div class="mb-2"><span class="difficulty-badge bg-success bg-opacity-10 text-success">Beginner</span></div>
+                            <p class="card-text">Build responsive websites with HTML5, CSS3, Bootstrap, and JavaScript.</p>
+                            <a href="course-web-development.html" class="btn btn-outline-warning btn-explore">Explore <i class="fas fa-arrow-right ms-1"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 6. DBMS -->
+                <div class="col-md-6 col-lg-4 course-item" data-title="DBMS" data-desc="Understand database concepts — ER modeling, SQL queries, normalization, transaction management.">
+                    <div class="card course-card shadow-sm">
+                        <div class="card-body">
+                            <div class="course-icon bg-soft-danger"><i class="fas fa-database"></i></div>
+                            <h5 class="card-title">DBMS</h5>
+                            <div class="mb-2"><span class="difficulty-badge bg-warning bg-opacity-10 text-warning">Intermediate</span></div>
+                            <p class="card-text">Understand database concepts — ER modeling, SQL queries, normalization, transaction management.</p>
+                            <a href="course-dbms.html" class="btn btn-outline-danger btn-explore">Explore <i class="fas fa-arrow-right ms-1"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 7. Data Structures and Algorithms -->
+                <div class="col-md-6 col-lg-4 course-item" data-title="Data Structures and Algorithms" data-desc="Master arrays, linked lists, trees, graphs, sorting, searching, and algorithmic problem-solving.">
+                    <div class="card course-card shadow-sm">
+                        <div class="card-body">
+                            <div class="course-icon bg-soft-dark"><i class="fas fa-sitemap"></i></div>
+                            <h5 class="card-title">Data Structures &amp; Algorithms</h5>
+                            <div class="mb-2"><span class="difficulty-badge bg-danger bg-opacity-10 text-danger">Advanced</span></div>
+                            <p class="card-text">Master arrays, linked lists, trees, graphs, sorting, searching, and algorithmic problem-solving.</p>
+                            <a href="course-dsa.html" class="btn btn-outline-dark btn-explore">Explore <i class="fas fa-arrow-right ms-1"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 8. Computer Networks -->
+                <div class="col-md-6 col-lg-4 course-item" data-title="Computer Networks" data-desc="Explore OSI and TCP/IP models, network topologies, routing protocols, sockets, and security basics.">
+                    <div class="card course-card shadow-sm">
+                        <div class="card-body">
+                            <div class="course-icon bg-soft-primary"><i class="fas fa-network-wired"></i></div>
+                            <h5 class="card-title">Computer Networks</h5>
+                            <div class="mb-2"><span class="difficulty-badge bg-warning bg-opacity-10 text-warning">Intermediate</span></div>
+                            <p class="card-text">Explore OSI and TCP/IP models, network topologies, routing protocols, sockets, and security basics.</p>
+                            <a href="course-networks.html" class="btn btn-outline-primary btn-explore">Explore <i class="fas fa-arrow-right ms-1"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 9. Cyber Security Fundamentals -->
+                <div class="col-md-6 col-lg-4 course-item" data-title="Cyber Security Fundamentals" data-desc="Learn threat modeling, cryptography, network defense, ethical hacking, and compliance.">
+                    <div class="card course-card shadow-sm">
+                        <div class="card-body">
+                            <div class="course-icon bg-soft-danger"><i class="fas fa-shield-alt"></i></div>
+                            <h5 class="card-title">Cyber Security Fundamentals</h5>
+                            <div class="mb-2"><span class="difficulty-badge bg-warning bg-opacity-10 text-warning">Intermediate</span></div>
+                            <p class="card-text">Learn threat modeling, cryptography, network defense, ethical hacking, and compliance.</p>
+                            <a href="course-cyber-security.html" class="btn btn-outline-danger btn-explore">Explore <i class="fas fa-arrow-right ms-1"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 10. Artificial Intelligence Fundamentals -->
+                <div class="col-md-6 col-lg-4 course-item" data-title="Artificial Intelligence Fundamentals" data-desc="Introduction to search algorithms, knowledge representation, machine learning, and neural networks.">
+                    <div class="card course-card shadow-sm">
+                        <div class="card-body">
+                            <div class="course-icon bg-soft-purple"><i class="fas fa-robot"></i></div>
+                            <h5 class="card-title">AI Fundamentals</h5>
+                            <div class="mb-2"><span class="difficulty-badge bg-danger bg-opacity-10 text-danger">Advanced</span></div>
+                            <p class="card-text">Introduction to search algorithms, knowledge representation, machine learning, and neural networks.</p>
+                            <a href="course-ai.html" class="btn btn-outline-purple btn-explore" style="color:#6f42c1; border-color:#6f42c1;">Explore <i class="fas fa-arrow-right ms-1"></i></a>
+                        </div>
+                    </div>
+                </div>
+
+            </div><!-- /row -->
+
+            <!-- No Results Message -->
+            <div id="noResults">
+                <i class="fas fa-search"></i>
+                <h4>No Courses Found</h4>
+                <p>We couldn't find any courses matching your search. Try adjusting your search terms.</p>
+                <button class="btn btn-outline-primary rounded-pill mt-2" id="clearSearchBtn">
+                    <i class="fas fa-times me-2"></i> Clear Search
                 </button>
             </div>
+
+        </div><!-- /container -->
+    </section>
+
+    <!-- ============================== -->
+    <!-- SHARED FOOTER                 -->
+    <!-- ============================== -->
+    <footer class="text-white pt-5 pb-3">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <h5 class="fw-bold mb-3"><i class="fas fa-graduation-cap text-warning me-2"></i>EFLI</h5>
+                    <p class="text-light opacity-75 small">Engineering Foundation Learning Institute — building the engineers of tomorrow with strong foundations today.</p>
+                    <div class="social-icons mt-3">
+                        <a href="#" class="text-white me-3 opacity-75"><i class="fab fa-facebook-f fa-lg"></i></a>
+                        <a href="#" class="text-white me-3 opacity-75"><i class="fab fa-twitter fa-lg"></i></a>
+                        <a href="#" class="text-white me-3 opacity-75"><i class="fab fa-linkedin-in fa-lg"></i></a>
+                        <a href="#" class="text-white me-3 opacity-75"><i class="fab fa-youtube fa-lg"></i></a>
+                        <a href="#" class="text-white opacity-75"><i class="fab fa-instagram fa-lg"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <h6 class="fw-bold text-uppercase mb-3">Quick Links</h6>
+                    <ul class="list-unstyled small">
+                        <li class="mb-2"><a href="index.html" class="text-light opacity-75">Home</a></li>
+                        <li class="mb-2"><a href="about.html" class="text-light opacity-75">About</a></li>
+                        <li class="mb-2"><a href="courses.html" class="text-light opacity-75">Courses</a></li>
+                        <li class="mb-2"><a href="gallery.html" class="text-light opacity-75">Gallery</a></li>
+                        <li class="mb-2"><a href="faq.html" class="text-light opacity-75">FAQ</a></li>
+                        <li><a href="contact.html" class="text-light opacity-75">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-2">
+                    <h6 class="fw-bold text-uppercase mb-3">Resources</h6>
+                    <ul class="list-unstyled small">
+                        <li class="mb-2"><a href="#" class="text-light opacity-75">Alumni</a></li>
+                        <li class="mb-2"><a href="#" class="text-light opacity-75">Careers</a></li>
+                        <li class="mb-2"><a href="#" class="text-light opacity-75">Blog</a></li>
+                        <li><a href="#" class="text-light opacity-75">Events</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h6 class="fw-bold text-uppercase mb-3">Get in Touch</h6>
+                    <ul class="list-unstyled small">
+                        <li class="mb-2 d-flex"><i class="fas fa-map-marker-alt text-warning me-2 mt-1"></i>123 Engineering Avenue, Innovation Park, City 10001</li>
+                        <li class="mb-2 d-flex"><i class="fas fa-phone-alt text-warning me-2 mt-1"></i><a href="tel:+1234567890" class="text-light">+1 (234) 567-890</a></li>
+                        <li class="d-flex"><i class="fas fa-envelope text-warning me-2 mt-1"></i><a href="mailto:info@efli.edu" class="text-light">info@efli.edu</a></li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="border-secondary opacity-25 my-4" />
+            <div class="row align-items-center">
+                <div class="col-md-6 text-center text-md-start"><p class="small text-light opacity-50 mb-0">&copy; 2026 Engineering Foundation Learning Institute. All rights reserved.</p></div>
+                <div class="col-md-6 text-center text-md-end"><p class="small text-light opacity-50 mb-0"><i class="fas fa-code me-1"></i> Built with <i class="fas fa-heart text-danger"></i> for education.</p></div>
+            </div>
         </div>
-    </div>
-</section>
+    </footer>
 
-<!-- ============================== -->
-<!-- COURSE GRID                   -->
-<!-- ============================== -->
-<section class="courses-grid py-5">
-    <div class="container">
-        <div class="row g-4" id="courseGrid">
+    <!-- ============================== -->
+    <!-- SCRIPTS                       -->
+    <!-- ============================== -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 
-            <!-- ============ 1. Computer Fundamentals ============ -->
-            <div class="col-md-6 col-lg-4 course-item">
-                <div class="card course-card shadow-sm">
-                    <div class="card-body">
-                        <div class="course-icon bg-soft-primary">
-                            <i class="fas fa-desktop"></i>
-                        </div>
-                        <h5 class="card-title">Computer Fundamentals</h5>
-                        <div class="mb-2">
-                            <span class="difficulty-badge bg-success bg-opacity-10 text-success">Beginner</span>
-                        </div>
-                        <p class="card-text">Understand the core concepts of computers, hardware, software, and operating systems.</p>
-                        <a href="course-computer-fundamentals.html" class="btn btn-outline-primary btn-explore">
-                            Explore <i class="fas fa-arrow-right ms-1"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
+    <!-- ============================== -->
+    <!-- COURSE SEARCH FUNCTIONALITY   -->
+    <!-- ============================== -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
 
-            <!-- ============ 2. C Programming ============ -->
-            <div class="col-md-6 col-lg-4 course-item">
-                <div class="card course-card shadow-sm">
-                    <div class="card-body">
-                        <div class="course-icon bg-soft-success">
-                            <i class="fas fa-code"></i>
-                        </div>
-                        <h5 class="card-title">C Programming</h5>
-                        <div class="mb-2">
-                            <span class="difficulty-badge bg-warning bg-opacity-10 text-warning">Intermediate</span>
-                        </div>
-                        <p class="card-text">Master the fundamentals of C programming — variables, loops, functions, pointers, and memory management.</p>
-                        <a href="course-c-programming.html" class="btn btn-outline-success btn-explore">
-                            Explore <i class="fas fa-arrow-right ms-1"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
+            // Get elements
+            const searchInput = document.getElementById('courseSearchInput');
+            const searchBtn = document.getElementById('searchBtn');
+            const courseItems = document.querySelectorAll('.course-item');
+            const noResults = document.getElementById('noResults');
+            const resultCount = document.getElementById('resultCount');
+            const clearSearchBtn = document.getElementById('clearSearchBtn');
 
-            <!-- ============ 3. C++ Programming ============ -->
-            <div class="col-md-6 col-lg-4 course-item">
-                <div class="card course-card shadow-sm">
-                    <div class="card-body">
-                        <div class="course-icon bg-soft-purple">
-                            <i class="fas fa-cogs"></i>
-                        </div>
-                        <h5 class="card-title">C++ Programming</h5>
-                        <div class="mb-2">
-                            <span class="difficulty-badge bg-warning bg-opacity-10 text-warning">Intermediate</span>
-                        </div>
-                        <p class="card-text">Dive into object-oriented programming with C++ — classes, inheritance, polymorphism, and the STL library.</p>
-                        <a href="course-cpp-programming.html" class="btn btn-outline-purple btn-explore" style="color:#6f42c1; border-color:#6f42c1;">
-                            Explore <i class="fas fa-arrow-right ms-1"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
+            // Function to filter courses
+            function filterCourses() {
+                const query = searchInput.value.toLowerCase().trim();
+                let visibleCount = 0;
 
-            <!-- ============ 4. Python Programming ============ -->
-            <div class="col-md-6 col-lg-4 course-item">
-                <div class="card course-card shadow-sm">
-                    <div class="card-body">
-                        <div class="course-icon bg-soft-info">
-                            <i class="fab fa-python"></i>
-                        </div>
-                        <h5 class="card-title">Python Programming</h5>
-                        <div class="mb-2">
-                            <span class="difficulty-badge bg-success bg-opacity-10 text-success">Beginner</span>
-                        </div>
-                        <p class="card-text">Master Python from scratch — data types, functions, OOP, and real-world projects.</p>
-                        <a href="course-python-programming.html" class="btn btn-outline-info btn-explore">
-                            Explore <i class="fas fa-arrow-right ms-1"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
+                courseItems.forEach(function(item) {
+                    // Get title and description from data attributes
+                    const title = item.getAttribute('data-title').toLowerCase();
+                    const desc = item.getAttribute('data-desc').toLowerCase();
 
-            <!-- ============ 5. Web Development Basics ============ -->
-            <div class="col-md-6 col-lg-4 course-item">
-                <div class="card course-card shadow-sm">
-                    <div class="card-body">
-                        <div class="course-icon bg-soft-warning">
-                            <i class="fas fa-globe"></i>
-                        </div>
-                        <h5 class="card-title">Web Development Basics</h5>
-                        <div class="mb-2">
-                            <span class="difficulty-badge bg-success bg-opacity-10 text-success">Beginner</span>
-                        </div>
-                        <p class="card-text">Build responsive websites with HTML5, CSS3, Bootstrap, and JavaScript.</p>
-                        <a href="course-web-development.html" class="btn btn-outline-warning btn-explore">
-                            Explore <i class="fas fa-arrow-right ms-1"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
+                    // Check if query matches title or description
+                    if (query === '' || title.includes(query) || desc.includes(query)) {
+                        item.style.display = 'block';
+                        visibleCount++;
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
 
-            <!-- ============ 6. DBMS ============ -->
-            <div class="col-md-6 col-lg-4 course-item">
-                <div class="card course-card shadow-sm">
-                    <div class="card-body">
-                        <div class="course-icon bg-soft-danger">
-                            <i class="fas fa-database"></i>
-                        </div>
-                        <h5 class="card-title">DBMS</h5>
-                        <div class="mb-2">
-                            <span class="difficulty-badge bg-warning bg-opacity-10 text-warning">Intermediate</span>
-                        </div>
-                        <p class="card-text">Understand database concepts — ER modeling, SQL queries, normalization, transaction management.</p>
-                        <a href="course-dbms.html" class="btn btn-outline-danger btn-explore">
-                            Explore <i class="fas fa-arrow-right ms-1"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
+                // Update result count
+                if (query === '') {
+                    resultCount.textContent = `Showing all ${courseItems.length} courses`;
+                } else {
+                    resultCount.textContent = `Found ${visibleCount} course${visibleCount !== 1 ? 's' : ''} matching "${query}"`;
+                }
 
-            <!-- ============ 7. Data Structures and Algorithms ============ -->
-            <div class="col-md-6 col-lg-4 course-item">
-                <div class="card course-card shadow-sm">
-                    <div class="card-body">
-                        <div class="course-icon bg-soft-dark">
-                            <i class="fas fa-sitemap"></i>
-                        </div>
-                        <h5 class="card-title">Data Structures &amp; Algorithms</h5>
-                        <div class="mb-2">
-                            <span class="difficulty-badge bg-danger bg-opacity-10 text-danger">Advanced</span>
-                        </div>
-                        <p class="card-text">Master arrays, linked lists, trees, graphs, sorting, searching, and algorithmic problem-solving.</p>
-                        <a href="course-dsa.html" class="btn btn-outline-dark btn-explore">
-                            Explore <i class="fas fa-arrow-right ms-1"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
+                // Show/hide no results message
+                if (visibleCount === 0 && query !== '') {
+                    noResults.style.display = 'block';
+                } else {
+                    noResults.style.display = 'none';
+                }
+            }
 
-            <!-- ============ 8. Computer Networks ============ -->
-            <div class="col-md-6 col-lg-4 course-item">
-                <div class="card course-card shadow-sm">
-                    <div class="card-body">
-                        <div class="course-icon bg-soft-primary">
-                            <i class="fas fa-network-wired"></i>
-                        </div>
-                        <h5 class="card-title">Computer Networks</h5>
-                        <div class="mb-2">
-                            <span class="difficulty-badge bg-warning bg-opacity-10 text-warning">Intermediate</span>
-                        </div>
-                        <p class="card-text">Explore OSI and TCP/IP models, network topologies, routing protocols, sockets, and security basics.</p>
-                        <a href="course-networks.html" class="btn btn-outline-primary btn-explore">
-                            Explore <i class="fas fa-arrow-right ms-1"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
+            // Search on input (real-time)
+            searchInput.addEventListener('input', filterCourses);
 
-            <!-- ============ 9. Cyber Security Fundamentals ============ -->
-            <div class="col-md-6 col-lg-4 course-item">
-                <div class="card course-card shadow-sm">
-                    <div class="card-body">
-                        <div class="course-icon bg-soft-danger">
-                            <i class="fas fa-shield-alt"></i>
-                        </div>
-                        <h5 class="card-title">Cyber Security Fundamentals</h5>
-                        <div class="mb-2">
-                            <span class="difficulty-badge bg-warning bg-opacity-10 text-warning">Intermediate</span>
-                        </div>
-                        <p class="card-text">Learn threat modeling, cryptography, network defense, ethical hacking, and compliance.</p>
-                        <a href="course-cyber-security.html" class="btn btn-outline-danger btn-explore">
-                            Explore <i class="fas fa-arrow-right ms-1"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
+            // Search on button click
+            searchBtn.addEventListener('click', filterCourses);
 
-            <!-- ============ 10. Artificial Intelligence Fundamentals ============ -->
-            <div class="col-md-6 col-lg-4 course-item">
-                <div class="card course-card shadow-sm">
-                    <div class="card-body">
-                        <div class="course-icon bg-soft-purple">
-                            <i class="fas fa-robot"></i>
-                        </div>
-                        <h5 class="card-title">AI Fundamentals</h5>
-                        <div class="mb-2">
-                            <span class="difficulty-badge bg-danger bg-opacity-10 text-danger">Advanced</span>
-                        </div>
-                        <p class="card-text">Introduction to search algorithms, knowledge representation, machine learning, and neural networks.</p>
-                        <a href="course-ai.html" class="btn btn-outline-purple btn-explore" style="color:#6f42c1; border-color:#6f42c1;">
-                            Explore <i class="fas fa-arrow-right ms-1"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
+            // Search on Enter key
+            searchInput.addEventListener('keyup', function(e) {
+                if (e.key === 'Enter') {
+                    filterCourses();
+                }
+            });
 
-        </div><!-- /row -->
+            // Clear search
+            clearSearchBtn.addEventListener('click', function() {
+                searchInput.value = '';
+                filterCourses();
+                searchInput.focus();
+            });
 
-        <!-- No results message (hidden by default) -->
-        <div id="noResults" class="text-center mt-4" style="display:none;">
-            <p class="text-muted">No courses found matching your search.</p>
-        </div>
+            // Also clear when clicking the "Clear Search" button inside no results
+            // (already handled above)
 
-    </div><!-- /container -->
-</section>
+            console.log('✅ Course search is working!');
+        });
+    </script>
 
-<!-- ============================== -->
-<!-- SHARED FOOTER                 -->
-<!-- ============================== -->
-<footer class="bg-dark text-white pt-5 pb-3">
-    <div class="container">
-        <div class="row g-4">
-            <div class="col-md-4">
-                <h5 class="fw-bold mb-3"><i class="fas fa-graduation-cap text-warning me-2"></i>EFLI</h5>
-                <p class="text-light opacity-75 small">Engineering Foundation Learning Institute — building the engineers of tomorrow with strong foundations today.</p>
-                <div class="social-icons mt-3">
-                    <a href="#" class="text-white me-3 opacity-75 hover-opacity-100"><i class="fab fa-facebook-f fa-lg"></i></a>
-                    <a href="#" class="text-white me-3 opacity-75 hover-opacity-100"><i class="fab fa-twitter fa-lg"></i></a>
-                    <a href="#" class="text-white me-3 opacity-75 hover-opacity-100"><i class="fab fa-linkedin-in fa-lg"></i></a>
-                    <a href="#" class="text-white me-3 opacity-75 hover-opacity-100"><i class="fab fa-youtube fa-lg"></i></a>
-                    <a href="#" class="text-white opacity-75 hover-opacity-100"><i class="fab fa-instagram fa-lg"></i></a>
-                </div>
-            </div>
-            <div class="col-md-2">
-                <h6 class="fw-bold text-uppercase mb-3">Quick Links</h6>
-                <ul class="list-unstyled small">
-                    <li class="mb-2"><a href="index.html" class="text-light text-decoration-none opacity-75 hover-opacity-100">Home</a></li>
-                    <li class="mb-2"><a href="about.html" class="text-light text-decoration-none opacity-75 hover-opacity-100">About</a></li>
-                    <li class="mb-2"><a href="courses.html" class="text-light text-decoration-none opacity-75 hover-opacity-100">Courses</a></li>
-                    <li class="mb-2"><a href="gallery.html" class="text-light text-decoration-none opacity-75 hover-opacity-100">Gallery</a></li>
-                    <li class="mb-2"><a href="faq.html" class="text-light text-decoration-none opacity-75 hover-opacity-100">FAQ</a></li>
-                    <li><a href="contact.html" class=
+</body>
+</html>
