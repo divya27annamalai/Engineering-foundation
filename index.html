@@ -39,13 +39,48 @@
         .section-title .highlight { color: #0d6efd; }
         .section-subtitle { color: #6c757d; max-width: 600px; margin: 0.5rem auto 0 auto; }
 
+        /* ===== BRAND HEADLINE (NEW) ===== */
+        .brand-headline {
+            background: linear-gradient(135deg, #0d1b2a 0%, #1b3a5c 50%, #0d6efd 100%);
+            padding: 1.8rem 0;
+            border-bottom: 3px solid #ffc107;
+            text-align: center;
+        }
+        .brand-headline h1 {
+            font-size: 2.8rem;
+            font-weight: 900;
+            color: #fff;
+            letter-spacing: -0.5px;
+            margin: 0;
+        }
+        .brand-headline h1 .highlight {
+            background: linear-gradient(135deg, #ffc107, #ff9800);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .brand-headline .tagline {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1.1rem;
+            font-weight: 400;
+            margin-top: 0.3rem;
+            letter-spacing: 1px;
+        }
+        @media (max-width: 768px) {
+            .brand-headline h1 { font-size: 1.8rem; }
+            .brand-headline .tagline { font-size: 0.9rem; }
+        }
+        @media (max-width: 576px) {
+            .brand-headline h1 { font-size: 1.4rem; }
+        }
+
         /* ===== HERO ===== */
         .hero-section {
-            min-height: 90vh;
+            min-height: 85vh;
             background: linear-gradient(135deg, #0d1b2a 0%, #1b3a5c 40%, #0d6efd 100%);
             display: flex;
             align-items: center;
-            padding: 4rem 0;
+            padding: 3rem 0;
             position: relative;
             overflow: hidden;
         }
@@ -303,6 +338,7 @@
     <!-- ============================== -->
     <!-- NAVBAR                         -->
     <!-- ============================== -->
+     
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top shadow">
         <div class="container">
             <a class="navbar-brand fw-bold" href="index.html">
@@ -323,6 +359,24 @@
             </div>
         </div>
     </nav>
+
+    <!-- ============================== -->
+    <!-- BRAND HEADLINE (NEW)           -->
+    <!-- ============================== -->
+    <section class="brand-headline">
+        <div class="container">
+            <h1>
+                <i class="fas fa-graduation-cap me-2" style="color: #ffc107; -webkit-text-fill-color: #ffc107;"></i>
+                Engineering <span class="highlight">Foundation</span><br class="d-sm-none" /> 
+                Learning Institute
+            </h1>
+            <p class="tagline">
+                <i class="fas fa-quote-left me-1 opacity-50"></i> 
+                Building Strong Foundations for Tomorrow's Engineers
+                <i class="fas fa-quote-right ms-1 opacity-50"></i>
+            </p>
+        </div>
+    </section>
 
     <!-- ============================== -->
     <!-- HERO                           -->
@@ -431,105 +485,175 @@
             </div>
         </div>
     </section>
-<!-- ============================== -->
-<!-- SHARED FOOTER                 -->
-<!-- ============================== -->
-<footer class="bg-dark text-white pt-5 pb-3">
-    <div class="container">
-        <div class="row g-4">
 
-            <!-- Brand & tagline -->
-            <div class="col-md-4">
-                <h5 class="fw-bold mb-3">
-                    <i class="fas fa-graduation-cap text-warning me-2"></i>EFLI
-                </h5>
-                <p class="text-light opacity-75 small">
-                    Engineering Foundation Learning Institute — building the engineers
-                    of tomorrow with strong foundations today.
-                </p>
-                <div class="social-icons mt-3">
-                    <a href="https://facebook.com" target="_blank" class="text-white me-3 opacity-75 hover-opacity-100" aria-label="Facebook">
-                        <i class="fab fa-facebook-f fa-lg"></i>
-                    </a>
-                    <a href="https://twitter.com" target="_blank" class="text-white me-3 opacity-75 hover-opacity-100" aria-label="Twitter">
-                        <i class="fab fa-twitter fa-lg"></i>
-                    </a>
-                    <a href="https://linkedin.com" target="_blank" class="text-white me-3 opacity-75 hover-opacity-100" aria-label="LinkedIn">
-                        <i class="fab fa-linkedin-in fa-lg"></i>
-                    </a>
-                    <a href="https://youtube.com" target="_blank" class="text-white me-3 opacity-75 hover-opacity-100" aria-label="YouTube">
-                        <i class="fab fa-youtube fa-lg"></i>
-                    </a>
-                    <a href="https://instagram.com" target="_blank" class="text-white opacity-75 hover-opacity-100" aria-label="Instagram">
-                        <i class="fab fa-instagram fa-lg"></i>
-                    </a>
+   
+    <!-- ============================== -->
+    <!-- TESTIMONIALS                  -->
+    <!-- ============================== -->
+    <section class="py-5 bg-white">
+        <div class="container">
+            <div class="text-center">
+                <span class="section-badge"><i class="fas fa-quote-left me-1"></i> Testimonials</span>
+                <h2 class="section-title">What Our <span class="highlight">Students</span> Say</h2>
+                <p class="section-subtitle">Real stories from students who transformed their careers through EFLI.</p>
+            </div>
+            <div class="row g-4 mt-3">
+                <div class="col-md-4">
+                    <div class="testimonial-card">
+                        <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                        <p class="quote">"EFLI gave me the confidence to switch careers into tech. The C programming course was a game-changer!"</p>
+                        <div class="author">
+                            <img src="https://ui-avatars.com/api/?name=John+Doe&size=60&background=0d6efd&color=fff" alt="John Doe" />
+                            <div><p class="name">John Doe</p><p class="role">Software Developer, Infosys</p></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="testimonial-card">
+                        <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                        <p class="quote">"The hands-on projects and expert mentors helped me land my first internship. Highly recommend EFLI!"</p>
+                        <div class="author">
+                            <img src="https://ui-avatars.com/api/?name=Jane+Smith&size=60&background=198754&color=fff" alt="Jane Smith" />
+                            <div><p class="name">Jane Smith</p><p class="role">Intern, Google</p></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="testimonial-card">
+                        <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                        <p class="quote">"Free certificates and career support made all the difference. EFLI truly cares about student success."</p>
+                        <div class="author">
+                            <img src="https://ui-avatars.com/api/?name=Mike+Johnson&size=60&background=6f42c1&color=fff" alt="Mike Johnson" />
+                            <div><p class="name">Mike Johnson</p><p class="role">Data Analyst, Amazon</p></div>
+                        </div>
+                    </div>
                 </div>
             </div>
-
-            <!-- Quick Links -->
-            <div class="col-md-2">
-                <h6 class="fw-bold text-uppercase mb-3">Quick Links</h6>
-                <ul class="list-unstyled small">
-                    <li class="mb-2"><a href="index.html" class="text-light text-decoration-none opacity-75 hover-opacity-100">Home</a></li>
-                    <li class="mb-2"><a href="about.html" class="text-light text-decoration-none opacity-75 hover-opacity-100">About</a></li>
-                    <li class="mb-2"><a href="courses.html" class="text-light text-decoration-none opacity-75 hover-opacity-100">Courses</a></li>
-                    <li class="mb-2"><a href="gallery.html" class="text-light text-decoration-none opacity-75 hover-opacity-100">Gallery</a></li>
-                    <li class="mb-2"><a href="faq.html" class="text-light text-decoration-none opacity-75 hover-opacity-100">FAQ</a></li>
-                    <li><a href="contact.html" class="text-light text-decoration-none opacity-75 hover-opacity-100">Contact</a></li>
-                </ul>
-            </div>
-
-            <!-- Resources -->
-            <div class="col-md-2">
-                <h6 class="fw-bold text-uppercase mb-3">Resources</h6>
-                <ul class="list-unstyled small">
-                    <li class="mb-2"><a href="#" class="text-light text-decoration-none opacity-75 hover-opacity-100">Alumni</a></li>
-                    <li class="mb-2"><a href="#" class="text-light text-decoration-none opacity-75 hover-opacity-100">Careers</a></li>
-                    <li class="mb-2"><a href="#" class="text-light text-decoration-none opacity-75 hover-opacity-100">Blog</a></li>
-                    <li class="mb-2"><a href="#" class="text-light text-decoration-none opacity-75 hover-opacity-100">Events</a></li>
-                    <li><a href="#" class="text-light text-decoration-none opacity-75 hover-opacity-100">Newsletter</a></li>
-                </ul>
-            </div>
-
-            <!-- Contact Info -->
-            <div class="col-md-4">
-                <h6 class="fw-bold text-uppercase mb-3">Get in Touch</h6>
-                <ul class="list-unstyled small">
-                    <li class="mb-2 d-flex">
-                        <i class="fas fa-map-marker-alt text-warning me-2 mt-1"></i>
-                        123 Engineering Avenue, Innovation Park, City 10001
-                    </li>
-                    <li class="mb-2 d-flex">
-                        <i class="fas fa-phone-alt text-warning me-2 mt-1"></i>
-                        <a href="tel:+1234567890" class="text-light text-decoration-none opacity-75 hover-opacity-100">+1 (234) 567-890</a>
-                    </li>
-                    <li class="mb-2 d-flex">
-                        <i class="fas fa-envelope text-warning me-2 mt-1"></i>
-                        <a href="mailto:info@efli.edu" class="text-light text-decoration-none opacity-75 hover-opacity-100">info@efli.edu</a>
-                    </li>
-                    <li class="d-flex">
-                        <i class="fas fa-clock text-warning me-2 mt-1"></i>
-                        <span>Mon–Fri: 8:00 AM – 6:00 PM</span>
-                    </li>
-                </ul>
-            </div>
-
         </div>
+    </section>
 
-        <!-- Divider & copyright -->
-        <hr class="border-secondary opacity-25 my-4" />
-        <div class="row align-items-center">
-            <div class="col-md-6 text-center text-md-start">
-                <p class="small text-light opacity-50 mb-0">
-                    &copy; 2026 Engineering Foundation Learning Institute. All rights reserved.
-                </p>
-            </div>
-            <div class="col-md-6 text-center text-md-end">
-                <p class="small text-light opacity-50 mb-0">
-                    <i class="fas fa-code me-1"></i> Built with <i class="fas fa-heart text-danger"></i> for education.
-                </p>
-            </div>
-        </div>
-    </div>
-</footer>
    
+    <!-- ============================== -->
+    <!-- CTA BANNER                    -->
+    <!-- ============================== -->
+    <section class="cta-banner text-white text-center">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <h2 class="mb-3">Ready to Start Your <span style="color: #ffc107;">Engineering</span> Journey?</h2>
+                    <p class="opacity-75 mb-4" style="font-size: 1.15rem;">Join thousands of students building their engineering foundation with EFLI. All courses are completely free.</p>
+                    <a href="courses.html" class="btn btn-cta"><i class="fas fa-graduation-cap me-2"></i> Enroll Now — It's Free!</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================== -->
+    <!-- SHARED FOOTER                 -->
+    <!-- ============================== -->
+    <footer class="bg-dark text-white pt-5 pb-3">
+        <div class="container">
+            <div class="row g-4">
+
+                <!-- Brand & tagline -->
+                <div class="col-md-4">
+                    <h5 class="fw-bold mb-3">
+                        <i class="fas fa-graduation-cap text-warning me-2"></i>EFLI
+                    </h5>
+                    <p class="text-light opacity-75 small">
+                        Engineering Foundation Learning Institute — building the engineers
+                        of tomorrow with strong foundations today.
+                    </p>
+                    <div class="social-icons mt-3">
+                        <a href="https://facebook.com" target="_blank" class="text-white me-3 opacity-75 hover-opacity-100" aria-label="Facebook">
+                            <i class="fab fa-facebook-f fa-lg"></i>
+                        </a>
+                        <a href="https://twitter.com" target="_blank" class="text-white me-3 opacity-75 hover-opacity-100" aria-label="Twitter">
+                            <i class="fab fa-twitter fa-lg"></i>
+                        </a>
+                        <a href="https://linkedin.com" target="_blank" class="text-white me-3 opacity-75 hover-opacity-100" aria-label="LinkedIn">
+                            <i class="fab fa-linkedin-in fa-lg"></i>
+                        </a>
+                        <a href="https://youtube.com" target="_blank" class="text-white me-3 opacity-75 hover-opacity-100" aria-label="YouTube">
+                            <i class="fab fa-youtube fa-lg"></i>
+                        </a>
+                        <a href="https://instagram.com" target="_blank" class="text-white opacity-75 hover-opacity-100" aria-label="Instagram">
+                            <i class="fab fa-instagram fa-lg"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="col-md-2">
+                    <h6 class="fw-bold text-uppercase mb-3">Quick Links</h6>
+                    <ul class="list-unstyled small">
+                        <li class="mb-2"><a href="index.html" class="text-light text-decoration-none opacity-75 hover-opacity-100">Home</a></li>
+                        <li class="mb-2"><a href="about.html" class="text-light text-decoration-none opacity-75 hover-opacity-100">About</a></li>
+                        <li class="mb-2"><a href="courses.html" class="text-light text-decoration-none opacity-75 hover-opacity-100">Courses</a></li>
+                        <li class="mb-2"><a href="gallery.html" class="text-light text-decoration-none opacity-75 hover-opacity-100">Gallery</a></li>
+                        <li class="mb-2"><a href="faq.html" class="text-light text-decoration-none opacity-75 hover-opacity-100">FAQ</a></li>
+                        <li><a href="contact.html" class="text-light text-decoration-none opacity-75 hover-opacity-100">Contact</a></li>
+                    </ul>
+                </div>
+
+                <!-- Resources -->
+                <div class="col-md-2">
+                    <h6 class="fw-bold text-uppercase mb-3">Resources</h6>
+                    <ul class="list-unstyled small">
+                        <li class="mb-2"><a href="#" class="text-light text-decoration-none opacity-75 hover-opacity-100">Alumni</a></li>
+                        <li class="mb-2"><a href="#" class="text-light text-decoration-none opacity-75 hover-opacity-100">Careers</a></li>
+                        <li class="mb-2"><a href="#" class="text-light text-decoration-none opacity-75 hover-opacity-100">Blog</a></li>
+                        <li class="mb-2"><a href="#" class="text-light text-decoration-none opacity-75 hover-opacity-100">Events</a></li>
+                        <li><a href="#" class="text-light text-decoration-none opacity-75 hover-opacity-100">Newsletter</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact Info -->
+                <div class="col-md-4">
+                    <h6 class="fw-bold text-uppercase mb-3">Get in Touch</h6>
+                    <ul class="list-unstyled small">
+                        <li class="mb-2 d-flex">
+                            <i class="fas fa-map-marker-alt text-warning me-2 mt-1"></i>
+                            123 Engineering Avenue, Innovation Park, City 10001
+                        </li>
+                        <li class="mb-2 d-flex">
+                            <i class="fas fa-phone-alt text-warning me-2 mt-1"></i>
+                            <a href="tel:+1234567890" class="text-light text-decoration-none opacity-75 hover-opacity-100">+1 (234) 567-890</a>
+                        </li>
+                        <li class="mb-2 d-flex">
+                            <i class="fas fa-envelope text-warning me-2 mt-1"></i>
+                            <a href="mailto:info@efli.edu" class="text-light text-decoration-none opacity-75 hover-opacity-100">info@efli.edu</a>
+                        </li>
+                        <li class="d-flex">
+                            <i class="fas fa-clock text-warning me-2 mt-1"></i>
+                            <span>Mon–Fri: 8:00 AM – 6:00 PM</span>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <!-- Divider & copyright -->
+            <hr class="border-secondary opacity-25 my-4" />
+            <div class="row align-items-center">
+                <div class="col-md-6 text-center text-md-start">
+                    <p class="small text-light opacity-50 mb-0">
+                        &copy; 2026 Engineering Foundation Learning Institute. All rights reserved.
+                    </p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <p class="small text-light opacity-50 mb-0">
+                        <i class="fas fa-code me-1"></i> Built with <i class="fas fa-heart text-danger"></i> for education.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- jQuery (for counter animation) -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>
