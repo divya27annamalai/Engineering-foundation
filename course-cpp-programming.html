@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-<link rel="stylesheet" href="css/style.css">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Computer Networks | Engineering Foundation Learning Institute</title>
+    <title>C++ Programming | Engineering Foundation Learning Institute</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -12,14 +11,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="css/style.css" />
     <style>
-        .course-hero { background: linear-gradient(135deg, #0dcaf0 0%, #0d6efd 100%); padding: 3rem 0; }
+        .course-hero { background: linear-gradient(135deg, #6f42c1 0%, #0d6efd 100%); padding: 3rem 0; }
         .badge-difficulty { font-size: 0.85rem; font-weight: 600; padding: 0.4rem 1.2rem; border-radius: 50px; }
         .course-meta-item { display: flex; align-items: center; gap: 0.5rem; color: rgba(255,255,255,0.85); font-size: 0.95rem; }
         .course-meta-item i { font-size: 1.1rem; width: 1.5rem; }
         .section-card { border: none; border-radius: 1rem; box-shadow: 0 0.125rem 0.5rem rgba(0,0,0,0.06); overflow: hidden; }
         .section-card .card-header-custom { background: #f8f9fa; padding: 1rem 1.5rem; border-bottom: 1px solid rgba(0,0,0,0.06); }
         .section-card .card-header-custom h5 { margin: 0; font-weight: 700; display: flex; align-items: center; gap: 0.75rem; }
-        .section-card .card-header-custom h5 i { color: #0dcaf0; font-size: 1.25rem; width: 2rem; text-align: center; }
+        .section-card .card-header-custom h5 i { color: #6f42c1; font-size: 1.25rem; width: 2rem; text-align: center; }
         .section-card .card-body { padding: 1.5rem; }
         .outcome-list { list-style: none; padding: 0; margin: 0; }
         .outcome-list li { padding: 0.5rem 0; display: flex; align-items: flex-start; gap: 0.75rem; border-bottom: 1px solid #f1f3f5; }
@@ -27,25 +26,24 @@
         .outcome-list li i { color: #198754; font-size: 1rem; margin-top: 0.2rem; min-width: 1.25rem; }
         .book-item, .website-item, .cert-item, .project-item { padding: 0.6rem 0; border-bottom: 1px solid #f1f3f5; display: flex; align-items: flex-start; gap: 0.75rem; }
         .book-item:last-child, .website-item:last-child, .cert-item:last-child, .project-item:last-child { border-bottom: none; }
-        .book-item i, .website-item i, .cert-item i, .project-item i { color: #0dcaf0; font-size: 1rem; min-width: 1.5rem; text-align: center; margin-top: 0.1rem; }
-        .website-item a { color: #0dcaf0; text-decoration: none; }
+        .book-item i, .website-item i, .cert-item i, .project-item i { color: #6f42c1; font-size: 1rem; min-width: 1.5rem; text-align: center; margin-top: 0.1rem; }
+        .website-item a { color: #6f42c1; text-decoration: none; }
         .website-item a:hover { text-decoration: underline; }
-        .accordion-button:not(.collapsed) { background-color: #e1f5fe; color: #0dcaf0; box-shadow: none; }
-        .accordion-button:focus { box-shadow: none; border-color: rgba(13,202,240,0.25); }
+        .accordion-button:not(.collapsed) { background-color: #f0e6ff; color: #6f42c1; box-shadow: none; }
+        .accordion-button:focus { box-shadow: none; border-color: rgba(111,66,193,0.25); }
         .accordion-button i { margin-right: 0.75rem; font-size: 1.1rem; }
         .mock-test-card { background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); border-radius: 1rem; padding: 2rem; text-align: center; }
-        .mock-test-card .icon-circle { width: 72px; height: 72px; background: #0dcaf0; color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; margin: 0 auto 1rem auto; }
+        .mock-test-card .icon-circle { width: 72px; height: 72px; background: #6f42c1; color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; margin: 0 auto 1rem auto; }
         .btn-mock-test { border-radius: 50px; padding: 0.6rem 2.5rem; font-weight: 600; font-size: 1rem; }
         .hover-bg-light:hover { background-color: #f8f9fa; }
         .youtube-item { padding: 0.6rem 0; border-bottom: 1px solid #f1f3f5; display: flex; align-items: flex-start; gap: 0.75rem; }
         .youtube-item:last-child { border-bottom: none; }
         .youtube-item i { color: #ff0000; font-size: 1rem; min-width: 1.5rem; text-align: center; margin-top: 0.1rem; }
-        .youtube-item a { color: #0dcaf0; text-decoration: none; }
+        .youtube-item a { color: #6f42c1; text-decoration: none; }
         .youtube-item a:hover { text-decoration: underline; }
         .badge-language { font-size: 0.65rem; font-weight: 600; padding: 0.2rem 0.6rem; border-radius: 50px; }
     </style>
 </head>
-<script src="js/script.js"></script>
 <body>
     <!-- NAVBAR -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top shadow">
@@ -76,22 +74,22 @@
                         <ol class="breadcrumb text-white-50">
                             <li class="breadcrumb-item"><a href="index.html" class="text-white-50 text-decoration-none">Home</a></li>
                             <li class="breadcrumb-item"><a href="courses.html" class="text-white-50 text-decoration-none">Courses</a></li>
-                            <li class="breadcrumb-item active text-white">Computer Networks</li>
+                            <li class="breadcrumb-item active text-white">C++ Programming</li>
                         </ol>
                     </nav>
-                    <h1 class="display-5 fw-bold mb-2">Computer Networks</h1>
-                    <p class="lead opacity-90 mb-3">Explore OSI and TCP/IP models, network topologies, routing protocols, sockets, and network security basics.</p>
+                    <h1 class="display-5 fw-bold mb-2">C++ Programming</h1>
+                    <p class="lead opacity-90 mb-3">Dive into object-oriented programming with C++ — classes, inheritance, polymorphism, and the STL library.</p>
                     <div class="d-flex flex-wrap gap-3 mt-3">
                         <span class="badge-difficulty bg-warning bg-opacity-25 text-white border border-white border-opacity-25"><i class="fas fa-signal me-1"></i> Intermediate</span>
                         <span class="badge-difficulty bg-info bg-opacity-25 text-white border border-white border-opacity-25"><i class="fas fa-clock me-1"></i> 8 Weeks</span>
-                        <span class="badge-difficulty bg-warning bg-opacity-25 text-white border border-white border-opacity-25"><i class="fas fa-star me-1"></i> 4.5 (60+ reviews)</span>
+                        <span class="badge-difficulty bg-warning bg-opacity-25 text-white border border-white border-opacity-25"><i class="fas fa-star me-1"></i> 4.6 (90+ reviews)</span>
                     </div>
                 </div>
                 <div class="col-lg-4 text-lg-end mt-4 mt-lg-0">
                     <div class="d-flex flex-column align-items-lg-end gap-2">
-                        <div class="course-meta-item"><i class="fas fa-users"></i> <span>Enrolled: 680+</span></div>
-                        <div class="course-meta-item"><i class="fas fa-calendar-alt"></i> <span>Next batch: Apr 15, 2026</span></div>
-                        <div class="course-meta-item"><i class="fas fa-language"></i> <span>English</span></div>
+                        <div class="course-meta-item"><i class="fas fa-users"></i> <span>Enrolled: 800+</span></div>
+                        <div class="course-meta-item"><i class="fas fa-calendar-alt"></i> <span>Next batch: Mar 1, 2026</span></div>
+                        <div class="course-meta-item"><i class="fas fa-language"></i> <span>English & Tamil</span></div>
                         <div class="course-meta-item"><i class="fas fa-laptop"></i> <span>Self-paced + Live sessions</span></div>
                     </div>
                 </div>
@@ -107,7 +105,7 @@
                     <div class="card section-card mb-4">
                         <div class="card-header-custom"><h5><i class="fas fa-info-circle"></i> Course Overview</h5></div>
                         <div class="card-body">
-                            <p>This course introduces the principles of computer networks. You'll learn about network architectures, OSI and TCP/IP models, physical and data link layers, network and transport layers, routing and switching, and network applications. You'll also get hands-on with socket programming and basic network security concepts.</p>
+                            <p>This course builds on C fundamentals and introduces you to object-oriented programming (OOP) with C++. You'll learn classes, objects, inheritance, polymorphism, encapsulation, and abstraction. We also cover the Standard Template Library (STL), which includes vectors, lists, maps, and algorithms.</p>
                         </div>
                     </div>
 
@@ -116,12 +114,12 @@
                         <div class="card-body">
                             <p class="text-muted mb-3">By the end of this course, you will be able to:</p>
                             <ul class="outcome-list">
-                                <li><i class="fas fa-check-circle"></i><span>Explain the OSI and TCP/IP reference models and their layers.</span></li>
-                                <li><i class="fas fa-check-circle"></i><span>Understand network topologies, media, and transmission methods.</span></li>
-                                <li><i class="fas fa-check-circle"></i><span>Configure IP addressing and subnetting.</span></li>
-                                <li><i class="fas fa-check-circle"></i><span>Explain routing protocols (RIP, OSPF, BGP) and switching.</span></li>
-                                <li><i class="fas fa-check-circle"></i><span>Implement client-server communication using sockets.</span></li>
-                                <li><i class="fas fa-check-circle"></i><span>Identify common network threats and security measures.</span></li>
+                                <li><i class="fas fa-check-circle"></i><span>Write object-oriented programs using classes and objects.</span></li>
+                                <li><i class="fas fa-check-circle"></i><span>Implement inheritance and polymorphism to create extensible code.</span></li>
+                                <li><i class="fas fa-check-circle"></i><span>Overload operators and functions for custom behavior.</span></li>
+                                <li><i class="fas fa-check-circle"></i><span>Use the STL containers and algorithms effectively.</span></li>
+                                <li><i class="fas fa-check-circle"></i><span>Handle exceptions and perform file I/O in C++.</span></li>
+                                <li><i class="fas fa-check-circle"></i><span>Understand templates and generic programming.</span></li>
                             </ul>
                         </div>
                     </div>
@@ -129,18 +127,18 @@
                     <div class="card section-card mb-4">
                         <div class="card-header-custom"><h5><i class="fas fa-book"></i> Reference Books</h5></div>
                         <div class="card-body">
-                            <div class="book-item"><i class="fas fa-book-open"></i><div><strong>Computer Networking: A Top-Down Approach</strong> — Kurose & Ross <span class="badge bg-secondary bg-opacity-10 text-secondary ms-2">Recommended</span></div></div>
-                            <div class="book-item"><i class="fas fa-book-open"></i><div><strong>Computer Networks</strong> — Andrew Tanenbaum</div></div>
-                            <div class="book-item"><i class="fas fa-book-open"></i><div><strong>TCP/IP Illustrated</strong> — Stevens</div></div>
+                            <div class="book-item"><i class="fas fa-book-open"></i><div><strong>C++ Primer</strong> — Stanley Lippman <span class="badge bg-secondary bg-opacity-10 text-secondary ms-2">Comprehensive</span></div></div>
+                            <div class="book-item"><i class="fas fa-book-open"></i><div><strong>Effective C++</strong> — Scott Meyers</div></div>
+                            <div class="book-item"><i class="fas fa-book-open"></i><div><strong>The C++ Programming Language</strong> — Bjarne Stroustrup</div></div>
                         </div>
                     </div>
 
                     <div class="card section-card mb-4">
                         <div class="card-header-custom"><h5><i class="fas fa-globe"></i> Useful Websites</h5></div>
                         <div class="card-body">
-                            <div class="website-item"><i class="fas fa-external-link-alt"></i><a href="#" target="_blank">Cisco Networking Academy</a></div>
-                            <div class="website-item"><i class="fas fa-external-link-alt"></i><a href="#" target="_blank">NetworkLessons.com</a></div>
-                            <div class="website-item"><i class="fas fa-external-link-alt"></i><a href="#" target="_blank">Wireshark Official</a></div>
+                            <div class="website-item"><i class="fas fa-external-link-alt"></i><a href="https://www.cplusplus.com/" target="_blank">cplusplus.com — Reference</a></div>
+                            <div class="website-item"><i class="fas fa-external-link-alt"></i><a href="https://www.learncpp.com/" target="_blank">LearnCpp.com</a></div>
+                            <div class="website-item"><i class="fas fa-external-link-alt"></i><a href="https://www.geeksforgeeks.org/c-plus-plus/" target="_blank">GeeksforGeeks — C++</a></div>
                         </div>
                     </div>
 
@@ -148,27 +146,31 @@
                     <div class="card section-card mb-4">
                         <div class="card-header-custom"><h5><i class="fab fa-youtube"></i> YouTube Resources</h5></div>
                         <div class="card-body">
-                            <p class="text-muted small mb-3">Curated video resources to help you master Computer Networks.</p>
+                            <p class="text-muted small mb-3">Curated video resources in English and Tamil to help you master C++ Programming.</p>
                             
-                            <div class="youtube-item"><i class="fab fa-youtube"></i><div><a href="https://youtu.be/IPvYjXCsTg8?si=VPMC6q4CBtJV8-gh" target="_blank">Computer Networks Full Course - Part 1</a></div></div>
-                            <div class="youtube-item"><i class="fab fa-youtube"></i><div><a href="https://youtu.be/q3Z3Qa1UNBA?si=t_Blep6iNK_0-w7I" target="_blank">Computer Networks Full Course - Part 2</a></div></div>
-                            <div class="youtube-item"><i class="fab fa-youtube"></i><div><a href="https://youtu.be/fErDcUtd8fA?si=ux3Qd0leIQJ5qw7Q" target="_blank">Computer Networks Full Course - Part 3</a></div></div>
+                            <h6 class="fw-bold text-primary mb-2"><i class="fas fa-language me-1"></i> English Videos</h6>
+                            <div class="youtube-item"><i class="fab fa-youtube"></i><div><a href="https://youtu.be/ZzaPdXTrSb8?si=l9GyghxJmdaEIWgo" target="_blank">C++ Programming Full Course - English</a> <span class="badge badge-language bg-primary bg-opacity-10 text-primary">English</span></div></div>
+
+                            <hr class="my-3" />
+
+                            <h6 class="fw-bold text-success mb-2"><i class="fas fa-language me-1"></i> Tamil Videos</h6>
+                            <div class="youtube-item"><i class="fab fa-youtube"></i><div><a href="https://youtube.com/playlist?list=PLhP5RsB7fhE39kWGoEcme1H48rE2l_kIx&si=UBg8WrEDKZSTKFdP" target="_blank">C++ Programming - Tamil Playlist</a> <span class="badge badge-language bg-success bg-opacity-10 text-success">Tamil</span></div></div>
                         </div>
                     </div>
 
                     <div class="card section-card mb-4">
                         <div class="card-header-custom"><h5><i class="fas fa-certificate"></i> Certification Suggestions</h5></div>
                         <div class="card-body">
-                            <div class="cert-item"><i class="fas fa-certificate text-primary"></i><div><strong>Cisco CCNA</strong> <span class="badge bg-success bg-opacity-10 text-success ms-2">Cisco</span><p class="text-muted small mb-0">Industry-recognized networking certification.</p></div></div>
-                            <div class="cert-item"><i class="fas fa-certificate text-primary"></i><div><strong>CompTIA Network+</strong> <span class="badge bg-info bg-opacity-10 text-info ms-2">CompTIA</span><p class="text-muted small mb-0">Vendor-neutral networking certification.</p></div></div>
+                            <div class="cert-item"><i class="fas fa-certificate text-primary"></i><div><strong>CPA — C++ Certified Associate</strong> <span class="badge bg-success bg-opacity-10 text-success ms-2">C++ Institute</span><p class="text-muted small mb-0">Validates OOP skills in C++.</p></div></div>
+                            <div class="cert-item"><i class="fas fa-certificate text-primary"></i><div><strong>C++ Essential Training</strong> <span class="badge bg-info bg-opacity-10 text-info ms-2">LinkedIn Learning</span><p class="text-muted small mb-0">Professional certificate.</p></div></div>
                         </div>
                     </div>
 
                     <div class="card section-card mb-4">
                         <div class="card-header-custom"><h5><i class="fas fa-lightbulb"></i> Project Ideas</h5></div>
                         <div class="card-body">
-                            <div class="project-item"><i class="fas fa-comments"></i><div><strong>Simple Chat Application</strong> <span class="badge bg-warning bg-opacity-10 text-warning ms-2">Intermediate</span><p class="text-muted small mb-0">Build a TCP chat server and client.</p></div></div>
-                            <div class="project-item"><i class="fas fa-shield-alt"></i><div><strong>Network Packet Sniffer</strong> <span class="badge bg-danger bg-opacity-10 text-danger ms-2">Advanced</span><p class="text-muted small mb-0">Capture and analyze packets using Python.</p></div></div>
+                            <div class="project-item"><i class="fas fa-book"></i><div><strong>Library Management System</strong> <span class="badge bg-warning bg-opacity-10 text-warning ms-2">Intermediate</span><p class="text-muted small mb-0">Use OOP to manage books, members, and borrowing.</p></div></div>
+                            <div class="project-item"><i class="fas fa-university"></i><div><strong>Bank Account Simulator</strong> <span class="badge bg-warning bg-opacity-10 text-warning ms-2">Intermediate</span><p class="text-muted small mb-0">Implement inheritance with Account, Savings, and Checking classes.</p></div></div>
                         </div>
                     </div>
 
@@ -177,16 +179,14 @@
                         <div class="card-body">
                             <div class="mock-test-card">
                                 <div class="icon-circle"><i class="fas fa-pencil-alt"></i></div>
-                                <h4 class="fw-bold">Computer Networks Mock Test</h4>
-                                <p class="text-muted">30 questions on models, protocols, routing, and security.</p>
+                                <h4 class="fw-bold">C++ Programming Mock Test</h4>
+                                <p class="text-muted">30 questions covering OOP, STL, and advanced features.</p>
                                 <div class="d-flex flex-wrap justify-content-center gap-3 mb-3">
-                                    <span class="badge bg-light text-dark border"><i class="far fa-clock me-1"></i> 40 minutes</span>
+                                    <span class="badge bg-light text-dark border"><i class="far fa-clock me-1"></i> 45 minutes</span>
                                     <span class="badge bg-light text-dark border"><i class="fas fa-question-circle me-1"></i> 30 questions</span>
-                                    <span class="badge bg-light text-dark border"><i class="fas fa-check-circle me-1"></i> Passing: 65%</span>
+                                    <span class="badge bg-light text-dark border"><i class="fas fa-check-circle me-1"></i> Passing: 70%</span>
                                 </div>
-                                <a href="mocktest.html?course=cpp-programming" class="btn btn-warning rounded-pill">
-    <i class="fas fa-play me-2"></i> Start Mock Test
-</a>
+                                <button class="btn btn-primary btn-mock-test" style="background:#6f42c1; border-color:#6f42c1;"><i class="fas fa-play me-2"></i> Start Mock Test</button>
                             </div>
                         </div>
                     </div>
@@ -201,7 +201,7 @@
                                 <li class="py-2 d-flex justify-content-between border-bottom"><span class="text-muted">Course Level</span><span class="badge bg-warning text-dark">Intermediate</span></li>
                                 <li class="py-2 d-flex justify-content-between border-bottom"><span class="text-muted">Duration</span><span class="fw-semibold">8 Weeks</span></li>
                                 <li class="py-2 d-flex justify-content-between border-bottom"><span class="text-muted">Effort</span><span class="fw-semibold">5-6 hrs/week</span></li>
-                                <li class="py-2 d-flex justify-content-between border-bottom"><span class="text-muted">Language</span><span class="fw-semibold">English</span></li>
+                                <li class="py-2 d-flex justify-content-between border-bottom"><span class="text-muted">Language</span><span class="fw-semibold">English & Tamil</span></li>
                                 <li class="py-2 d-flex justify-content-between border-bottom"><span class="text-muted">Certificate</span><span class="badge bg-primary">Yes</span></li>
                                 <li class="py-2 d-flex justify-content-between"><span class="text-muted">Price</span><span class="fw-bold text-success">Free</span></li>
                             </ul>
@@ -210,10 +210,10 @@
 
                     <div class="card section-card mb-4">
                         <div class="card-body text-center">
-                            <img src="https://ui-avatars.com/api/?name=Prof.+Alice+Brown&size=80&background=0dcaf0&color=000&font-size=0.5" alt="Instructor" class="rounded-circle mb-3" width="80" height="80">
-                            <h5 class="fw-bold">Prof. Alice Brown</h5>
-                            <p class="text-muted small">Senior Lecturer, Networking</p>
-                            <p class="text-muted small">M.Sc. in Telecommunications • 10+ years of experience</p>
+                            <img src="https://ui-avatars.com/api/?name=Dr.+James+Kim&size=80&background=6f42c1&color=fff&font-size=0.5" alt="Instructor" class="rounded-circle mb-3" width="80" height="80">
+                            <h5 class="fw-bold">Dr. James Kim</h5>
+                            <p class="text-muted small">Senior Lecturer, Software Engineering</p>
+                            <p class="text-muted small">Ph.D. in Software Systems • 8+ years of experience</p>
                         </div>
                     </div>
 
@@ -221,9 +221,9 @@
                         <div class="card-body">
                             <h5 class="fw-bold mb-3"><i class="fas fa-link text-primary me-2"></i>Related Courses</h5>
                             <div class="d-flex flex-column gap-2">
-                                <a href="course-cyber-security.html" class="text-decoration-none d-flex align-items-center p-2 rounded-3 hover-bg-light"><i class="fas fa-arrow-right text-primary me-2"></i><span>Cyber Security Fundamentals</span></a>
-                                <a href="course-computer-fundamentals.html" class="text-decoration-none d-flex align-items-center p-2 rounded-3 hover-bg-light"><i class="fas fa-arrow-right text-primary me-2"></i><span>Computer Fundamentals</span></a>
-                                <a href="course-dbms.html" class="text-decoration-none d-flex align-items-center p-2 rounded-3 hover-bg-light"><i class="fas fa-arrow-right text-primary me-2"></i><span>DBMS</span></a>
+                                <a href="course-c-programming.html" class="text-decoration-none d-flex align-items-center p-2 rounded-3 hover-bg-light"><i class="fas fa-arrow-right text-primary me-2"></i><span>C Programming</span></a>
+                                <a href="course-dsa.html" class="text-decoration-none d-flex align-items-center p-2 rounded-3 hover-bg-light"><i class="fas fa-arrow-right text-primary me-2"></i><span>Data Structures and Algorithms</span></a>
+                                <a href="course-networks.html" class="text-decoration-none d-flex align-items-center p-2 rounded-3 hover-bg-light"><i class="fas fa-arrow-right text-primary me-2"></i><span>Computer Networks</span></a>
                             </div>
                         </div>
                     </div>
@@ -232,15 +232,104 @@
         </div>
     </section>
 
-    <!-- FOOTER -->
-    <footer class="bg-dark text-white pt-5 pb-3">
-        <div class="container">
-            <div class="row g-4">
-                <div class="col-md-4">
-                    <h5 class="fw-bold mb-3"><i class="fas fa-graduation-cap text-warning me-2"></i>EFLI</h5>
-                    <p class="text-light opacity-75 small">Engineering Foundation Learning Institute — building the engineers of tomorrow.</p>
+    <!-- ============================== -->
+<!-- SHARED FOOTER                 -->
+<!-- ============================== -->
+<footer class="bg-dark text-white pt-5 pb-3">
+    <div class="container">
+        <div class="row g-4">
+
+            <!-- Brand & tagline -->
+            <div class="col-md-4">
+                <h5 class="fw-bold mb-3">
+                    <i class="fas fa-graduation-cap text-warning me-2"></i>EFLI
+                </h5>
+                <p class="text-light opacity-75 small">
+                    Engineering Foundation Learning Institute — building the engineers
+                    of tomorrow with strong foundations today.
+                </p>
+                <div class="social-icons mt-3">
+                    <a href="https://facebook.com" target="_blank" class="text-white me-3 opacity-75 hover-opacity-100" aria-label="Facebook">
+                        <i class="fab fa-facebook-f fa-lg"></i>
+                    </a>
+                    <a href="https://twitter.com" target="_blank" class="text-white me-3 opacity-75 hover-opacity-100" aria-label="Twitter">
+                        <i class="fab fa-twitter fa-lg"></i>
+                    </a>
+                    <a href="https://linkedin.com" target="_blank" class="text-white me-3 opacity-75 hover-opacity-100" aria-label="LinkedIn">
+                        <i class="fab fa-linkedin-in fa-lg"></i>
+                    </a>
+                    <a href="https://youtube.com" target="_blank" class="text-white me-3 opacity-75 hover-opacity-100" aria-label="YouTube">
+                        <i class="fab fa-youtube fa-lg"></i>
+                    </a>
+                    <a href="https://instagram.com" target="_blank" class="text-white opacity-75 hover-opacity-100" aria-label="Instagram">
+                        <i class="fab fa-instagram fa-lg"></i>
+                    </a>
                 </div>
-                <div class="col-md-2">
-                    <h6 class="fw-bold text-uppercase mb-3">Quick Links</h6>
-                    <ul class="list-unstyled small">
-                        <li class="mb-2"><a href="index.html" class="text-light text-decoration-none opacity-75 hover-opacity-100">Home</a></li>
+            </div>
+
+            <!-- Quick Links -->
+            <div class="col-md-2">
+                <h6 class="fw-bold text-uppercase mb-3">Quick Links</h6>
+                <ul class="list-unstyled small">
+                    <li class="mb-2"><a href="index.html" class="text-light text-decoration-none opacity-75 hover-opacity-100">Home</a></li>
+                    <li class="mb-2"><a href="about.html" class="text-light text-decoration-none opacity-75 hover-opacity-100">About</a></li>
+                    <li class="mb-2"><a href="courses.html" class="text-light text-decoration-none opacity-75 hover-opacity-100">Courses</a></li>
+                    <li class="mb-2"><a href="gallery.html" class="text-light text-decoration-none opacity-75 hover-opacity-100">Gallery</a></li>
+                    <li class="mb-2"><a href="faq.html" class="text-light text-decoration-none opacity-75 hover-opacity-100">FAQ</a></li>
+                    <li><a href="contact.html" class="text-light text-decoration-none opacity-75 hover-opacity-100">Contact</a></li>
+                </ul>
+            </div>
+
+            <!-- Resources -->
+            <div class="col-md-2">
+                <h6 class="fw-bold text-uppercase mb-3">Resources</h6>
+                <ul class="list-unstyled small">
+                    <li class="mb-2"><a href="#" class="text-light text-decoration-none opacity-75 hover-opacity-100">Alumni</a></li>
+                    <li class="mb-2"><a href="#" class="text-light text-decoration-none opacity-75 hover-opacity-100">Careers</a></li>
+                    <li class="mb-2"><a href="#" class="text-light text-decoration-none opacity-75 hover-opacity-100">Blog</a></li>
+                    <li class="mb-2"><a href="#" class="text-light text-decoration-none opacity-75 hover-opacity-100">Events</a></li>
+                    <li><a href="#" class="text-light text-decoration-none opacity-75 hover-opacity-100">Newsletter</a></li>
+                </ul>
+            </div>
+
+            <!-- Contact Info -->
+            <div class="col-md-4">
+                <h6 class="fw-bold text-uppercase mb-3">Get in Touch</h6>
+                <ul class="list-unstyled small">
+                    <li class="mb-2 d-flex">
+                        <i class="fas fa-map-marker-alt text-warning me-2 mt-1"></i>
+                        123 Engineering Avenue, Innovation Park, City 10001
+                    </li>
+                    <li class="mb-2 d-flex">
+                        <i class="fas fa-phone-alt text-warning me-2 mt-1"></i>
+                        <a href="tel:+1234567890" class="text-light text-decoration-none opacity-75 hover-opacity-100">+1 (234) 567-890</a>
+                    </li>
+                    <li class="mb-2 d-flex">
+                        <i class="fas fa-envelope text-warning me-2 mt-1"></i>
+                        <a href="mailto:info@efli.edu" class="text-light text-decoration-none opacity-75 hover-opacity-100">info@efli.edu</a>
+                    </li>
+                    <li class="d-flex">
+                        <i class="fas fa-clock text-warning me-2 mt-1"></i>
+                        <span>Mon–Fri: 8:00 AM – 6:00 PM</span>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+
+        <!-- Divider & copyright -->
+        <hr class="border-secondary opacity-25 my-4" />
+        <div class="row align-items-center">
+            <div class="col-md-6 text-center text-md-start">
+                <p class="small text-light opacity-50 mb-0">
+                    &copy; 2026 Engineering Foundation Learning Institute. All rights reserved.
+                </p>
+            </div>
+            <div class="col-md-6 text-center text-md-end">
+                <p class="small text-light opacity-50 mb-0">
+                    <i class="fas fa-code me-1"></i> Built with <i class="fas fa-heart text-danger"></i> for education.
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
