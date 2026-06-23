@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-    <link rel="stylesheet" href="css/style.css">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -9,10 +8,10 @@
     <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" />
 
-    <!-- Font Awesome 6 (free) -->
+    <!-- Font Awesome 6 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
 
-    <!-- Google Fonts (Inter) -->
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet" />
@@ -21,418 +20,524 @@
     <link rel="stylesheet" href="css/style.css" />
 
     <style>
-        /* Gallery specific styles */
-        .gallery-hero {
-            background: linear-gradient(135deg, #0d6efd 0%, #0a58ca 100%);
-            padding: 3rem 0;
-        }
+        body { font-family: 'Inter', sans-serif; background: #f8f9fa; }
 
-        .gallery-card {
+        /* Gallery Hero */
+        .gallery-hero {
+            background: linear-gradient(135deg, #0d1b2a 0%, #1b3a5c 50%, #0d6efd 100%);
+            padding: 4rem 0 3rem 0;
+            text-align: center;
+            color: white;
+        }
+        .gallery-hero h1 { font-weight: 800; font-size: 3rem; }
+        .gallery-hero p { opacity: 0.85; font-size: 1.15rem; }
+
+        /* Gallery Grid */
+        .gallery-item {
             position: relative;
             overflow: hidden;
             border-radius: 1rem;
-            box-shadow: 0 0.25rem 1rem rgba(0, 0, 0, 0.08);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
             cursor: pointer;
+            transition: all 0.4s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
         }
-
-        .gallery-card:hover {
-            transform: translateY(-8px) scale(1.02);
-            box-shadow: 0 0.75rem 2rem rgba(0, 0, 0, 0.15);
+        .gallery-item:hover {
+            transform: scale(1.03);
+            box-shadow: 0 8px 30px rgba(13,110,253,0.2);
         }
-
-        .gallery-card img {
+        .gallery-item img {
             width: 100%;
             height: 250px;
             object-fit: cover;
-            transition: transform 0.4s ease;
+            transition: all 0.5s ease;
+        }
+        .gallery-item:hover img {
+            transform: scale(1.08);
         }
 
-        .gallery-card:hover img {
-            transform: scale(1.05);
-        }
-
-        .gallery-card .overlay {
+        /* Overlay on Hover */
+        .gallery-item .overlay {
             position: absolute;
-            top: 0;
+            bottom: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(13, 110, 253, 0.75);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            color: #fff;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.7));
+            padding: 2rem 1rem 1rem 1rem;
             opacity: 0;
-            transition: opacity 0.3s ease;
-            padding: 1.5rem;
-            text-align: center;
-            backdrop-filter: blur(2px);
+            transition: all 0.4s ease;
+            color: white;
         }
-
-        .gallery-card:hover .overlay {
+        .gallery-item:hover .overlay {
             opacity: 1;
         }
-
-        .gallery-card .overlay h5 {
+        .gallery-item .overlay h6 {
             font-weight: 700;
-            margin-bottom: 0.25rem;
-        }
-
-        .gallery-card .overlay p {
-            font-size: 0.9rem;
-            opacity: 0.9;
             margin-bottom: 0;
         }
-
-        .gallery-card .overlay .icon {
-            font-size: 2.5rem;
-            margin-bottom: 0.75rem;
+        .gallery-item .overlay small {
             opacity: 0.8;
         }
 
-        /* Responsive image height */
-        @media (max-width: 576px) {
-            .gallery-card img {
-                height: 200px;
-            }
+        /* ===== MODAL STYLES ===== */
+        #imageModal .modal-dialog {
+            max-width: 800px;
+            margin: 1.75rem auto;
+        }
+        #imageModal .modal-content {
+            border-radius: 1rem;
+            border: none;
+            background: transparent;
+        }
+        #imageModal .modal-body {
+            padding: 0;
+            background: transparent;
+            border-radius: 1rem;
+            overflow: hidden;
+        }
+        #imageModal .modal-body img {
+            width: 100%;
+            border-radius: 1rem;
+            box-shadow: 0 2rem 4rem rgba(0,0,0,0.4);
+        }
+        #imageModal .modal-header {
+            border-bottom: none;
+            padding: 0.5rem 1rem;
+            background: transparent;
+            position: absolute;
+            top: 0;
+            right: 0;
+            z-index: 10;
+            width: 100%;
+        }
+        #imageModal .modal-header .btn-close {
+            background-color: rgba(255,255,255,0.8);
+            border-radius: 50%;
+            padding: 0.7rem;
+            opacity: 1;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+        #imageModal .modal-header .btn-close:hover {
+            background-color: white;
+            transform: scale(1.1);
+        }
+        #imageModal .modal-title {
+            font-weight: 700;
+            color: white;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
         }
 
-        @media (min-width: 768px) and (max-width: 991px) {
-            .gallery-card img {
-                height: 220px;
-            }
+        /* Image Caption inside Modal */
+        .modal-image-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 2rem 1.5rem 1.5rem 1.5rem;
+            background: linear-gradient(transparent, rgba(0,0,0,0.7));
+            color: white;
+            border-radius: 0 0 1rem 1rem;
+            pointer-events: none;
+        }
+        .modal-image-caption h5 {
+            font-weight: 700;
+            margin-bottom: 0.2rem;
+        }
+        .modal-image-caption p {
+            opacity: 0.8;
+            margin-bottom: 0;
+            font-size: 0.9rem;
+        }
+
+        /* Zoom Icon on Image */
+        .gallery-item .zoom-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            color: white;
+            font-size: 3rem;
+            opacity: 0;
+            transition: all 0.4s ease;
+            text-shadow: 0 2px 20px rgba(0,0,0,0.3);
+            pointer-events: none;
+        }
+        .gallery-item:hover .zoom-icon {
+            transform: translate(-50%, -50%) scale(1);
+            opacity: 1;
+        }
+
+        /* Responsive */
+        @media (max-width: 576px) {
+            .gallery-hero h1 { font-size: 2rem; }
+            .gallery-item img { height: 180px; }
+            #imageModal .modal-dialog { margin: 0.5rem; }
+            #imageModal .modal-body img { border-radius: 0.5rem; }
         }
     </style>
 </head>
-<script src="js/script.js"></script>
 <body>
 
     <!-- ============================== -->
-    <!-- SHARED NAVBAR                 -->
+    <!-- NAVBAR                         -->
     <!-- ============================== -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top shadow">
         <div class="container">
             <a class="navbar-brand fw-bold" href="index.html">
-                <i class="fas fa-graduation-cap me-2 text-warning"></i>
-                EFLI
+                <i class="fas fa-graduation-cap me-2 text-warning"></i> EFLI
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar"
-            aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="mainNavbar">
-            <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-                <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
-                <li class="nav-item"><a class="nav-link" href="courses.html">Courses</a></li>
-                <li class="nav-item"><a class="nav-link active" aria-current="page" href="gallery.html">Gallery</a></li>
-                <li class="nav-item"><a class="nav-link" href="faq.html">FAQ</a></li>
-                <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
-            </ul>
-        </div>
-    </div>
-</nav>
-
-<!-- ============================== -->
-<!-- GALLERY PAGE CONTENT          -->
-<!-- ============================== -->
-
-<!-- ====== HERO ====== -->
-<section class="gallery-hero text-white">
-    <div class="container py-4">
-        <div class="row align-items-center">
-            <div class="col-lg-8 mx-auto text-center">
-                <h1 class="display-4 fw-bold mb-3">Our <span class="text-warning">Gallery</span></h1>
-                <p class="lead mb-0">
-                    A glimpse into the learning environment, facilities, and vibrant community at EFLI.
-                </p>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- ====== GALLERY GRID ====== -->
-<section class="gallery-grid py-5">
-    <div class="container">
-        <!-- Optional filter or description -->
-        <div class="row mb-4">
-            <div class="col-md-8 mx-auto text-center">
-                <p class="text-muted">
-                    Explore our campus, classrooms, labs, events, and student life through these captured moments.
-                </p>
-            </div>
-        </div>
-
-        <div class="row g-4">
-
-            <!-- 1. Campus Overview -->
-            <div class="col-md-6 col-lg-4">
-                <div class="gallery-card">
-                    <img src="https://images.unsplash.com/photo-1562774053-701939374585?w=600&h=400&fit=crop&auto=format" alt="Campus Overview" loading="lazy" />
-                    <div class="overlay">
-                        <i class="fas fa-university icon"></i>
-                        <h5>Campus Overview</h5>
-                        <p>Modern facilities and green spaces</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 2. Library -->
-            <div class="col-md-6 col-lg-4">
-                <div class="gallery-card">
-                    <img src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?w=600&h=400&fit=crop&auto=format" alt="Library" loading="lazy" />
-                    <div class="overlay">
-                        <i class="fas fa-book-open icon"></i>
-                        <h5>Library</h5>
-                        <p>Quiet study spaces and extensive resources</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 3. Computer Lab -->
-            <div class="col-md-6 col-lg-4">
-                <div class="gallery-card">
-                    <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=600&h=400&fit=crop&auto=format" alt="Computer Lab" loading="lazy" />
-                    <div class="overlay">
-                        <i class="fas fa-laptop-code icon"></i>
-                        <h5>Computer Lab</h5>
-                        <p>State-of-the-art computing facilities</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 4. Classroom Session -->
-            <div class="col-md-6 col-lg-4">
-                <div class="gallery-card">
-                    <img src="https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=600&h=400&fit=crop&auto=format" alt="Classroom Session" loading="lazy" />
-                    <div class="overlay">
-                        <i class="fas fa-chalkboard-teacher icon"></i>
-                        <h5>Classroom Session</h5>
-                        <p>Interactive learning with expert faculty</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 5. Group Discussion -->
-            <div class="col-md-6 col-lg-4">
-                <div class="gallery-card">
-                    <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=600&h=400&fit=crop&auto=format" alt="Group Discussion" loading="lazy" />
-                    <div class="overlay">
-                        <i class="fas fa-users icon"></i>
-                        <h5>Group Discussion</h5>
-                        <p>Collaborative problem-solving</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 6. Robotics Workshop -->
-            <div class="col-md-6 col-lg-4">
-                <div class="gallery-card">
-                    <img src="https://images.unsplash.com/photo-1535378917042-10a22c95931a?w=600&h=400&fit=crop&auto=format" alt="Robotics Workshop" loading="lazy" />
-                    <div class="overlay">
-                        <i class="fas fa-robot icon"></i>
-                        <h5>Robotics Workshop</h5>
-                        <p>Hands-on experience with robots</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 7. Student Projects -->
-            <div class="col-md-6 col-lg-4">
-                <div class="gallery-card">
-                    <img src="https://images.unsplash.com/photo-1517077304055-6e89abbf09b0?w=600&h=400&fit=crop&auto=format" alt="Student Projects" loading="lazy" />
-                    <div class="overlay">
-                        <i class="fas fa-project-diagram icon"></i>
-                        <h5>Student Projects</h5>
-                        <p>Innovative engineering solutions</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 8. Lab Experiments -->
-            <div class="col-md-6 col-lg-4">
-                <div class="gallery-card">
-                    <img src="https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=600&h=400&fit=crop&auto=format" alt="Lab Experiments" loading="lazy" />
-                    <div class="overlay">
-                        <i class="fas fa-flask icon"></i>
-                        <h5>Lab Experiments</h5>
-                        <p>Conducting scientific experiments</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 9. Guest Lecture -->
-            <div class="col-md-6 col-lg-4">
-                <div class="gallery-card">
-                    <img src="https://images.unsplash.com/photo-1511578314322-379afb476865?w=600&h=400&fit=crop&auto=format" alt="Guest Lecture" loading="lazy" />
-                    <div class="overlay">
-                        <i class="fas fa-user-tie icon"></i>
-                        <h5>Guest Lecture</h5>
-                        <p>Industry experts share insights</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 10. Campus Event -->
-            <div class="col-md-6 col-lg-4">
-                <div class="gallery-card">
-                    <img src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=600&h=400&fit=crop&auto=format" alt="Campus Event" loading="lazy" />
-                    <div class="overlay">
-                        <i class="fas fa-calendar-alt icon"></i>
-                        <h5>Campus Event</h5>
-                        <p>Fostering community and fun</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 11. Sports Facility -->
-            <div class="col-md-6 col-lg-4">
-                <div class="gallery-card">
-                    <img src="https://images.unsplash.com/photo-1534430480872-3498386e7856?w=600&h=400&fit=crop&auto=format" alt="Sports Facility" loading="lazy" />
-                    <div class="overlay">
-                        <i class="fas fa-running icon"></i>
-                        <h5>Sports Facility</h5>
-                        <p>Wellness and recreation</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 12. Graduation Ceremony -->
-            <div class="col-md-6 col-lg-4">
-                <div class="gallery-card">
-                    <img src="data:image/jpeg;base64,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" alt="Graduation Ceremony" loading="lazy" />
-                    <div class="overlay">
-                        <i class="fas fa-graduation-cap icon"></i>
-                        <h5>Graduation Ceremony</h5>
-                        <p>Celebrating student achievements</p>
-                    </div>
-                </div>
-            </div>
-
-        </div><!-- /row -->
-
-        <!-- Bottom caption -->
-        <div class="row mt-5 pt-3">
-            <div class="col-md-8 mx-auto text-center">
-                <p class="text-muted small">
-                    <i class="fas fa-camera-retro me-2"></i> Explore more of our institute through our social media channels.
-                </p>
-            </div>
-        </div>
-
-    </div><!-- /container -->
-</section>
-
-
-<!-- ============================== -->
-<!-- SHARED FOOTER                 -->
-<!-- ============================== -->
-<footer class="bg-dark text-white pt-5 pb-3">
-    <div class="container">
-        <div class="row g-4">
-
-            <!-- Brand & tagline -->
-            <div class="col-md-4">
-                <h5 class="fw-bold mb-3">
-                    <i class="fas fa-graduation-cap text-warning me-2"></i>EFLI
-                </h5>
-                <p class="text-light opacity-75 small">
-                    Engineering Foundation Learning Institute — building the engineers
-                    of tomorrow with strong foundations today.
-                </p>
-                <div class="social-icons mt-3">
-                    <a href="https://facebook.com" target="_blank" class="text-white me-3 opacity-75 hover-opacity-100" aria-label="Facebook">
-                        <i class="fab fa-facebook-f fa-lg"></i>
-                    </a>
-                    <a href="https://twitter.com" target="_blank" class="text-white me-3 opacity-75 hover-opacity-100" aria-label="Twitter">
-                        <i class="fab fa-twitter fa-lg"></i>
-                    </a>
-                    <a href="https://linkedin.com" target="_blank" class="text-white me-3 opacity-75 hover-opacity-100" aria-label="LinkedIn">
-                        <i class="fab fa-linkedin-in fa-lg"></i>
-                    </a>
-                    <a href="https://youtube.com" target="_blank" class="text-white me-3 opacity-75 hover-opacity-100" aria-label="YouTube">
-                        <i class="fab fa-youtube fa-lg"></i>
-                    </a>
-                    <a href="https://instagram.com" target="_blank" class="text-white opacity-75 hover-opacity-100" aria-label="Instagram">
-                        <i class="fab fa-instagram fa-lg"></i>
-                    </a>
-                </div>
-            </div>
-
-            <!-- Quick Links -->
-            <div class="col-md-2">
-                <h6 class="fw-bold text-uppercase mb-3">Quick Links</h6>
-                <ul class="list-unstyled small">
-                    <li class="mb-2"><a href="index.html" class="text-light text-decoration-none opacity-75 hover-opacity-100">Home</a></li>
-                    <li class="mb-2"><a href="about.html" class="text-light text-decoration-none opacity-75 hover-opacity-100">About</a></li>
-                    <li class="mb-2"><a href="courses.html" class="text-light text-decoration-none opacity-75 hover-opacity-100">Courses</a></li>
-                    <li class="mb-2"><a href="gallery.html" class="text-light text-decoration-none opacity-75 hover-opacity-100">Gallery</a></li>
-                    <li class="mb-2"><a href="faq.html" class="text-light text-decoration-none opacity-75 hover-opacity-100">FAQ</a></li>
-                    <li><a href="contact.html" class="text-light text-decoration-none opacity-75 hover-opacity-100">Contact</a></li>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="mainNavbar">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="courses.html">Courses</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="gallery.html">Gallery</a></li>
+                    <li class="nav-item"><a class="nav-link" href="faq.html">FAQ</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
                 </ul>
             </div>
-
-            <!-- Resources -->
-            <div class="col-md-2">
-                <h6 class="fw-bold text-uppercase mb-3">Resources</h6>
-                <ul class="list-unstyled small">
-                    <li class="mb-2"><a href="#" class="text-light text-decoration-none opacity-75 hover-opacity-100">Alumni</a></li>
-                    <li class="mb-2"><a href="#" class="text-light text-decoration-none opacity-75 hover-opacity-100">Careers</a></li>
-                    <li class="mb-2"><a href="#" class="text-light text-decoration-none opacity-75 hover-opacity-100">Blog</a></li>
-                    <li class="mb-2"><a href="#" class="text-light text-decoration-none opacity-75 hover-opacity-100">Events</a></li>
-                    <li><a href="#" class="text-light text-decoration-none opacity-75 hover-opacity-100">Newsletter</a></li>
-                </ul>
-            </div>
-
-            <!-- Contact Info -->
-            <div class="col-md-4">
-                <h6 class="fw-bold text-uppercase mb-3">Get in Touch</h6>
-                <ul class="list-unstyled small">
-                    <li class="mb-2 d-flex">
-                        <i class="fas fa-map-marker-alt text-warning me-2 mt-1"></i>
-                        123 Engineering Avenue, Innovation Park, City 10001
-                    </li>
-                    <li class="mb-2 d-flex">
-                        <i class="fas fa-phone-alt text-warning me-2 mt-1"></i>
-                        <a href="tel:+1234567890" class="text-light text-decoration-none opacity-75 hover-opacity-100">+1 (234) 567-890</a>
-                    </li>
-                    <li class="mb-2 d-flex">
-                        <i class="fas fa-envelope text-warning me-2 mt-1"></i>
-                        <a href="mailto:info@efli.edu" class="text-light text-decoration-none opacity-75 hover-opacity-100">info@efli.edu</a>
-                    </li>
-                    <li class="d-flex">
-                        <i class="fas fa-clock text-warning me-2 mt-1"></i>
-                        <span>Mon–Fri: 8:00 AM – 6:00 PM</span>
-                    </li>
-                </ul>
-            </div>
-
         </div>
+    </nav>
 
-        <!-- Divider & copyright -->
-        <hr class="border-secondary opacity-25 my-4" />
-        <div class="row align-items-center">
-            <div class="col-md-6 text-center text-md-start">
-                <p class="small text-light opacity-50 mb-0">
-                    &copy; 2026 Engineering Foundation Learning Institute. All rights reserved.
-                </p>
-            </div>
-            <div class="col-md-6 text-center text-md-end">
-                <p class="small text-light opacity-50 mb-0">
-                    <i class="fas fa-code me-1"></i> Built with <i class="fas fa-heart text-danger"></i> for education.
-                </p>
+    <!-- ============================== -->
+    <!-- GALLERY HERO                   -->
+    <!-- ============================== -->
+    <section class="gallery-hero">
+        <div class="container">
+            <h1><i class="fas fa-images text-warning me-2"></i> Our <span class="text-warning">Gallery</span></h1>
+            <p>A glimpse into the learning environment, facilities, and vibrant community at EFLI.</p>
+            <p class="text-warning small mt-2"><i class="fas fa-mouse-pointer me-1"></i> Click any image to view larger</p>
+        </div>
+    </section>
+
+    <!-- ============================== -->
+    <!-- GALLERY GRID                   -->
+    <!-- ============================== -->
+    <section class="gallery-grid py-5">
+        <div class="container">
+            <div class="row g-4">
+
+                <!-- 1. Campus Overview -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#imageModal" 
+                         data-image="https://images.unsplash.com/photo-1562774053-701939374585?w=800&h=600&fit=crop&auto=format"
+                         data-title="Campus Overview"
+                         data-desc="Modern facilities and green spaces">
+                        <img src="https://images.unsplash.com/photo-1562774053-701939374585?w=600&h=400&fit=crop&auto=format" alt="Campus Overview" loading="lazy" />
+                        <div class="overlay">
+                            <h6>Campus Overview</h6>
+                            <small>Modern facilities and green spaces</small>
+                        </div>
+                        <div class="zoom-icon"><i class="fas fa-search-plus"></i></div>
+                    </div>
+                </div>
+
+                <!-- 2. Library -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#imageModal"
+                         data-image="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?w=800&h=600&fit=crop&auto=format"
+                         data-title="Library"
+                         data-desc="Quiet study spaces and extensive resources">
+                        <img src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?w=600&h=400&fit=crop&auto=format" alt="Library" loading="lazy" />
+                        <div class="overlay">
+                            <h6>Library</h6>
+                            <small>Quiet study spaces and extensive resources</small>
+                        </div>
+                        <div class="zoom-icon"><i class="fas fa-search-plus"></i></div>
+                    </div>
+                </div>
+
+                <!-- 3. Computer Lab -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#imageModal"
+                         data-image="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800&h=600&fit=crop&auto=format"
+                         data-title="Computer Lab"
+                         data-desc="State-of-the-art computing facilities">
+                        <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=600&h=400&fit=crop&auto=format" alt="Computer Lab" loading="lazy" />
+                        <div class="overlay">
+                            <h6>Computer Lab</h6>
+                            <small>State-of-the-art computing facilities</small>
+                        </div>
+                        <div class="zoom-icon"><i class="fas fa-search-plus"></i></div>
+                    </div>
+                </div>
+
+                <!-- 4. Classroom Session -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#imageModal"
+                         data-image="https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=800&h=600&fit=crop&auto=format"
+                         data-title="Classroom Session"
+                         data-desc="Interactive learning with expert faculty">
+                        <img src="https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=600&h=400&fit=crop&auto=format" alt="Classroom Session" loading="lazy" />
+                        <div class="overlay">
+                            <h6>Classroom Session</h6>
+                            <small>Interactive learning with expert faculty</small>
+                        </div>
+                        <div class="zoom-icon"><i class="fas fa-search-plus"></i></div>
+                    </div>
+                </div>
+
+                <!-- 5. Group Discussion -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#imageModal"
+                         data-image="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=800&h=600&fit=crop&auto=format"
+                         data-title="Group Discussion"
+                         data-desc="Collaborative problem-solving">
+                        <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=600&h=400&fit=crop&auto=format" alt="Group Discussion" loading="lazy" />
+                        <div class="overlay">
+                            <h6>Group Discussion</h6>
+                            <small>Collaborative problem-solving</small>
+                        </div>
+                        <div class="zoom-icon"><i class="fas fa-search-plus"></i></div>
+                    </div>
+                </div>
+
+                <!-- 6. Robotics Workshop -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#imageModal"
+                         data-image="https://images.unsplash.com/photo-1535378917042-10a22c95931a?w=800&h=600&fit=crop&auto=format"
+                         data-title="Robotics Workshop"
+                         data-desc="Hands-on experience with robots">
+                        <img src="https://images.unsplash.com/photo-1535378917042-10a22c95931a?w=600&h=400&fit=crop&auto=format" alt="Robotics Workshop" loading="lazy" />
+                        <div class="overlay">
+                            <h6>Robotics Workshop</h6>
+                            <small>Hands-on experience with robots</small>
+                        </div>
+                        <div class="zoom-icon"><i class="fas fa-search-plus"></i></div>
+                    </div>
+                </div>
+
+                <!-- 7. Student Projects -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#imageModal"
+                         data-image="https://images.unsplash.com/photo-1517077304055-6e89abbf09b0?w=800&h=600&fit=crop&auto=format"
+                         data-title="Student Projects"
+                         data-desc="Innovative engineering solutions">
+                        <img src="https://images.unsplash.com/photo-1517077304055-6e89abbf09b0?w=600&h=400&fit=crop&auto=format" alt="Student Projects" loading="lazy" />
+                        <div class="overlay">
+                            <h6>Student Projects</h6>
+                            <small>Innovative engineering solutions</small>
+                        </div>
+                        <div class="zoom-icon"><i class="fas fa-search-plus"></i></div>
+                    </div>
+                </div>
+
+                <!-- 8. Lab Experiments -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#imageModal"
+                         data-image="https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=800&h=600&fit=crop&auto=format"
+                         data-title="Lab Experiments"
+                         data-desc="Conducting scientific experiments">
+                        <img src="https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=600&h=400&fit=crop&auto=format" alt="Lab Experiments" loading="lazy" />
+                        <div class="overlay">
+                            <h6>Lab Experiments</h6>
+                            <small>Conducting scientific experiments</small>
+                        </div>
+                        <div class="zoom-icon"><i class="fas fa-search-plus"></i></div>
+                    </div>
+                </div>
+
+                <!-- 9. Guest Lecture -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#imageModal"
+                         data-image="https://images.unsplash.com/photo-1511578314322-379afb476865?w=800&h=600&fit=crop&auto=format"
+                         data-title="Guest Lecture"
+                         data-desc="Industry experts share insights">
+                        <img src="https://images.unsplash.com/photo-1511578314322-379afb476865?w=600&h=400&fit=crop&auto=format" alt="Guest Lecture" loading="lazy" />
+                        <div class="overlay">
+                            <h6>Guest Lecture</h6>
+                            <small>Industry experts share insights</small>
+                        </div>
+                        <div class="zoom-icon"><i class="fas fa-search-plus"></i></div>
+                    </div>
+                </div>
+
+                <!-- 10. Campus Event -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#imageModal"
+                         data-image="https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=800&h=600&fit=crop&auto=format"
+                         data-title="Campus Event"
+                         data-desc="Fostering community and fun">
+                        <img src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=600&h=400&fit=crop&auto=format" alt="Campus Event" loading="lazy" />
+                        <div class="overlay">
+                            <h6>Campus Event</h6>
+                            <small>Fostering community and fun</small>
+                        </div>
+                        <div class="zoom-icon"><i class="fas fa-search-plus"></i></div>
+                    </div>
+                </div>
+
+                <!-- 11. Sports Facility -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#imageModal"
+                         data-image="https://images.unsplash.com/photo-1534430480872-3498386e7856?w=800&h=600&fit=crop&auto=format"
+                         data-title="Sports Facility"
+                         data-desc="Wellness and recreation">
+                        <img src="https://images.unsplash.com/photo-1534430480872-3498386e7856?w=600&h=400&fit=crop&auto=format" alt="Sports Facility" loading="lazy" />
+                        <div class="overlay">
+                            <h6>Sports Facility</h6>
+                            <small>Wellness and recreation</small>
+                        </div>
+                        <div class="zoom-icon"><i class="fas fa-search-plus"></i></div>
+                    </div>
+                </div>
+
+                <!-- 12. Graduation Ceremony -->
+                <div class="col-md-6 col-lg-4">
+                    <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#imageModal"
+                         data-image="https://images.unsplash.com/photo-1523050854058-8df90110c7f1?w=800&h=600&fit=crop&auto=format"
+                         data-title="Graduation Ceremony"
+                         data-desc="Celebrating student achievements">
+                        <img src="https://media.istockphoto.com/id/1066324992/photo/graduation-day.jpg?s=612x612&w=0&k=20&c=cleRpjTZbo430AbH-luZFYMMNqPwhwyTnFgWMbi_AiI=" alt="Graduation Ceremony" loading="lazy" />
+                        <div class="overlay">
+                            <h6>Graduation Ceremony</h6>
+                            <small>Celebrating student achievements</small>
+                        </div>
+                        <div class="zoom-icon"><i class="fas fa-search-plus"></i></div>
+                    </div>
+                </div>
+
+            </div><!-- /row -->
+        </div><!-- /container -->
+    </section>
+
+    <!-- ============================== -->
+    <!-- MODAL POPUP                    -->
+    <!-- ============================== -->
+    <div class="modal fade" id="imageModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header border-0">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-0">
+                    <img id="modalImage" src="" alt="Gallery Image" class="img-fluid" />
+                    <div class="modal-image-caption">
+                        <h5 id="modalTitle">Image Title</h5>
+                        <p id="modalDesc">Image Description</p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-</footer>
-<!-- ============================== -->
-<!-- SCRIPTS                       -->
-<!-- ============================== -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="js/script.js"></script>
+
+    <!-- ============================== -->
+    <!-- FOOTER                         -->
+    <!-- ============================== -->
+    <footer class="bg-dark text-white pt-5 pb-3">
+        <div class="container">
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <h5 class="fw-bold mb-3">
+                        <i class="fas fa-graduation-cap text-warning me-2"></i>EFLI
+                    </h5>
+                    <p class="text-light opacity-75 small">
+                        Engineering Foundation Learning Institute — building the engineers
+                        of tomorrow with strong foundations today.
+                    </p>
+                    <div class="social-icons mt-3">
+                        <a href="https://facebook.com" target="_blank" class="text-white me-3 opacity-75 hover-opacity-100"><i class="fab fa-facebook-f fa-lg"></i></a>
+                        <a href="https://twitter.com" target="_blank" class="text-white me-3 opacity-75 hover-opacity-100"><i class="fab fa-twitter fa-lg"></i></a>
+                        <a href="https://linkedin.com" target="_blank" class="text-white me-3 opacity-75 hover-opacity-100"><i class="fab fa-linkedin-in fa-lg"></i></a>
+                        <a href="https://youtube.com" target="_blank" class="text-white me-3 opacity-75 hover-opacity-100"><i class="fab fa-youtube fa-lg"></i></a>
+                        <a href="https://instagram.com" target="_blank" class="text-white opacity-75 hover-opacity-100"><i class="fab fa-instagram fa-lg"></i></a>
+                    </div>
+                </div>
+
+                <div class="col-md-2">
+                    <h6 class="fw-bold text-uppercase mb-3">Quick Links</h6>
+                    <ul class="list-unstyled small">
+                        <li class="mb-2"><a href="index.html" class="text-light text-decoration-none opacity-75 hover-opacity-100">Home</a></li>
+                        <li class="mb-2"><a href="about.html" class="text-light text-decoration-none opacity-75 hover-opacity-100">About</a></li>
+                        <li class="mb-2"><a href="courses.html" class="text-light text-decoration-none opacity-75 hover-opacity-100">Courses</a></li>
+                        <li class="mb-2"><a href="gallery.html" class="text-light text-decoration-none opacity-75 hover-opacity-100">Gallery</a></li>
+                        <li class="mb-2"><a href="faq.html" class="text-light text-decoration-none opacity-75 hover-opacity-100">FAQ</a></li>
+                        <li><a href="contact.html" class="text-light text-decoration-none opacity-75 hover-opacity-100">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-md-2">
+                    <h6 class="fw-bold text-uppercase mb-3">Resources</h6>
+                    <ul class="list-unstyled small">
+                        <li class="mb-2"><a href="#" class="text-light text-decoration-none opacity-75 hover-opacity-100">Alumni</a></li>
+                        <li class="mb-2"><a href="#" class="text-light text-decoration-none opacity-75 hover-opacity-100">Careers</a></li>
+                        <li class="mb-2"><a href="#" class="text-light text-decoration-none opacity-75 hover-opacity-100">Blog</a></li>
+                        <li class="mb-2"><a href="#" class="text-light text-decoration-none opacity-75 hover-opacity-100">Events</a></li>
+                        <li><a href="#" class="text-light text-decoration-none opacity-75 hover-opacity-100">Newsletter</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-md-4">
+                    <h6 class="fw-bold text-uppercase mb-3">Get in Touch</h6>
+                    <ul class="list-unstyled small">
+                        <li class="mb-2 d-flex">
+                            <i class="fas fa-map-marker-alt text-warning me-2 mt-1"></i>
+                            123 Engineering Avenue, Innovation Park, City 10001
+                        </li>
+                        <li class="mb-2 d-flex">
+                            <i class="fas fa-phone-alt text-warning me-2 mt-1"></i>
+                            <a href="tel:+1234567890" class="text-light text-decoration-none opacity-75 hover-opacity-100">+1 (234) 567-890</a>
+                        </li>
+                        <li class="mb-2 d-flex">
+                            <i class="fas fa-envelope text-warning me-2 mt-1"></i>
+                            <a href="mailto:info@efli.edu" class="text-light text-decoration-none opacity-75 hover-opacity-100">info@efli.edu</a>
+                        </li>
+                        <li class="d-flex">
+                            <i class="fas fa-clock text-warning me-2 mt-1"></i>
+                            <span>Mon–Fri: 8:00 AM – 6:00 PM</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <hr class="border-secondary opacity-25 my-4" />
+            <div class="row align-items-center">
+                <div class="col-md-6 text-center text-md-start">
+                    <p class="small text-light opacity-50 mb-0">&copy; 2026 Engineering Foundation Learning Institute. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <p class="small text-light opacity-50 mb-0">
+                        <i class="fas fa-code me-1"></i> Built with <i class="fas fa-heart text-danger"></i> for education.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ============================== -->
+    <!-- SCRIPTS                       -->
+    <!-- ============================== -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="js/script.js"></script>
+
+    <!-- ============================== -->
+    <!-- MODAL POPUP JAVASCRIPT        -->
+    <!-- ============================== -->
+    <script>
+        $(document).ready(function() {
+            // When any gallery item is clicked, update modal with its data
+            $('.gallery-item').on('click', function() {
+                var imageUrl = $(this).data('image');
+                var title = $(this).data('title');
+                var desc = $(this).data('desc');
+                
+                // Update modal content
+                $('#modalImage').attr('src', imageUrl);
+                $('#modalTitle').text(title);
+                $('#modalDesc').text(desc);
+            });
+
+            // Optional: Keyboard shortcut - ESC to close modal
+            $(document).on('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    $('#imageModal').modal('hide');
+                }
+            });
+        });
+    </script>
 
 </body>
 </html>
