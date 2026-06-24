@@ -108,6 +108,52 @@
         }
     </style>
 </head>
+    <!-- ============================== -->
+<!-- BACK TO TOP BUTTON            -->
+<!-- ============================== -->
+<style>
+    #backToTop {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        width: 50px;
+        height: 50px;
+        background: #0d6efd;
+        color: white;
+        border: none;
+        border-radius: 50%;
+        font-size: 1.3rem;
+        display: none;
+        z-index: 999;
+        cursor: pointer;
+        box-shadow: 0 4px 15px rgba(13, 110, 253, 0.4);
+        transition: all 0.3s ease;
+    }
+    #backToTop:hover {
+        transform: scale(1.15);
+        background: #0a58ca;
+    }
+</style>
+
+<button id="backToTop" onclick="scrollToTop()">
+    <i class="fas fa-arrow-up"></i>
+</button>
+
+<script>
+    // Back to Top - Pure JavaScript
+    window.onscroll = function() {
+        var btn = document.getElementById('backToTop');
+        if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+            btn.style.display = 'block';
+        } else {
+            btn.style.display = 'none';
+        }
+    };
+
+    function scrollToTop() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+</script>
 <body>
 
     <!-- ============================== -->
