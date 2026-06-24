@@ -333,6 +333,39 @@
     </style>
 </head>
 <script src="js/script.js"></script>
+    <script>
+    // Counter Animation
+    document.addEventListener('DOMContentLoaded', function() {
+        function animateCounters() {
+            document.querySelectorAll('.counter').forEach(function(counter) {
+                var target = parseInt(counter.getAttribute('data-target'));
+                var current = 0;
+                var increment = Math.ceil(target / 50);
+                
+                var timer = setInterval(function() {
+                    current += increment;
+                    if (current >= target) {
+                        current = target;
+                        clearInterval(timer);
+                    }
+                    counter.textContent = current;
+                }, 30);
+            });
+        }
+
+        // Trigger when stats section is visible
+        var counterSection = document.querySelector('.stats-counter-section');
+        if (counterSection) {
+            var observer = new IntersectionObserver(function(entries) {
+                if (entries[0].isIntersecting && !counterSection.classList.contains('animated')) {
+                    counterSection.classList.add('animated');
+                    animateCounters();
+                }
+            });
+            observer.observe(counterSection);
+        }
+    });
+</script>
 <body>
 
     <!-- ============================== -->
