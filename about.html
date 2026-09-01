@@ -1,505 +1,2295 @@
 <!DOCTYPE html>
 <html lang="en">
-    <link rel="stylesheet" href="css/style.css">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>About Us | Engineering Foundation Learning Institute</title>
 
-    <!-- Bootstrap 5 CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Bootstrap 5 -->
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+    >
 
-    <!-- Font Awesome 6 (free) -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <!-- Font Awesome -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    >
 
-    <!-- Google Fonts (Inter) -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet" />
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <!-- External CSS -->
-    <link rel="stylesheet" href="css/style.css" />
-</head>
-<script src="js/script.js"></script>
-    <!-- ============================== -->
-<!-- BACK TO TOP BUTTON            -->
-<!-- ============================== -->
-<style>
-    #backToTop {
-        position: fixed;
-        bottom: 30px;
-        right: 30px;
-        width: 50px;
-        height: 50px;
-        background: #0d6efd;
-        color: white;
-        border: none;
-        border-radius: 50%;
-        font-size: 1.3rem;
-        display: none;
-        z-index: 999;
-        cursor: pointer;
-        box-shadow: 0 4px 15px rgba(13, 110, 253, 0.4);
-        transition: all 0.3s ease;
-    }
-    #backToTop:hover {
-        transform: scale(1.15);
-        background: #0a58ca;
-    }
-</style>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet"
+    >
 
-<button id="backToTop" onclick="scrollToTop()">
-    <i class="fas fa-arrow-up"></i>
-</button>
+    <style>
 
-<script>
-    // Back to Top - Pure JavaScript
-    window.onscroll = function() {
-        var btn = document.getElementById('backToTop');
-        if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
-            btn.style.display = 'block';
-        } else {
-            btn.style.display = 'none';
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
-    };
 
-    function scrollToTop() {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-</script>
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: "Inter", sans-serif;
+            background: #ffffff;
+            color: #18202b;
+            overflow-x: hidden;
+        }
+
+        :root {
+            --navy: #050b16;
+            --navy-light: #0b1424;
+            --navy-card: #101b2d;
+
+            --gold: #ffc107;
+            --gold-dark: #e8a900;
+            --orange: #ff8a00;
+
+            --white: #ffffff;
+            --muted: #aeb7c5;
+
+            --border: rgba(255, 193, 7, 0.20);
+        }
+
+
+        /* =========================================================
+           NAVBAR
+        ========================================================= */
+
+        .efli-navbar {
+            background:
+                linear-gradient(
+                    90deg,
+                    #07111f 0%,
+                    #0b1422 50%,
+                    #101a29 100%
+                );
+
+            border-bottom: 1px solid rgba(255, 193, 7, 0.20);
+
+            min-height: 88px;
+
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+
+            backdrop-filter: blur(12px);
+
+            box-shadow:
+                0 5px 30px rgba(0, 0, 0, 0.25);
+        }
+
+
+        /* Premium Logo */
+
+        .efli-logo {
+            display: flex;
+            align-items: center;
+
+            text-decoration: none;
+
+            padding: 7px 15px 7px 7px;
+
+            border: 1px solid rgba(255, 193, 7, 0.25);
+
+            border-radius: 18px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(255,255,255,0.06),
+                    rgba(255,193,7,0.03)
+                );
+
+            box-shadow:
+                0 0 20px rgba(255,193,7,0.05);
+
+            transition: 0.3s ease;
+        }
+
+        .efli-logo:hover {
+            transform: translateY(-2px);
+
+            border-color: rgba(255,193,7,0.60);
+
+            box-shadow:
+                0 0 25px rgba(255,193,7,0.18);
+        }
+
+
+        .logo-icon {
+            width: 56px;
+            height: 56px;
+
+            border-radius: 15px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #ffc107,
+                    #ff9700
+                );
+
+            color: #07111f;
+
+            font-size: 27px;
+
+            margin-right: 12px;
+
+            box-shadow:
+                0 6px 18px rgba(255,193,7,0.25);
+
+            position: relative;
+        }
+
+
+        .logo-icon::after {
+            content: "";
+
+            position: absolute;
+
+            inset: -4px;
+
+            border-radius: 18px;
+
+            border: 1px solid rgba(255,193,7,0.25);
+
+            pointer-events: none;
+        }
+
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+            line-height: 1;
+        }
+
+        .logo-main {
+            font-size: 27px;
+            font-weight: 900;
+            letter-spacing: -1px;
+            color: #ffffff;
+        }
+
+        .logo-sub {
+            font-size: 10px;
+            font-weight: 800;
+
+            letter-spacing: 2px;
+
+            color: var(--gold);
+
+            margin-top: 5px;
+        }
+
+
+        /* Navbar Links */
+
+        .efli-navbar .nav-link {
+            color: #aeb7c5 !important;
+
+            font-size: 16px;
+
+            font-weight: 600;
+
+            padding: 10px 17px !important;
+
+            position: relative;
+
+            transition: 0.3s ease;
+        }
+
+        .efli-navbar .nav-link:hover {
+            color: #ffffff !important;
+        }
+
+        .efli-navbar .nav-link.active {
+            color: #ffffff !important;
+        }
+
+        .efli-navbar .nav-link.active::after {
+            content: "";
+
+            position: absolute;
+
+            left: 17px;
+            right: 17px;
+
+            bottom: 1px;
+
+            height: 3px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    var(--gold),
+                    var(--orange)
+                );
+
+            border-radius: 10px;
+
+            box-shadow:
+                0 0 10px rgba(255,193,7,0.5);
+        }
+
+
+        /* =========================================================
+           SMALL HERO
+        ========================================================= */
+
+        .about-hero {
+            position: relative;
+
+            min-height: 300px;
+
+            display: flex;
+
+            align-items: center;
+
+            overflow: hidden;
+
+            background:
+
+                linear-gradient(
+                    90deg,
+                    rgba(4,10,20,0.92) 0%,
+                    rgba(4,10,20,0.72) 45%,
+                    rgba(4,10,20,0.40) 100%
+                ),
+
+                url("https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=2000&q=85");
+
+            background-size: cover;
+
+            background-position: center;
+
+            border-bottom:
+                1px solid rgba(255,193,7,0.25);
+        }
+
+
+        /* Image glow */
+
+        .about-hero::before {
+
+            content: "";
+
+            position: absolute;
+
+            width: 500px;
+            height: 500px;
+
+            right: -120px;
+            top: -180px;
+
+            background:
+                radial-gradient(
+                    circle,
+                    rgba(255,193,7,0.18),
+                    transparent 70%
+                );
+
+            pointer-events: none;
+        }
+
+
+        .about-hero::after {
+
+            content: "";
+
+            position: absolute;
+
+            left: 0;
+            right: 0;
+            bottom: 0;
+
+            height: 100px;
+
+            background:
+                linear-gradient(
+                    transparent,
+                    rgba(5,11,22,0.8)
+                );
+
+            pointer-events: none;
+        }
+
+
+        .hero-content {
+
+            position: relative;
+
+            z-index: 2;
+
+            padding: 45px 0;
+        }
+
+
+        .hero-badge {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 10px;
+
+            padding: 8px 15px;
+
+            border-radius: 50px;
+
+            border:
+                1px solid rgba(255,193,7,0.45);
+
+            background:
+                rgba(255,193,7,0.08);
+
+            color: #ffc107;
+
+            font-size: 12px;
+
+            font-weight: 700;
+
+            margin-bottom: 15px;
+
+            backdrop-filter: blur(10px);
+
+            box-shadow:
+                0 0 20px rgba(255,193,7,0.06);
+        }
+
+
+        .hero-title {
+
+            font-size: clamp(36px, 4vw, 55px);
+
+            font-weight: 900;
+
+            line-height: 1.05;
+
+            letter-spacing: -2px;
+
+            color: #ffffff;
+
+            margin-bottom: 15px;
+        }
+
+
+        .hero-title span {
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #ffc107,
+                    #ff8a00
+                );
+
+            -webkit-background-clip: text;
+            background-clip: text;
+
+            -webkit-text-fill-color: transparent;
+        }
+
+
+        .hero-description {
+
+            max-width: 650px;
+
+            font-size: 16px;
+
+            line-height: 1.6;
+
+            color: #c3ccd8;
+
+            margin-bottom: 20px;
+        }
+
+
+        .hero-points {
+
+            display: flex;
+
+            flex-wrap: wrap;
+
+            gap: 10px;
+
+            margin-top: 15px;
+        }
+
+
+        .hero-point {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            padding: 7px 12px;
+
+            border-radius: 50px;
+
+            background:
+                rgba(255,255,255,0.06);
+
+            border:
+                1px solid rgba(255,255,255,0.10);
+
+            color: #e7ebf0;
+
+            font-size: 12px;
+
+            font-weight: 600;
+
+            backdrop-filter: blur(8px);
+        }
+
+
+        .hero-point i {
+            color: var(--gold);
+        }
+
+
+        /* =========================================================
+           ABOUT INSTITUTE
+        ========================================================= */
+
+        .about-institute {
+
+            padding: 90px 0;
+
+            background: #ffffff;
+        }
+
+
+        .section-title {
+
+            font-size: 42px;
+
+            font-weight: 800;
+
+            color: #111827;
+        }
+
+
+        .section-title span {
+            color: #e5a900;
+        }
+
+
+        .line-shape {
+
+            width: 65px;
+
+            height: 4px;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #ffc107,
+                    #ff8a00
+                );
+
+            border-radius: 10px;
+
+            margin-bottom: 25px;
+        }
+
+
+        .about-institute p {
+
+            line-height: 1.8;
+        }
+
+
+        .about-institute .fs-5 {
+
+            font-size: 18px !important;
+
+            color: #596575 !important;
+        }
+
+
+        /* Image */
+
+        .about-main-image {
+
+            width: 100%;
+
+            border-radius: 22px;
+
+            box-shadow:
+                0 20px 50px rgba(10,20,35,0.18);
+
+            transition: 0.4s ease;
+        }
+
+
+        .about-main-image:hover {
+            transform: translateY(-6px);
+
+            box-shadow:
+                0 25px 60px rgba(10,20,35,0.25);
+        }
+
+
+        /* Badges */
+
+        .info-badge {
+
+            padding: 13px 18px;
+
+            border-radius: 50px;
+
+            font-weight: 700;
+
+            border: 1px solid rgba(0,0,0,0.06);
+        }
+
+
+        /* =========================================================
+           VISION / MISSION
+        ========================================================= */
+
+        .vision-mission {
+
+            padding: 90px 0;
+
+            background:
+                linear-gradient(
+                    180deg,
+                    #f6f8fb,
+                    #eef2f7
+                );
+        }
+
+
+        .premium-card {
+
+            background: #ffffff;
+
+            border: 1px solid #e8edf3 !important;
+
+            border-radius: 22px !important;
+
+            transition: 0.35s ease;
+
+            overflow: hidden;
+        }
+
+
+        .premium-card:hover {
+
+            transform: translateY(-7px);
+
+            border-color:
+                rgba(255,193,7,0.35) !important;
+
+            box-shadow:
+                0 20px 45px rgba(10,20,35,0.12) !important;
+        }
+
+
+        .icon-circle {
+
+            width: 75px;
+
+            height: 75px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border-radius: 20px;
+
+            margin: auto;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    rgba(255,193,7,0.16),
+                    rgba(255,138,0,0.10)
+                );
+
+            color: #d99700;
+        }
+
+
+        /* =========================================================
+           OBJECTIVES
+        ========================================================= */
+
+        .objectives {
+
+            padding: 90px 0;
+
+            background: #ffffff;
+        }
+
+
+        .objective-card {
+
+            border: 1px solid #e7ebf0 !important;
+
+            border-radius: 18px !important;
+
+            transition: 0.3s ease;
+
+            position: relative;
+
+            overflow: hidden;
+        }
+
+
+        .objective-card::before {
+
+            content: "";
+
+            position: absolute;
+
+            left: 0;
+            top: 0;
+            bottom: 0;
+
+            width: 4px;
+
+            background:
+                linear-gradient(
+                    180deg,
+                    #ffc107,
+                    #ff8a00
+                );
+
+            opacity: 0;
+
+            transition: 0.3s ease;
+        }
+
+
+        .objective-card:hover {
+
+            transform: translateY(-5px);
+
+            box-shadow:
+                0 15px 35px rgba(10,20,35,0.10) !important;
+        }
+
+
+        .objective-card:hover::before {
+            opacity: 1;
+        }
+
+
+        .objective-number {
+
+            width: 48px;
+
+            height: 48px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            flex-shrink: 0;
+
+            border-radius: 50%;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #ffc107,
+                    #ff9800
+                );
+
+            color: #111827;
+
+            font-weight: 800;
+        }
+
+
+        /* =========================================================
+           WHY MATTERS
+        ========================================================= */
+
+        .why-matters {
+
+            padding: 100px 0;
+
+            background:
+
+                linear-gradient(
+                    120deg,
+                    #050b16,
+                    #0a1424,
+                    #111c2e
+                );
+
+            position: relative;
+
+            overflow: hidden;
+        }
+
+
+        .why-matters::before {
+
+            content: "";
+
+            position: absolute;
+
+            width: 450px;
+            height: 450px;
+
+            right: -180px;
+            top: -200px;
+
+            background:
+                radial-gradient(
+                    circle,
+                    rgba(255,193,7,0.12),
+                    transparent 70%
+                );
+        }
+
+
+        .why-image {
+
+            width: 100%;
+
+            border-radius: 22px;
+
+            border:
+                1px solid rgba(255,193,7,0.20);
+
+            box-shadow:
+                0 25px 60px rgba(0,0,0,0.35);
+        }
+
+
+        .why-matters h2 {
+            font-size: 42px;
+        }
+
+
+        .why-matters p {
+            line-height: 1.8;
+        }
+
+
+        .why-matters li {
+            color: #d7dee8;
+        }
+
+
+        /* =========================================================
+           STATS
+        ========================================================= */
+
+        .stats {
+
+            padding: 80px 0;
+
+            background: #ffffff;
+        }
+
+
+        .stat-item {
+
+            padding: 25px 15px;
+
+            border-right: 1px solid #e8edf3;
+        }
+
+
+        .stat-item:last-child {
+            border-right: none;
+        }
+
+
+        .stat-item h3 {
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #e5a900,
+                    #ff7b00
+                );
+
+            -webkit-background-clip: text;
+
+            background-clip: text;
+
+            -webkit-text-fill-color: transparent;
+        }
+
+
+        /* =========================================================
+           FOOTER
+        ========================================================= */
+
+        .efli-footer {
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #050b16,
+                    #0a1424
+                );
+
+            border-top:
+                1px solid rgba(255,193,7,0.15);
+        }
+
+
+        .footer-logo {
+
+            display: flex;
+
+            align-items: center;
+
+            font-size: 24px;
+
+            font-weight: 800;
+
+            color: #ffffff;
+        }
+
+
+        .footer-logo i {
+            color: var(--gold);
+        }
+
+
+        .social-icons a {
+
+            width: 40px;
+
+            height: 40px;
+
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            border-radius: 50%;
+
+            background:
+                rgba(255,255,255,0.06);
+
+            color: #cbd3df !important;
+
+            margin-right: 7px;
+
+            transition: 0.3s ease;
+        }
+
+
+        .social-icons a:hover {
+
+            background: var(--gold);
+
+            color: #07111f !important;
+
+            transform: translateY(-3px);
+        }
+
+
+        .efli-footer a:hover {
+            color: #ffc107 !important;
+            opacity: 1 !important;
+        }
+
+
+        /* =========================================================
+           BACK TO TOP
+        ========================================================= */
+
+        #backToTop {
+
+            position: fixed;
+
+            bottom: 30px;
+
+            right: 30px;
+
+            width: 50px;
+
+            height: 50px;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #ffc107,
+                    #ff8a00
+                );
+
+            color: #07111f;
+
+            border: none;
+
+            border-radius: 50%;
+
+            font-size: 1.2rem;
+
+            display: none;
+
+            z-index: 999;
+
+            cursor: pointer;
+
+            box-shadow:
+                0 8px 25px rgba(255,193,7,0.25);
+
+            transition: 0.3s ease;
+        }
+
+
+        #backToTop:hover {
+
+            transform: translateY(-5px);
+
+            box-shadow:
+                0 12px 30px rgba(255,193,7,0.35);
+        }
+
+
+        /* =========================================================
+           RESPONSIVE
+        ========================================================= */
+
+        @media (max-width: 991px) {
+
+            .efli-navbar {
+                min-height: 75px;
+            }
+
+            .navbar-collapse {
+                background: #091321;
+
+                margin-top: 10px;
+
+                padding: 15px;
+
+                border-radius: 15px;
+
+                border: 1px solid rgba(255,193,7,0.12);
+            }
+
+            .hero-content {
+                padding: 40px 0;
+            }
+
+            .about-hero {
+                min-height: 280px;
+
+                background-position: 65% center;
+            }
+
+            .hero-title {
+                letter-spacing: -1px;
+            }
+
+            .stat-item {
+                border-right: none;
+
+                border-bottom: 1px solid #e8edf3;
+            }
+
+            .stat-item:last-child {
+                border-bottom: none;
+            }
+        }
+
+
+        @media (max-width: 576px) {
+
+            .efli-logo {
+                padding-right: 10px;
+            }
+
+            .logo-icon {
+                width: 48px;
+                height: 48px;
+                font-size: 22px;
+            }
+
+            .logo-main {
+                font-size: 22px;
+            }
+
+            .logo-sub {
+                font-size: 8px;
+            }
+
+            .about-hero {
+                min-height: 300px;
+            }
+
+            .hero-title {
+                font-size: 34px;
+            }
+
+            .hero-description {
+                font-size: 15px;
+            }
+
+            .section-title,
+            .why-matters h2 {
+                font-size: 32px;
+            }
+
+            #backToTop {
+                right: 18px;
+                bottom: 18px;
+            }
+        }
+
+    </style>
+</head>
+
+
 <body>
 
-    <!-- ============================== -->
-    <!-- SHARED NAVBAR (Bootstrap 5)   -->
-    <!-- ============================== -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top shadow">
-        <div class="container">
-            <!-- Brand / Logo -->
-            <a class="navbar-brand fw-bold" href="index.html">
-                <i class="fas fa-graduation-cap me-2 text-warning"></i>
-                EFLI
-            </a>
 
-            <!-- Toggler for mobile -->
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar"
-            aria-controls="mainNavbar" aria-expanded="false" aria-label="Toggle navigation">
+<!-- =========================================================
+     NAVBAR
+========================================================= -->
+
+<nav class="navbar navbar-expand-lg navbar-dark efli-navbar">
+
+    <div class="container">
+
+        <!-- PREMIUM EFLI LOGO -->
+
+        <a class="efli-logo" href="index.html">
+
+            <div class="logo-icon">
+                <i class="fas fa-graduation-cap"></i>
+            </div>
+
+            <div class="logo-text">
+
+                <span class="logo-main">
+                    EFLI
+                </span>
+
+                <span class="logo-sub">
+                    ENGINEERING FOUNDATION
+                </span>
+
+            </div>
+
+        </a>
+
+
+        <!-- MOBILE TOGGLE -->
+
+        <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#mainNavbar"
+        >
+
             <span class="navbar-toggler-icon"></span>
+
         </button>
 
-        <!-- Navbar links -->
-        <div class="collapse navbar-collapse" id="mainNavbar">
+
+        <!-- NAVIGATION -->
+
+        <div
+            class="collapse navbar-collapse"
+            id="mainNavbar"
+        >
+
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+
                 <li class="nav-item">
-                    <a class="nav-link" href="index.html">Home</a>
+                    <a
+                        class="nav-link"
+                        href="index.html"
+                    >
+                        Home
+                    </a>
                 </li>
+
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="about.html">About</a>
+                    <a
+                        class="nav-link active"
+                        href="about.html"
+                    >
+                        About
+                    </a>
                 </li>
+
                 <li class="nav-item">
-                    <a class="nav-link" href="courses.html">Courses</a>
+                    <a
+                        class="nav-link"
+                        href="courses.html"
+                    >
+                        Courses
+                    </a>
                 </li>
+
                 <li class="nav-item">
-                    <a class="nav-link" href="gallery.html">Gallery</a>
+                    <a
+                        class="nav-link"
+                        href="gallery.html"
+                    >
+                        Gallery
+                    </a>
                 </li>
+
                 <li class="nav-item">
-                    <a class="nav-link" href="faq.html">FAQ</a>
+                    <a
+                        class="nav-link"
+                        href="faq.html"
+                    >
+                        FAQ
+                    </a>
                 </li>
+
                 <li class="nav-item">
-                    <a class="nav-link" href="contact.html">Contact</a>
+                    <a
+                        class="nav-link"
+                        href="contact.html"
+                    >
+                        Contact
+                    </a>
                 </li>
+
             </ul>
+
         </div>
+
     </div>
+
 </nav>
 
-<!-- ============================== -->
-<!-- ABOUT PAGE CONTENT            -->
-<!-- ============================== -->
 
-<!-- ====== HERO / PAGE HEADER ====== -->
-<section class="about-hero py-5 bg-primary text-white">
-    <div class="container py-4">
-        <div class="row align-items-center">
-            <div class="col-lg-8 mx-auto text-center">
-                <h1 class="display-4 fw-bold mb-3">About Our Institute</h1>
-                <p class="lead mb-0">
-                    Building strong engineering foundations for tomorrow's innovators.
-                </p>
+
+<!-- =========================================================
+     SMALL HERO SECTION
+========================================================= -->
+
+<section class="about-hero">
+
+    <div class="container">
+
+        <div class="hero-content">
+
+            <div class="row">
+
+                <div class="col-lg-8">
+
+                    <!-- BADGE -->
+
+                    <div class="hero-badge">
+
+                        <i class="fas fa-graduation-cap"></i>
+
+                        Engineering Education • Innovation • Skills
+
+                    </div>
+
+
+                    <!-- TITLE -->
+
+                    <h1 class="hero-title">
+
+                        About Our
+                        <span>Engineering</span>
+                        Foundation
+
+                    </h1>
+
+
+                    <!-- DESCRIPTION -->
+
+                    <p class="hero-description">
+
+                        Building strong engineering foundations for tomorrow's
+                        innovators through practical learning, industry-aligned
+                        education, and future-ready skills.
+
+                    </p>
+
+
+                    <!-- POINTS -->
+
+                    <div class="hero-points">
+
+                        <div class="hero-point">
+
+                            <i class="fas fa-check-circle"></i>
+
+                            Strong Foundations
+
+                        </div>
+
+
+                        <div class="hero-point">
+
+                            <i class="fas fa-laptop-code"></i>
+
+                            Practical Learning
+
+                        </div>
+
+
+                        <div class="hero-point">
+
+                            <i class="fas fa-lightbulb"></i>
+
+                            Innovation
+
+                        </div>
+
+
+                        <div class="hero-point">
+
+                            <i class="fas fa-briefcase"></i>
+
+                            Career Ready
+
+                        </div>
+
+                    </div>
+
+                </div>
+
             </div>
+
         </div>
+
     </div>
+
 </section>
 
-<!-- ====== ABOUT INSTITUTE ====== -->
-<section class="about-institute py-5">
+
+
+<!-- =========================================================
+     ABOUT INSTITUTE
+========================================================= -->
+
+<section class="about-institute">
+
     <div class="container">
+
         <div class="row g-5 align-items-center">
+
             <div class="col-lg-6">
-                <h2 class="fw-bold mb-3">About <span class="text-primary">EFLI</span></h2>
-                <div class="line-shape mb-4"></div>
-                <p class="fs-5 text-muted">
-                    The <strong>Engineering Foundation Learning Institute (EFLI)</strong> is a premier
-                    educational hub dedicated to bridging the gap between academic theory and
-                    real-world engineering practice.
+
+                <h2 class="section-title mb-3">
+
+                    About
+                    <span>EFLI</span>
+
+                </h2>
+
+                <div class="line-shape"></div>
+
+
+                <p class="fs-5">
+
+                    The
+                    <strong>
+                        Engineering Foundation Learning Institute (EFLI)
+                    </strong>
+                    is a premier educational hub dedicated to bridging the gap
+                    between academic theory and real-world engineering practice.
+
                 </p>
+
+
                 <p>
-                    Founded with a vision to nurture the next generation of engineers, EFLI offers
-                    comprehensive foundation programs that equip students with the essential
-                    knowledge, critical thinking skills, and hands-on experience needed to excel
-                    in the ever-evolving field of engineering.
+
+                    Founded with a vision to nurture the next generation of
+                    engineers, EFLI offers comprehensive foundation programs
+                    that equip students with the essential knowledge, critical
+                    thinking skills, and hands-on experience needed to excel in
+                    the ever-evolving field of engineering.
+
                 </p>
+
+
                 <p>
-                    Our curriculum is designed by industry experts and academic leaders, ensuring
-                    that every learner receives a world-class education grounded in both
-                    theoretical rigor and practical application.
+
+                    Our curriculum is designed by industry experts and academic
+                    leaders, ensuring that every learner receives a world-class
+                    education grounded in both theoretical rigor and practical
+                    application.
+
                 </p>
+
+
                 <div class="mt-4 d-flex flex-wrap gap-3">
-                    <span class="badge bg-primary bg-opacity-10 text-primary p-3 rounded-pill">
-                        <i class="fas fa-calendar-check me-2"></i> Since 2018
+
+                    <span class="badge bg-warning bg-opacity-10 text-warning info-badge">
+
+                        <i class="fas fa-calendar-check me-2"></i>
+
+                        Since 2018
+
                     </span>
-                    <span class="badge bg-success bg-opacity-10 text-success p-3 rounded-pill">
-                        <i class="fas fa-users me-2"></i> 500+ Alumni
+
+
+                    <span class="badge bg-success bg-opacity-10 text-success info-badge">
+
+                        <i class="fas fa-users me-2"></i>
+
+                        500+ Alumni
+
                     </span>
-                    <span class="badge bg-warning bg-opacity-10 text-warning p-3 rounded-pill">
-                        <i class="fas fa-award me-2"></i> 15+ Programs
+
+
+                    <span class="badge bg-warning bg-opacity-10 text-warning info-badge">
+
+                        <i class="fas fa-award me-2"></i>
+
+                        15+ Programs
+
                     </span>
+
                 </div>
+
             </div>
+
+
             <div class="col-lg-6">
-                <img src="https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=600&h=400&fit=crop&auto=format"
-                alt="Engineering Foundation Learning Institute Campus"
-                class="img-fluid rounded-4 shadow-lg"
-                loading="lazy" />
+
+                <img
+                    src="https://images.unsplash.com/photo-1580582932707-520aed937b7b?auto=format&fit=crop&w=1000&q=85"
+                    alt="Engineering Foundation Learning Institute Campus"
+                    class="about-main-image"
+                    loading="lazy"
+                >
+
             </div>
+
         </div>
+
     </div>
+
 </section>
 
-<!-- ====== VISION & MISSION ====== -->
-<section class="vision-mission py-5 bg-light">
+
+
+<!-- =========================================================
+     VISION & MISSION
+========================================================= -->
+
+<section class="vision-mission">
+
     <div class="container">
+
         <div class="row g-4">
-            <!-- Vision -->
+
+            <!-- VISION -->
+
             <div class="col-md-6">
-                <div class="card h-100 border-0 shadow-sm rounded-4 p-4">
+
+                <div class="card h-100 border-0 shadow-sm p-4 premium-card">
+
                     <div class="card-body text-center">
-                        <div class="icon-circle bg-primary bg-opacity-10 text-primary mx-auto mb-4">
+
+                        <div class="icon-circle mb-4">
+
                             <i class="fas fa-eye fa-2x"></i>
+
                         </div>
-                        <h3 class="fw-bold mb-3">Our Vision</h3>
+
+
+                        <h3 class="fw-bold mb-3">
+
+                            Our Vision
+
+                        </h3>
+
+
                         <p class="text-muted fs-5">
-                            To be the leading foundation institute that shapes globally competent
-                            engineers who drive innovation, sustainability, and positive change
-                            in society.
+
+                            To be the leading foundation institute that shapes
+                            globally competent engineers who drive innovation,
+                            sustainability, and positive change in society.
+
                         </p>
+
                     </div>
+
                 </div>
+
             </div>
 
-            <!-- Mission -->
+
+            <!-- MISSION -->
+
             <div class="col-md-6">
-                <div class="card h-100 border-0 shadow-sm rounded-4 p-4">
+
+                <div class="card h-100 border-0 shadow-sm p-4 premium-card">
+
                     <div class="card-body text-center">
-                        <div class="icon-circle bg-success bg-opacity-10 text-success mx-auto mb-4">
+
+                        <div class="icon-circle mb-4">
+
                             <i class="fas fa-bullseye fa-2x"></i>
+
                         </div>
-                        <h3 class="fw-bold mb-3">Our Mission</h3>
+
+
+                        <h3 class="fw-bold mb-3">
+
+                            Our Mission
+
+                        </h3>
+
+
                         <p class="text-muted fs-5">
-                            To deliver an exceptional, industry-aligned engineering foundation
-                            education that fosters intellectual curiosity, ethical leadership,
-                            and lifelong learning.
+
+                            To deliver an exceptional, industry-aligned
+                            engineering foundation education that fosters
+                            intellectual curiosity, ethical leadership, and
+                            lifelong learning.
+
                         </p>
+
                     </div>
+
                 </div>
+
             </div>
+
         </div>
+
     </div>
+
 </section>
 
-<!-- ====== OBJECTIVES ====== -->
-<section class="objectives py-5">
+
+
+<!-- =========================================================
+     OBJECTIVES
+========================================================= -->
+
+<section class="objectives">
+
     <div class="container">
+
         <div class="text-center mb-5">
-            <h2 class="fw-bold">Our <span class="text-primary">Objectives</span></h2>
+
+            <h2 class="section-title">
+
+                Our
+                <span>Objectives</span>
+
+            </h2>
+
             <div class="line-shape mx-auto"></div>
+
             <p class="text-muted col-lg-6 mx-auto">
-                We are committed to achieving the following core objectives through our
-                programs and initiatives.
+
+                We are committed to achieving the following core objectives
+                through our programs and initiatives.
+
             </p>
+
         </div>
+
 
         <div class="row g-4">
-            <!-- Objective 1 -->
+
+
+            <!-- OBJECTIVE 1 -->
+
             <div class="col-md-6 col-lg-4">
-                <div class="objective-card d-flex p-4 rounded-4 border bg-white h-100 shadow-sm">
-                    <div class="me-3">
-                        <span class="badge bg-primary rounded-circle p-3 fs-5">01</span>
+
+                <div class="objective-card d-flex p-4 bg-white h-100 shadow-sm">
+
+                    <div class="objective-number me-3">
+                        01
                     </div>
+
                     <div>
-                        <h5 class="fw-bold">Academic Excellence</h5>
+
+                        <h5 class="fw-bold">
+                            Academic Excellence
+                        </h5>
+
                         <p class="text-muted mb-0">
-                            Provide a rigorous curriculum that builds deep conceptual understanding
-                            and analytical skills.
+
+                            Provide a rigorous curriculum that builds deep
+                            conceptual understanding and analytical skills.
+
                         </p>
+
                     </div>
+
                 </div>
+
             </div>
 
-            <!-- Objective 2 -->
+
+
+            <!-- OBJECTIVE 2 -->
+
             <div class="col-md-6 col-lg-4">
-                <div class="objective-card d-flex p-4 rounded-4 border bg-white h-100 shadow-sm">
-                    <div class="me-3">
-                        <span class="badge bg-success rounded-circle p-3 fs-5">02</span>
+
+                <div class="objective-card d-flex p-4 bg-white h-100 shadow-sm">
+
+                    <div class="objective-number me-3">
+                        02
                     </div>
+
                     <div>
-                        <h5 class="fw-bold">Industry Readiness</h5>
+
+                        <h5 class="fw-bold">
+                            Industry Readiness
+                        </h5>
+
                         <p class="text-muted mb-0">
-                            Bridge the gap between academia and industry through practical projects,
-                            internships, and workshops.
+
+                            Bridge the gap between academia and industry
+                            through practical projects, internships, and
+                            workshops.
+
                         </p>
+
                     </div>
+
                 </div>
+
             </div>
 
-            <!-- Objective 3 -->
+
+
+            <!-- OBJECTIVE 3 -->
+
             <div class="col-md-6 col-lg-4">
-                <div class="objective-card d-flex p-4 rounded-4 border bg-white h-100 shadow-sm">
-                    <div class="me-3">
-                        <span class="badge bg-warning rounded-circle p-3 fs-5">03</span>
+
+                <div class="objective-card d-flex p-4 bg-white h-100 shadow-sm">
+
+                    <div class="objective-number me-3">
+                        03
                     </div>
+
                     <div>
-                        <h5 class="fw-bold">Innovation &amp; Research</h5>
+
+                        <h5 class="fw-bold">
+                            Innovation &amp; Research
+                        </h5>
+
                         <p class="text-muted mb-0">
-                            Cultivate a culture of curiosity, experimentation, and research-driven
-                            problem solving.
+
+                            Cultivate a culture of curiosity, experimentation,
+                            and research-driven problem solving.
+
                         </p>
+
                     </div>
+
                 </div>
+
             </div>
 
-            <!-- Objective 4 -->
+
+
+            <!-- OBJECTIVE 4 -->
+
             <div class="col-md-6 col-lg-4">
-                <div class="objective-card d-flex p-4 rounded-4 border bg-white h-100 shadow-sm">
-                    <div class="me-3">
-                        <span class="badge bg-danger rounded-circle p-3 fs-5">04</span>
+
+                <div class="objective-card d-flex p-4 bg-white h-100 shadow-sm">
+
+                    <div class="objective-number me-3">
+                        04
                     </div>
+
                     <div>
-                        <h5 class="fw-bold">Ethical Leadership</h5>
+
+                        <h5 class="fw-bold">
+                            Ethical Leadership
+                        </h5>
+
                         <p class="text-muted mb-0">
-                            Instill integrity, social responsibility, and a strong ethical framework
-                            in every engineer.
+
+                            Instill integrity, social responsibility, and a
+                            strong ethical framework in every engineer.
+
                         </p>
+
                     </div>
+
                 </div>
+
             </div>
 
-            <!-- Objective 5 -->
+
+
+            <!-- OBJECTIVE 5 -->
+
             <div class="col-md-6 col-lg-4">
-                <div class="objective-card d-flex p-4 rounded-4 border bg-white h-100 shadow-sm">
-                    <div class="me-3">
-                        <span class="badge bg-info rounded-circle p-3 fs-5">05</span>
+
+                <div class="objective-card d-flex p-4 bg-white h-100 shadow-sm">
+
+                    <div class="objective-number me-3">
+                        05
                     </div>
+
                     <div>
-                        <h5 class="fw-bold">Global Perspective</h5>
+
+                        <h5 class="fw-bold">
+                            Global Perspective
+                        </h5>
+
                         <p class="text-muted mb-0">
-                            Prepare students for the global engineering landscape with cross-cultural
-                            awareness and collaboration.
+
+                            Prepare students for the global engineering
+                            landscape with cross-cultural awareness and
+                            collaboration.
+
                         </p>
+
                     </div>
+
                 </div>
+
             </div>
 
-            <!-- Objective 6 -->
+
+
+            <!-- OBJECTIVE 6 -->
+
             <div class="col-md-6 col-lg-4">
-                <div class="objective-card d-flex p-4 rounded-4 border bg-white h-100 shadow-sm">
-                    <div class="me-3">
-                        <span class="badge bg-purple rounded-circle p-3 fs-5">06</span>
+
+                <div class="objective-card d-flex p-4 bg-white h-100 shadow-sm">
+
+                    <div class="objective-number me-3">
+                        06
                     </div>
+
                     <div>
-                        <h5 class="fw-bold">Lifelong Learning</h5>
+
+                        <h5 class="fw-bold">
+                            Lifelong Learning
+                        </h5>
+
                         <p class="text-muted mb-0">
-                            Foster a growth mindset and the ability to adapt to rapidly changing
-                            technologies and methods.
+
+                            Foster a growth mindset and the ability to adapt to
+                            rapidly changing technologies and methods.
+
                         </p>
+
                     </div>
+
                 </div>
+
             </div>
+
         </div>
+
     </div>
+
 </section>
 
-<!-- ====== WHY FOUNDATION LEARNING MATTERS ====== -->
-<section class="why-matters py-5 bg-dark text-white">
+
+
+<!-- =========================================================
+     WHY FOUNDATION LEARNING MATTERS
+========================================================= -->
+
+<section class="why-matters text-white">
+
     <div class="container">
+
         <div class="row g-5 align-items-center">
+
             <div class="col-lg-6 order-lg-2">
-                <h2 class="fw-bold mb-3">Why Foundation Learning <span class="text-warning">Matters</span></h2>
-                <div class="line-shape bg-warning mb-4" style="width:60px; height:4px;"></div>
+
+                <h2 class="fw-bold mb-3">
+
+                    Why Foundation Learning
+
+                    <span class="text-warning">
+                        Matters
+                    </span>
+
+                </h2>
+
+
+                <div
+                    class="line-shape"
+                    style="margin-bottom:25px;"
+                ></div>
+
+
                 <p class="fs-5 text-light opacity-75">
-                    A strong foundation is the bedrock of every successful engineering career.
-                    At EFLI, we believe that mastery of core principles—mathematics, physics,
-                    materials science, and systems thinking—is non-negotiable.
+
+                    A strong foundation is the bedrock of every successful
+                    engineering career. At EFLI, we believe that mastery of
+                    core principles—mathematics, physics, materials science,
+                    and systems thinking—is non-negotiable.
+
                 </p>
+
+
                 <ul class="list-unstyled mt-4">
+
+
                     <li class="mb-3 d-flex">
-                        <i class="fas fa-check-circle text-warning me-3 mt-1 fs-5"></i>
-                        <span><strong>Deep conceptual clarity</strong> — not just memorization, but true understanding.</span>
+
+                        <i
+                            class="fas fa-check-circle text-warning me-3 mt-1 fs-5"
+                        ></i>
+
+                        <span>
+
+                            <strong>
+                                Deep conceptual clarity
+                            </strong>
+
+                            — not just memorization, but true understanding.
+
+                        </span>
+
                     </li>
+
+
                     <li class="mb-3 d-flex">
-                        <i class="fas fa-check-circle text-warning me-3 mt-1 fs-5"></i>
-                        <span><strong>Hands-on learning</strong> — labs, workshops, and real-world projects from day one.</span>
+
+                        <i
+                            class="fas fa-check-circle text-warning me-3 mt-1 fs-5"
+                        ></i>
+
+                        <span>
+
+                            <strong>
+                                Hands-on learning
+                            </strong>
+
+                            — labs, workshops, and real-world projects from
+                            day one.
+
+                        </span>
+
                     </li>
+
+
                     <li class="mb-3 d-flex">
-                        <i class="fas fa-check-circle text-warning me-3 mt-1 fs-5"></i>
-                        <span><strong>Mentorship</strong> — guidance from experienced engineers and academics.</span>
+
+                        <i
+                            class="fas fa-check-circle text-warning me-3 mt-1 fs-5"
+                        ></i>
+
+                        <span>
+
+                            <strong>
+                                Mentorship
+                            </strong>
+
+                            — guidance from experienced engineers and academics.
+
+                        </span>
+
                     </li>
+
+
                     <li class="mb-3 d-flex">
-                        <i class="fas fa-check-circle text-warning me-3 mt-1 fs-5"></i>
-                        <span><strong>Career readiness</strong> — graduates are prepared to hit the ground running.</span>
+
+                        <i
+                            class="fas fa-check-circle text-warning me-3 mt-1 fs-5"
+                        ></i>
+
+                        <span>
+
+                            <strong>
+                                Career readiness
+                            </strong>
+
+                            — graduates are prepared to hit the ground running.
+
+                        </span>
+
                     </li>
+
                 </ul>
+
             </div>
+
+
             <div class="col-lg-6 order-lg-1">
-                <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?w=600&h=450&fit=crop&auto=format"
-                alt="Students learning engineering foundations"
-                class="img-fluid rounded-4 shadow-lg"
-                loading="lazy" />
+
+                <img
+                    src="https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=1000&q=85"
+                    alt="Students learning engineering foundations"
+                    class="why-image"
+                    loading="lazy"
+                >
+
             </div>
+
         </div>
+
     </div>
+
 </section>
 
-<!-- ====== CTA / STATS ====== -->
-<section class="stats py-5 bg-white">
+
+
+<!-- =========================================================
+     STATS
+========================================================= -->
+
+<section class="stats">
+
     <div class="container">
+
         <div class="row g-4 text-center">
+
+
             <div class="col-6 col-md-3">
+
                 <div class="stat-item">
-                    <h3 class="display-4 fw-bold text-primary">12+</h3>
-                    <p class="text-muted mb-0">Expert Faculty</p>
+
+                    <h3 class="display-4 fw-bold">
+                        12+
+                    </h3>
+
+                    <p class="text-muted mb-0">
+                        Expert Faculty
+                    </p>
+
                 </div>
+
             </div>
+
+
             <div class="col-6 col-md-3">
+
                 <div class="stat-item">
-                    <h3 class="display-4 fw-bold text-success">500+</h3>
-                    <p class="text-muted mb-0">Students Trained</p>
+
+                    <h3 class="display-4 fw-bold">
+                        500+
+                    </h3>
+
+                    <p class="text-muted mb-0">
+                        Students Trained
+                    </p>
+
                 </div>
+
             </div>
+
+
             <div class="col-6 col-md-3">
+
                 <div class="stat-item">
-                    <h3 class="display-4 fw-bold text-warning">30+</h3>
-                    <p class="text-muted mb-0">Industry Partners</p>
+
+                    <h3 class="display-4 fw-bold">
+                        30+
+                    </h3>
+
+                    <p class="text-muted mb-0">
+                        Industry Partners
+                    </p>
+
                 </div>
+
             </div>
+
+
             <div class="col-6 col-md-3">
+
                 <div class="stat-item">
-                    <h3 class="display-4 fw-bold text-info">92%</h3>
-                    <p class="text-muted mb-0">Placement Rate</p>
+
+                    <h3 class="display-4 fw-bold">
+                        92%
+                    </h3>
+
+                    <p class="text-muted mb-0">
+                        Placement Rate
+                    </p>
+
                 </div>
+
             </div>
+
         </div>
+
     </div>
+
 </section>
 
 
-<!-- ============================== -->
-<!-- SHARED FOOTER                 -->
-<!-- ============================== -->
-<footer class="bg-dark text-white pt-5 pb-3">
+
+<!-- =========================================================
+     FOOTER
+========================================================= -->
+
+<footer class="efli-footer text-white pt-5 pb-3">
+
     <div class="container">
+
         <div class="row g-4">
 
-            <!-- Brand & tagline -->
+
+            <!-- BRAND -->
+
             <div class="col-md-4">
-                <h5 class="fw-bold mb-3">
-                    <i class="fas fa-graduation-cap text-warning me-2"></i>EFLI
-                </h5>
-                <p class="text-light opacity-75 small">
-                    Engineering Foundation Learning Institute — building the engineers
-                    of tomorrow with strong foundations today.
-                </p>
-                <div class="social-icons mt-3">
-                    <a href="https://facebook.com" target="_blank" class="text-white me-3 opacity-75 hover-opacity-100" aria-label="Facebook">
-                        <i class="fab fa-facebook-f fa-lg"></i>
-                    </a>
-                    <a href="https://twitter.com" target="_blank" class="text-white me-3 opacity-75 hover-opacity-100" aria-label="Twitter">
-                        <i class="fab fa-twitter fa-lg"></i>
-                    </a>
-                    <a href="https://linkedin.com" target="_blank" class="text-white me-3 opacity-75 hover-opacity-100" aria-label="LinkedIn">
-                        <i class="fab fa-linkedin-in fa-lg"></i>
-                    </a>
-                    <a href="https://youtube.com" target="_blank" class="text-white me-3 opacity-75 hover-opacity-100" aria-label="YouTube">
-                        <i class="fab fa-youtube fa-lg"></i>
-                    </a>
-                    <a href="https://instagram.com" target="_blank" class="text-white opacity-75 hover-opacity-100" aria-label="Instagram">
-                        <i class="fab fa-instagram fa-lg"></i>
-                    </a>
+
+                <div class="footer-logo mb-3">
+
+                    <i class="fas fa-graduation-cap me-2"></i>
+
+                    EFLI
+
                 </div>
+
+
+                <p class="text-light opacity-75 small">
+
+                    Engineering Foundation Learning Institute — building the
+                    engineers of tomorrow with strong foundations today.
+
+                </p>
+
+
+                <div class="social-icons mt-3">
+
+                    <a href="https://facebook.com" target="_blank">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+
+                    <a href="https://twitter.com" target="_blank">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+
+                    <a href="https://linkedin.com" target="_blank">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+
+                    <a href="https://youtube.com" target="_blank">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+
+                    <a href="https://instagram.com" target="_blank">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+
+                </div>
+
             </div>
 
-            <!-- Quick Links -->
+
+
+            <!-- QUICK LINKS -->
+
             <div class="col-md-2">
-                <h6 class="fw-bold text-uppercase mb-3">Quick Links</h6>
+
+                <h6 class="fw-bold text-uppercase mb-3">
+                    Quick Links
+                </h6>
+
                 <ul class="list-unstyled small">
-                    <li class="mb-2"><a href="index.html" class="text-light text-decoration-none opacity-75 hover-opacity-100">Home</a></li>
-                    <li class="mb-2"><a href="about.html" class="text-light text-decoration-none opacity-75 hover-opacity-100">About</a></li>
-                    <li class="mb-2"><a href="courses.html" class="text-light text-decoration-none opacity-75 hover-opacity-100">Courses</a></li>
-                    <li class="mb-2"><a href="gallery.html" class="text-light text-decoration-none opacity-75 hover-opacity-100">Gallery</a></li>
-                    <li class="mb-2"><a href="faq.html" class="text-light text-decoration-none opacity-75 hover-opacity-100">FAQ</a></li>
-                    <li><a href="contact.html" class="text-light text-decoration-none opacity-75 hover-opacity-100">Contact</a></li>
+
+                    <li class="mb-2">
+                        <a
+                            href="index.html"
+                            class="text-light text-decoration-none opacity-75"
+                        >
+                            Home
+                        </a>
+                    </li>
+
+                    <li class="mb-2">
+                        <a
+                            href="about.html"
+                            class="text-light text-decoration-none opacity-75"
+                        >
+                            About
+                        </a>
+                    </li>
+
+                    <li class="mb-2">
+                        <a
+                            href="courses.html"
+                            class="text-light text-decoration-none opacity-75"
+                        >
+                            Courses
+                        </a>
+                    </li>
+
+                    <li class="mb-2">
+                        <a
+                            href="gallery.html"
+                            class="text-light text-decoration-none opacity-75"
+                        >
+                            Gallery
+                        </a>
+                    </li>
+
+                    <li class="mb-2">
+                        <a
+                            href="faq.html"
+                            class="text-light text-decoration-none opacity-75"
+                        >
+                            FAQ
+                        </a>
+                    </li>
+
+                    <li>
+                        <a
+                            href="contact.html"
+                            class="text-light text-decoration-none opacity-75"
+                        >
+                            Contact
+                        </a>
+                    </li>
+
                 </ul>
+
             </div>
 
-            <!-- Resources -->
+
+
+            <!-- RESOURCES -->
+
             <div class="col-md-2">
-                <h6 class="fw-bold text-uppercase mb-3">Resources</h6>
+
+                <h6 class="fw-bold text-uppercase mb-3">
+                    Resources
+                </h6>
+
                 <ul class="list-unstyled small">
-                    <li class="mb-2"><a href="#" class="text-light text-decoration-none opacity-75 hover-opacity-100">Alumni</a></li>
-                    <li class="mb-2"><a href="#" class="text-light text-decoration-none opacity-75 hover-opacity-100">Careers</a></li>
-                    <li class="mb-2"><a href="#" class="text-light text-decoration-none opacity-75 hover-opacity-100">Blog</a></li>
-                    <li class="mb-2"><a href="#" class="text-light text-decoration-none opacity-75 hover-opacity-100">Events</a></li>
-                    <li><a href="#" class="text-light text-decoration-none opacity-75 hover-opacity-100">Newsletter</a></li>
+
+                    <li class="mb-2">
+                        <a href="#" class="text-light text-decoration-none opacity-75">
+                            Alumni
+                        </a>
+                    </li>
+
+                    <li class="mb-2">
+                        <a href="#" class="text-light text-decoration-none opacity-75">
+                            Careers
+                        </a>
+                    </li>
+
+                    <li class="mb-2">
+                        <a href="#" class="text-light text-decoration-none opacity-75">
+                            Blog
+                        </a>
+                    </li>
+
+                    <li class="mb-2">
+                        <a href="#" class="text-light text-decoration-none opacity-75">
+                            Events
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#" class="text-light text-decoration-none opacity-75">
+                            Newsletter
+                        </a>
+                    </li>
+
                 </ul>
+
             </div>
 
-            <!-- Contact Info -->
+
+
+            <!-- CONTACT -->
+
             <div class="col-md-4">
-                <h6 class="fw-bold text-uppercase mb-3">Get in Touch</h6>
+
+                <h6 class="fw-bold text-uppercase mb-3">
+                    Get in Touch
+                </h6>
+
+
                 <ul class="list-unstyled small">
+
                     <li class="mb-2 d-flex">
-                        <i class="fas fa-map-marker-alt text-warning me-2 mt-1"></i>
+
+                        <i
+                            class="fas fa-map-marker-alt text-warning me-2 mt-1"
+                        ></i>
+
                         123 Engineering Avenue, Innovation Park, City 10001
+
                     </li>
+
+
                     <li class="mb-2 d-flex">
-                        <i class="fas fa-phone-alt text-warning me-2 mt-1"></i>
-                        <a href="tel:+1234567890" class="text-light text-decoration-none opacity-75 hover-opacity-100">+1 (234) 567-890</a>
+
+                        <i
+                            class="fas fa-phone-alt text-warning me-2 mt-1"
+                        ></i>
+
+                        <a
+                            href="tel:+1234567890"
+                            class="text-light text-decoration-none opacity-75"
+                        >
+                            +1 (234) 567-890
+                        </a>
+
                     </li>
+
+
                     <li class="mb-2 d-flex">
-                        <i class="fas fa-envelope text-warning me-2 mt-1"></i>
-                        <a href="mailto:info@efli.edu" class="text-light text-decoration-none opacity-75 hover-opacity-100">info@efli.edu</a>
+
+                        <i
+                            class="fas fa-envelope text-warning me-2 mt-1"
+                        ></i>
+
+                        <a
+                            href="mailto:info@efli.edu"
+                            class="text-light text-decoration-none opacity-75"
+                        >
+                            info@efli.edu
+                        </a>
+
                     </li>
+
+
                     <li class="d-flex">
-                        <i class="fas fa-clock text-warning me-2 mt-1"></i>
-                        <span>Mon–Fri: 8:00 AM – 6:00 PM</span>
+
+                        <i
+                            class="fas fa-clock text-warning me-2 mt-1"
+                        ></i>
+
+                        <span>
+                            Mon–Fri: 8:00 AM – 6:00 PM
+                        </span>
+
                     </li>
+
                 </ul>
+
             </div>
 
         </div>
 
-        <!-- Divider & copyright -->
-        <hr class="border-secondary opacity-25 my-4" />
+
+        <hr class="border-secondary opacity-25 my-4">
+
+
         <div class="row align-items-center">
+
             <div class="col-md-6 text-center text-md-start">
+
                 <p class="small text-light opacity-50 mb-0">
-                    &copy; 2026 Engineering Foundation Learning Institute. All rights reserved.
+
+                    &copy; 2026 Engineering Foundation Learning Institute.
+                    All rights reserved.
+
                 </p>
+
             </div>
+
+
             <div class="col-md-6 text-center text-md-end">
+
                 <p class="small text-light opacity-50 mb-0">
-                    <i class="fas fa-code me-1"></i> Built with <i class="fas fa-heart text-danger"></i> for education.
+
+                    <i class="fas fa-code me-1"></i>
+
+                    Built with
+
+                    <i class="fas fa-heart text-danger"></i>
+
+                    for education.
+
                 </p>
+
             </div>
+
         </div>
+
     </div>
+
 </footer>
+
+
+
+<!-- =========================================================
+     BACK TO TOP
+========================================================= -->
+
+<button
+    id="backToTop"
+    onclick="scrollToTop()"
+    aria-label="Back to top"
+>
+
+    <i class="fas fa-arrow-up"></i>
+
+</button>
+
+
+
+<!-- Bootstrap JS -->
+
+<script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+></script>
+
+
+<script>
+
+    /* Back to top */
+
+    window.addEventListener("scroll", function () {
+
+        const btn = document.getElementById("backToTop");
+
+        if (
+            document.body.scrollTop > 300 ||
+            document.documentElement.scrollTop > 300
+        ) {
+
+            btn.style.display = "block";
+
+        } else {
+
+            btn.style.display = "none";
+
+        }
+
+    });
+
+
+    function scrollToTop() {
+
+        window.scrollTo({
+
+            top: 0,
+
+            behavior: "smooth"
+
+        });
+
+    }
+
+</script>
+
+
+</body>
+</html>
